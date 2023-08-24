@@ -1,0 +1,370 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HanLin | HanLin</title><meta name="author" content="Hanlin,cheng.lv@slamtec.com"><meta name="copyright" content="Hanlin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="ROS指令ROS Shell命令   命令 功能    roscd 移动到指定的ROS软件包目录   rosls 显示ROS软件包的文件与目录   rosed 编辑ROS软件包的文件   roscp 复制ROS软件包的文件   rospd 添加目录至ROS目录索引   rosd 显示ROS目录索引中的目录   roscd [功能包名称] 使用它，无需再使用cd一层层到查找，进入功能包里   ros">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HanLin">
+<meta property="og:url" content="https://hanlin-cheng.github.io/2023/08/24/C++/ROS%E6%8C%87%E4%BB%A4/">
+<meta property="og:site_name" content="HanLin">
+<meta property="og:description" content="ROS指令ROS Shell命令   命令 功能    roscd 移动到指定的ROS软件包目录   rosls 显示ROS软件包的文件与目录   rosed 编辑ROS软件包的文件   roscp 复制ROS软件包的文件   rospd 添加目录至ROS目录索引   rosd 显示ROS目录索引中的目录   roscd [功能包名称] 使用它，无需再使用cd一层层到查找，进入功能包里   ros">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://hanlin-cheng.github.io/img/avatar1.jpg">
+<meta property="article:published_time" content="2023-08-24T14:38:18.634Z">
+<meta property="article:modified_time" content="2022-12-30T03:13:44.816Z">
+<meta property="article:author" content="Hanlin">
+<meta property="article:tag" content="Welcome to my blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hanlin-cheng.github.io/img/avatar1.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hanlin-cheng.github.io/2023/08/24/C++/ROS%E6%8C%87%E4%BB%A4/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HanLin',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-12-30 11:13:44'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">31</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="HanLin"><span class="site-name">HanLin</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">No title</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-08-24T14:38:18.634Z" title="Created 2023-08-24 22:38:18">2023-08-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-12-30T03:13:44.816Z" title="Updated 2022-12-30 11:13:44">2022-12-30</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="ROS指令"><a href="#ROS指令" class="headerlink" title="ROS指令"></a>ROS指令</h1><h2 id="ROS-Shell命令"><a href="#ROS-Shell命令" class="headerlink" title="ROS Shell命令"></a>ROS Shell命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>roscd</td>
+<td>移动到指定的ROS软件包目录</td>
+</tr>
+<tr>
+<td>rosls</td>
+<td>显示ROS软件包的文件与目录</td>
+</tr>
+<tr>
+<td>rosed</td>
+<td>编辑ROS软件包的文件</td>
+</tr>
+<tr>
+<td>roscp</td>
+<td>复制ROS软件包的文件</td>
+</tr>
+<tr>
+<td>rospd</td>
+<td>添加目录至ROS目录索引</td>
+</tr>
+<tr>
+<td>rosd</td>
+<td>显示ROS目录索引中的目录</td>
+</tr>
+<tr>
+<td>roscd [功能包名称]</td>
+<td>使用它，无需再使用cd一层层到查找，进入功能包里</td>
+</tr>
+<tr>
+<td>rosls [功能包名称]</td>
+<td>等价与roscd+ls。查看ROS功能包的文件列表更方便，快捷</td>
+</tr>
+<tr>
+<td>rosed [功能包名称]</td>
+<td>用于编辑功能包中的特定文件，优点也是快捷，修改容易</td>
+</tr>
+</tbody></table>
+<h2 id="ROS执行命令"><a href="#ROS执行命令" class="headerlink" title="ROS执行命令"></a>ROS执行命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>roscore</td>
+<td>开启Master(ROS名称服务)</td>
+</tr>
+<tr>
+<td>rosrun</td>
+<td>运行单个节点</td>
+</tr>
+<tr>
+<td>roslaunch</td>
+<td>运行多个节点及设置运行选项</td>
+</tr>
+<tr>
+<td>rosclean</td>
+<td>检查或删除ROS日志文件</td>
+</tr>
+<tr>
+<td>roscore [选项]。</td>
+<td>运行主节点，主节点管理节点之间的消息通信中的连接信息。关于主节点的具体作用就不累述了</td>
+</tr>
+<tr>
+<td>rosrun [功能包名称] [节点名称]。</td>
+<td>执行指定的功能包中的一个节点的命令(rosrun rqt_graph rqt_graph 可查看当前系统的运行情况)</td>
+</tr>
+<tr>
+<td>roslaunch [功能包名称] [launch文件名]</td>
+<td>类似dat批命令，是运行指定功能包中一个或设置执行选项的命令</td>
+</tr>
+<tr>
+<td>rosclean [选项]</td>
+<td>运行roscore时，对所有节点的记录都会写入日志文件，随着时间的推移，需要定期使用rosclean命令删除这些记录</td>
+</tr>
+</tbody></table>
+<h2 id="ROS信息命令"><a href="#ROS信息命令" class="headerlink" title="ROS信息命令"></a>ROS信息命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>rostopic</td>
+<td>查看ROS话题信息</td>
+</tr>
+<tr>
+<td>rosservice</td>
+<td>查看ROS服务信息</td>
+</tr>
+<tr>
+<td>rosnode</td>
+<td>查看ROS节点信息</td>
+</tr>
+<tr>
+<td>rosparam</td>
+<td>确认和修改ROS参数信息</td>
+</tr>
+<tr>
+<td>rosbag</td>
+<td>记录和回放ROS消息</td>
+</tr>
+<tr>
+<td>rosmsg</td>
+<td>显示ROS消息类型</td>
+</tr>
+<tr>
+<td>rossrv</td>
+<td>显示ROS服务类型</td>
+</tr>
+<tr>
+<td>rosversion</td>
+<td>显示ROS功能包的版本信息</td>
+</tr>
+<tr>
+<td>roswtf</td>
+<td>检查ROS系统</td>
+</tr>
+</tbody></table>
+<h3 id="rostopic-选项"><a href="#rostopic-选项" class="headerlink" title="rostopic [选项]"></a><strong>rostopic [选项]</strong></h3><p>list - 列出活动话题 </p>
+<p>echo [话题名称] - 实时显示指定话题的消息内容 </p>
+<p>find [类型名称] - 显示使用指定类型的消息的话题 </p>
+<p>type [话题名称] - 显示指定话题的消息类型 </p>
+<p>bw [话题名称] - 显示指定话题的消息类型 </p>
+<p>hz [话题名称] - 显示指定话题的消息数据发布周期 </p>
+<p>info [话题名称] - 显示指定话题的消息 </p>
+<p>pub [话题名称] [消息类型] [参数] - 用指定的话题名称发布消息，许多时候另开一个终端操作 例：rostopic pub -1 &#x2F;turtle1&#x2F;cmd_vel geometry_msgs&#x2F;Twist – ‘[2.0, 0.0, 0.0]”[0.0, 0.0, 0.0]’ </p>
+<h3 id="rosservice-选项"><a href="#rosservice-选项" class="headerlink" title="rosservice [选项]"></a><strong>rosservice [选项]</strong></h3><p>list - 显示活动的服务信息 </p>
+<p>info [服务名称] - 显示指定服务的信息 </p>
+<p>type [服务名称] - 显示服务类型 </p>
+<p>find [服务类型] - 查找指定服务类型的服务 </p>
+<p>uri [服务名称] - 显示ROSRPC URI服务 </p>
+<p>args [服务名称] - 显示服务参数 </p>
+<p>call [服务名称] [参数] - 用输入的参数请求服务，通常用于测试服务 </p>
+<h3 id="rosnode-选项"><a href="#rosnode-选项" class="headerlink" title="rosnode [选项]"></a><strong>rosnode [选项]</strong></h3><p>list - 查看活动的节点列表 </p>
+<p>ping [节点名称] - 与指定的节点进行连接测试 </p>
+<p>info [节点名称] - 查看指定节点的信息 </p>
+<p>machine [PC名称或IP] - 查看该PC中运行的节点列表 </p>
+<p>kill [节点名称] - 停止指定节点的运行 </p>
+<p>cleanup - 删除失连节点的注册信息 </p>
+<h3 id="rosparam-参数"><a href="#rosparam-参数" class="headerlink" title="rosparam [参数]"></a><strong>rosparam [参数]</strong></h3><p>list - 查看参数列表 </p>
+<p>get [参数名称] - 获取参数值 </p>
+<p>set [参数名称] - 设置参数值 </p>
+<p>dump [文件名称] - 将参数保存到指定文件 </p>
+<p>load [文件名称] - 获取保存在指定文件中的参数，经常使用。 </p>
+<p>delete [参数名称] - 删除参数 </p>
+<h3 id="rosmsg-参数"><a href="#rosmsg-参数" class="headerlink" title="rosmsg [参数]"></a><strong>rosmsg [参数]</strong></h3><p>list - 显示所有消息 </p>
+<p>show [消息名称] - 显示指定消息 </p>
+<p>md5 [消息名称] - 显示md5sum </p>
+<p>package [功能包名称] - 显示用于指定功能包的所有消息 </p>
+<p>packages - 显示使用消息的所有功能包 </p>
+<h3 id="rossrv-参数"><a href="#rossrv-参数" class="headerlink" title="rossrv [参数]"></a><strong>rossrv [参数]</strong></h3><p>list -显示所以服务 </p>
+<p>show [服务名称] - 显示指定的服务信息 </p>
+<p>md5 [服务名称] - 显示md5sum </p>
+<p>package [功能包名称] - 显示指定的功能包中用到的所有服务 </p>
+<p>packages - 显示使用服务的所有功能包 </p>
+<h3 id="rosbag-参数"><a href="#rosbag-参数" class="headerlink" title="rosbag [参数]"></a>rosbag [参数]</h3><p>record [选项] [话题名称] - 将指定话题的消息记录到bag文件 </p>
+<p>info [文件名称] - 查看bag文件的信息 </p>
+<p>play [文件名称] - 回放指定的bag文件，这个使用玩的也多。 </p>
+<p>compress [文件名称] - 压缩指定的bag文件 </p>
+<p>decompress [文件名称] - 解压指定的bag文件 </p>
+<p>filter [输入文件] [输出文件] [选项] - 生成一个删除了指定内容的新的bag文件 </p>
+<p>reindex bag [文件名称] - 刷新索引 </p>
+<p>check bag [文件名称] - 检查指定的bag文件是否能在当前系统中回放 </p>
+<p>fix [输入文件] [输出文件] [选项] - 将由于版本不同而无法回放的bag文件修改可以回放的文件 </p>
+<h2 id="ROS-catkin命令"><a href="#ROS-catkin命令" class="headerlink" title="ROS catkin命令"></a>ROS catkin命令</h2><p>catkin_create_pkg - 自动生成功能包（示例命令：catkin_create_pkg [功能包名称] [依赖性功能包1] [依赖性功能包2]….）。 </p>
+<p>catkin_make - 基于catkin构建系统的构建 （示例：catkin_make –pkg [包名] 只构建一部分功能包）。 </p>
+<p>catkin_eclipse - 对于用catkin构建系统生成的功能包进行修改，使其能在Eclipse环境中使用。 </p>
+<p>catkin_prepare_release - 在发布时用到的日志整理和版本标记。 </p>
+<p>catkin_generate_changelog - 在发布时生成或更新CHANGLOG.rst文件。 </p>
+<p>catkin_init_workspace - 初始化catkin构建统的工作目录。 </p>
+<p>catkin_find - 搜素catkin，找到并显示工作空间。 </p>
+<h2 id="ROS功能包命令"><a href="#ROS功能包命令" class="headerlink" title="ROS功能包命令"></a>ROS功能包命令</h2><p>rospack [选项] [功能包名称] - 查看与ROS功能包相关的信息(可以使用find, list, depend-on, depends和profile等选项)。 </p>
+<p>rosinstall - 安装ROS附加功能包。 </p>
+<p>rosdep [选项] - 安装该功能包的依赖性文件（check, install, init, update）。 </p>
+<p>roslocate [选项] [功能包名称] - ROS功能包信息相关命令（可用的选项是info, vcs, type, uri和repo等）。 </p>
+<h2 id="常用的一些指令"><a href="#常用的一些指令" class="headerlink" title="常用的一些指令"></a>常用的一些指令</h2><table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">rosrun map_server map_saver</td>
+<td align="center">rviz保存生成的地图</td>
+</tr>
+<tr>
+<td align="left">rosrun map_server map_server map.yaml</td>
+<td align="center">rviz加载生成的地图</td>
+</tr>
+<tr>
+<td align="left">rostopic echo <topic> –noarr</td>
+<td align="center">详细显示话题信息</td>
+</tr>
+</tbody></table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://hanlin-cheng.github.io">Hanlin</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hanlin-cheng.github.io/2023/08/24/C++/ROS%E6%8C%87%E4%BB%A4/">https://hanlin-cheng.github.io/2023/08/24/C++/ROS%E6%8C%87%E4%BB%A4/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/avatar1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/08/24/C++/STL%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8%E6%97%B6%E6%9C%BA/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info"></div></div></a></div><div class="next-post pull-right"><a href="/2023/08/24/C++/Protocol_Buffers%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info"></div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Hanlin</div><div class="author-info__description">hanlin</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">31</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hanlin-cheng"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/hanlin-cheng" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:cheng.lv@slamtec.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ROS%E6%8C%87%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">ROS指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ROS-Shell%E5%91%BD%E4%BB%A4"><span class="toc-number">1.1.</span> <span class="toc-text">ROS Shell命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ROS%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text">ROS执行命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ROS%E4%BF%A1%E6%81%AF%E5%91%BD%E4%BB%A4"><span class="toc-number">1.3.</span> <span class="toc-text">ROS信息命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#rostopic-%E9%80%89%E9%A1%B9"><span class="toc-number">1.3.1.</span> <span class="toc-text">rostopic [选项]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rosservice-%E9%80%89%E9%A1%B9"><span class="toc-number">1.3.2.</span> <span class="toc-text">rosservice [选项]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rosnode-%E9%80%89%E9%A1%B9"><span class="toc-number">1.3.3.</span> <span class="toc-text">rosnode [选项]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rosparam-%E5%8F%82%E6%95%B0"><span class="toc-number">1.3.4.</span> <span class="toc-text">rosparam [参数]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rosmsg-%E5%8F%82%E6%95%B0"><span class="toc-number">1.3.5.</span> <span class="toc-text">rosmsg [参数]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rossrv-%E5%8F%82%E6%95%B0"><span class="toc-number">1.3.6.</span> <span class="toc-text">rossrv [参数]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rosbag-%E5%8F%82%E6%95%B0"><span class="toc-number">1.3.7.</span> <span class="toc-text">rosbag [参数]</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ROS-catkin%E5%91%BD%E4%BB%A4"><span class="toc-number">1.4.</span> <span class="toc-text">ROS catkin命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ROS%E5%8A%9F%E8%83%BD%E5%8C%85%E5%91%BD%E4%BB%A4"><span class="toc-number">1.5.</span> <span class="toc-text">ROS功能包命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E6%8C%87%E4%BB%A4"><span class="toc-number">1.6.</span> <span class="toc-text">常用的一些指令</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/08/24/C++/%E8%BD%AC%E6%8D%A2/" title="No title">No title</a><time datetime="2023-08-24T14:38:18.654Z" title="Created 2023-08-24 22:38:18">2023-08-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/08/24/C++/%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4/" title="No title">No title</a><time datetime="2023-08-24T14:38:18.653Z" title="Created 2023-08-24 22:38:18">2023-08-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/08/24/C++/%E7%B1%BB%E7%9F%A5%E8%AF%86%E7%82%B9/" title="No title">No title</a><time datetime="2023-08-24T14:38:18.652Z" title="Created 2023-08-24 22:38:18">2023-08-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/08/24/C++/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E8%B0%83%E7%94%A8%E6%97%B6%E6%9C%BA/" title="No title">No title</a><time datetime="2023-08-24T14:38:18.650Z" title="Created 2023-08-24 22:38:18">2023-08-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/08/24/C++/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%AD%97%E8%8A%82%E6%95%B0/" title="No title">No title</a><time datetime="2023-08-24T14:38:18.648Z" title="Created 2023-08-24 22:38:18">2023-08-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 By Hanlin</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my blog!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

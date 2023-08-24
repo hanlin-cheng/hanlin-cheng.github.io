@@ -1,0 +1,221 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HanLin | HanLin</title><meta name="author" content="Hanlin,cheng.lv@slamtec.com"><meta name="copyright" content="Hanlin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一、左值与右值 啥是左值和右值呢？ 左值：在内存有确定存储地址、有变量名，表达式结束依然存在的值，简单来说左值就是非临时对象。右值：就是在内存没有确定存储地址、没有变量名，表达式结束就会销毁的值，简单来说右值就是临时对象。 1int a &#x3D; 0;  &#x2F;&#x2F; 在这条语句中，a 是左值，0 是临时值，就是右值。  左值可以分为两类：非常量左值和常量左值； 123int a&#x3D;10;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HanLin">
+<meta property="og:url" content="https://hanlin-cheng.github.io/2023/08/24/C++/%E5%B7%A6%E5%80%BC%E4%B8%8E%E5%8F%B3%E5%80%BC/">
+<meta property="og:site_name" content="HanLin">
+<meta property="og:description" content="一、左值与右值 啥是左值和右值呢？ 左值：在内存有确定存储地址、有变量名，表达式结束依然存在的值，简单来说左值就是非临时对象。右值：就是在内存没有确定存储地址、没有变量名，表达式结束就会销毁的值，简单来说右值就是临时对象。 1int a &#x3D; 0;  &#x2F;&#x2F; 在这条语句中，a 是左值，0 是临时值，就是右值。  左值可以分为两类：非常量左值和常量左值； 123int a&#x3D;10;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://hanlin-cheng.github.io/img/avatar1.jpg">
+<meta property="article:published_time" content="2023-08-24T14:38:18.643Z">
+<meta property="article:modified_time" content="2022-12-30T03:13:44.834Z">
+<meta property="article:author" content="Hanlin">
+<meta property="article:tag" content="Welcome to my blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hanlin-cheng.github.io/img/avatar1.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hanlin-cheng.github.io/2023/08/24/C++/%E5%B7%A6%E5%80%BC%E4%B8%8E%E5%8F%B3%E5%80%BC/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HanLin',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-12-30 11:13:44'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">31</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="HanLin"><span class="site-name">HanLin</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">No title</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-08-24T14:38:18.643Z" title="Created 2023-08-24 22:38:18">2023-08-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-12-30T03:13:44.834Z" title="Updated 2022-12-30 11:13:44">2022-12-30</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="一、左值与右值"><a href="#一、左值与右值" class="headerlink" title="一、左值与右值"></a>一、左值与右值</h1><ul>
+<li><p>啥是左值和右值呢？</p>
+<p>左值：在<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%86%85%E5%AD%98&spm=1001.2101.3001.7020">内存</a>有确定存储地址、有变量名，表达式结束依然存在的值，简单来说左值就是非临时对象。<br>右值：就是在内存没有确定存储地址、没有变量名，<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E8%A1%A8%E8%BE%BE%E5%BC%8F&spm=1001.2101.3001.7020">表达式</a>结束就会销毁的值，简单来说右值就是临时对象。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int a = 0;  // 在这条语句中，a 是左值，0 是临时值，就是右值。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>左值可以分为两类：非常量左值和常量左值；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int a=10;              	// a 为非常量左值（有确定存储地址，也有变量名）</span><br><span class="line">const int a1=10;      //a1 为常量左值（有确定存储地址，也有变量名）</span><br><span class="line">const int a2=20;      //a2 为常量左值（有确定存储地址，也有变量名）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>同理，右值也可以分为两类：非常量右值和常量右值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> int a=10;              	// 10 为非常量右值</span><br><span class="line">const int a1=10;      </span><br><span class="line">const int a2=20;      </span><br><span class="line">a1+a2               	// (a1+a2) 为常量右值</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="二、左值引用于右值引用"><a href="#二、左值引用于右值引用" class="headerlink" title="二、左值引用于右值引用"></a>二、左值引用于右值引用</h1><ul>
+<li><p><strong>知道了左值与右值了，那啥是左值引用与右值引用呢？</strong></p>
+<p>左值引用：其实就是绑定到左值的引用，通过&amp;来获得左值引用。</p>
+<ul>
+<li><p>左值引用举例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">int a=10;              //非常量左值（有确定存储地址，也有变量名）</span><br><span class="line">const int a1=10;       //常量左值（有确定存储地址，也有变量名）</span><br><span class="line">const int a2=20;       //常量左值（有确定存储地址，也有变量名）</span><br><span class="line"> </span><br><span class="line">//非常量左值引用</span><br><span class="line">int &amp;b1=a;            //正确，a是一个非常量左值，可以被非常量左值引用绑定</span><br><span class="line">int &amp;b2=a1;           //错误,a1是一个常量左值，不可以被非常量左值引用绑定</span><br><span class="line">int &amp;b3=10;           //错误，10是一个非常量右值，不可以被非常量左值引用绑定</span><br><span class="line">int &amp;b4=a1+a2;        //错误,（a1+a2）是一个常量右值，不可以被非常量左值引用绑定</span><br><span class="line"></span><br><span class="line">//常量左值引用</span><br><span class="line">const int &amp;c1=a;      //正确，a是一个非常量左值，可以被非常量右值引用绑定</span><br><span class="line">const int &amp;c2=a1;     //正确,a1是一个常量左值，可以被非常量右值引用绑定</span><br><span class="line">const int &amp;c3=a+a1;   //正确，（a+a1）是一个非常量右值，可以被常量右值引用绑定</span><br><span class="line">const int &amp;c4=a1+a2;  //正确,（a1+a2）是一个常量右值，可以被非常量右值引用绑定</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>总结归纳：非常量左值引用只能绑定到非常量左值上；常量左值引用可以绑定到非常量左值、常量左值、非常量右值、常量右值等所有的值类型。</p>
+</li>
+</ul>
+<p>右值引用：其实也是绑定到右值的引用，通过&amp;&amp;来获得右值引用。</p>
+<ul>
+<li><p>右值引用举例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">int a=10;             //非常量左值（有确定存储地址，也有变量名）</span><br><span class="line">const int a1=20;      //常量左值（有确定存储地址，也有变量名）</span><br><span class="line">const int a2=20;      //常量左值（有确定存储地址，也有变量名）</span><br><span class="line"></span><br><span class="line">//非常量右值引用</span><br><span class="line">int &amp;&amp;b1=a;            //错误，a是一个非常量左值，不可以被非常量右值引用绑定</span><br><span class="line">int &amp;&amp;b2=a1;           //错误,a1是一个常量左值，不可以被非常量右值引用绑定</span><br><span class="line">int &amp;&amp;b3=10;           //正确，10是一个非常量右值，可以被非常量右值引用绑定</span><br><span class="line">int &amp;&amp;b4=a1+a2;        //错误,（a1+a2）是一个常量右值，不可以被非常量右值引用绑定</span><br><span class="line"></span><br><span class="line">//常量右值引用</span><br><span class="line">const int &amp;&amp;c1=a;      //错误，a是一个非常量左值，不可以被常量右值引用绑定</span><br><span class="line">const int &amp;&amp;c2=a1;     //错误,a1是一个常量左值，不可以被常量右值引用绑定</span><br><span class="line">const int &amp;&amp;c3=a+a1;   //正确，（a+a1）是一个非常量右值，可以被常量右值引用绑定</span><br><span class="line">const int &amp;&amp;c4=a1+a2;  //正确,（a1+a2）是一个常量右值，不可以被常量右值引用绑定</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>总结归纳：非常量右值引用只能绑定到非常量右值上；常量右值引用可以绑定到非常量右值、常量右值上。</p>
+<p><img src="/./media/3d9e381b93fe4df790357680b15d4635.png"></p>
+<p><strong>从上述可以发现，常量左值引用可以绑定到右值上，但右值引用不能绑定任何类型的左值，若想利用右值引用绑定左值该怎么办呢？</strong></p>
+</li>
+</ul>
+</li>
+<li><p>C++11中提供了一个标准库move函数获得绑定到左值上的右值引用，即直接调用std::move告诉编译器将左值像对待同类型右值一样处理，但是被调用后的左值将不能再被使用。</p>
+<ul>
+<li><p><strong>std::move()函数举例</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int a=10;                 //非常量左值（有确定存储地址，也有变量名）</span><br><span class="line">const int a1=20;          //常量左值（有确定存储地址，也有变量名）</span><br><span class="line"></span><br><span class="line">//非常量右值引用</span><br><span class="line">int &amp;&amp;d1=std::move(a);    //正确，将非常量左值a转换为非常量右值，可以被非常量右值引用绑定</span><br><span class="line">int &amp;&amp;d2=std::move(a1);    //错误,将常量左值a1转换为常量右值，不可以被非常量右值引用绑定</span><br><span class="line"></span><br><span class="line">//常量右值引用</span><br><span class="line">const int &amp;&amp;c1=std::move(a);      //正确，将非常量左值a转换为非常量右值，可以被常量右值引用绑定</span><br><span class="line">const int &amp;&amp;c2=std::move(a1);     //正确,将常量左值a1转换为常量右值，可以被常量右值引用绑定</span><br></pre></td></tr></table></figure>
+
+<p>最后可以发现，编译器利用std::move将左值强制转换为相同类型的右值之后，引用情况跟右值是一模一样的。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="三、右值引用与左值引用的区别"><a href="#三、右值引用与左值引用的区别" class="headerlink" title="三、右值引用与左值引用的区别"></a>三、右值引用与左值引用的区别</h1><ul>
+<li><p>1、左值引用绑定到有确定存储空间以及变量名的对象上，表达式结束后对象依然存在；</p>
+</li>
+<li><p>2、右值引用绑定到要求转换的表达式、字面常量、返回右值的表达式等临时对象上，赋值表达式结束后就对象就会被销毁。</p>
+</li>
+<li><p>3、左值引用后可以利用别名修改左值对象；右值引用绑定的值不能修改。</p>
+</li>
+</ul>
+<h1 id="四、引入右值引用的原因"><a href="#四、引入右值引用的原因" class="headerlink" title="四、引入右值引用的原因"></a>四、引入右值引用的原因</h1><ul>
+<li><p>1、替代需要销毁对象的拷贝，提高效率：某些情况下，需要拷贝一个对象然后将其销毁，如：临时类对象的拷贝就要先将旧内存的资源拷贝到新内存，然后释放旧内存，引入右值引用后，就可以让新对象直接使用旧内存并且销毁原对象，这样就减少了内存和运算资源的使用，从而提高了运行效率；</p>
+</li>
+<li><p>2、移动含有不能共享资源的类对象：像IO、unique_ptr这样的类包含不能被共享的资源（如：IO缓冲、指针），因此，这些类对象不能拷贝但可以移动。这种情况，需要先调用std::move将左值强制转换为右值，再进行右值引用。</p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://hanlin-cheng.github.io">Hanlin</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hanlin-cheng.github.io/2023/08/24/C++/%E5%B7%A6%E5%80%BC%E4%B8%8E%E5%8F%B3%E5%80%BC/">https://hanlin-cheng.github.io/2023/08/24/C++/%E5%B7%A6%E5%80%BC%E4%B8%8E%E5%8F%B3%E5%80%BC/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/avatar1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/08/24/C++/%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info"></div></div></a></div><div class="next-post pull-right"><a href="/2023/08/24/C++/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info"></div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Hanlin</div><div class="author-info__description">hanlin</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">31</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hanlin-cheng"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/hanlin-cheng" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:cheng.lv@slamtec.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%B7%A6%E5%80%BC%E4%B8%8E%E5%8F%B3%E5%80%BC"><span class="toc-number">1.</span> <span class="toc-text">一、左值与右值</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%B7%A6%E5%80%BC%E5%BC%95%E7%94%A8%E4%BA%8E%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">二、左值引用于右值引用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8%E4%B8%8E%E5%B7%A6%E5%80%BC%E5%BC%95%E7%94%A8%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">3.</span> <span class="toc-text">三、右值引用与左值引用的区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%BC%95%E5%85%A5%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-number">4.</span> <span class="toc-text">四、引入右值引用的原因</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/08/24/C++/%E8%BD%AC%E6%8D%A2/" title="No title">No title</a><time datetime="2023-08-24T14:38:18.654Z" title="Created 2023-08-24 22:38:18">2023-08-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/08/24/C++/%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4/" title="No title">No title</a><time datetime="2023-08-24T14:38:18.653Z" title="Created 2023-08-24 22:38:18">2023-08-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/08/24/C++/%E7%B1%BB%E7%9F%A5%E8%AF%86%E7%82%B9/" title="No title">No title</a><time datetime="2023-08-24T14:38:18.652Z" title="Created 2023-08-24 22:38:18">2023-08-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/08/24/C++/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E8%B0%83%E7%94%A8%E6%97%B6%E6%9C%BA/" title="No title">No title</a><time datetime="2023-08-24T14:38:18.650Z" title="Created 2023-08-24 22:38:18">2023-08-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/08/24/C++/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%AD%97%E8%8A%82%E6%95%B0/" title="No title">No title</a><time datetime="2023-08-24T14:38:18.648Z" title="Created 2023-08-24 22:38:18">2023-08-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 By Hanlin</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my blog!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
