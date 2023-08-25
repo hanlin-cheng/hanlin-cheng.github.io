@@ -1,0 +1,309 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Git中submodule的使用 | HanLin</title><meta name="author" content="Hanlin,cheng.lv@slamtec.com"><meta name="copyright" content="Hanlin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Git中submodule的使用背景面对比较复杂的项目，我们有可能会将代码根据功能拆解成不同的子模块。主项目对子模块有依赖关系，却又并不关心子模块的内部开发流程细节。 这种情况下，通常不会把所有源码都放在同一个 Git 仓库中。 有一种比较简单的方式，是在当前工作目录下，将子模块文件夹加入到 .gitignore 文件内容中，这样主项目就能够无视子项目的存在。这样做有一个弊端就是，使用主项目的人需">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git中submodule的使用">
+<meta property="og:url" content="https://hanlin-cheng.github.io/2023/08/25/command/Git%E4%B8%ADsubmodule%E7%9A%84%E4%BD%BF%E7%94%A8/">
+<meta property="og:site_name" content="HanLin">
+<meta property="og:description" content="Git中submodule的使用背景面对比较复杂的项目，我们有可能会将代码根据功能拆解成不同的子模块。主项目对子模块有依赖关系，却又并不关心子模块的内部开发流程细节。 这种情况下，通常不会把所有源码都放在同一个 Git 仓库中。 有一种比较简单的方式，是在当前工作目录下，将子模块文件夹加入到 .gitignore 文件内容中，这样主项目就能够无视子项目的存在。这样做有一个弊端就是，使用主项目的人需">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://hanlin-cheng.github.io/img/material-8.png">
+<meta property="article:published_time" content="2023-08-25T08:54:21.184Z">
+<meta property="article:modified_time" content="2023-08-25T09:04:21.105Z">
+<meta property="article:author" content="Hanlin">
+<meta property="article:tag" content="Git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hanlin-cheng.github.io/img/material-8.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hanlin-cheng.github.io/2023/08/25/command/Git%E4%B8%ADsubmodule%E7%9A%84%E4%BD%BF%E7%94%A8/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Git中submodule的使用',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-08-25 17:04:21'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">63</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-compass"></i><span> Directory</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/resource/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> Resource</span></a></div><div class="menus_item"><a class="site-page" href="/software/"><i class="fa-fw fa-solid fa-chalkboard"></i><span> Software</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> Resume</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="HanLin"><span class="site-name">HanLin</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-compass"></i><span> Directory</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/resource/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> Resource</span></a></div><div class="menus_item"><a class="site-page" href="/software/"><i class="fa-fw fa-solid fa-chalkboard"></i><span> Software</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> Resume</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Git中submodule的使用</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-08-25T08:54:21.184Z" title="Created 2023-08-25 16:54:21">2023-08-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-08-25T09:04:21.105Z" title="Updated 2023-08-25 17:04:21">2023-08-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/command/">command</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Git中submodule的使用"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="Git中submodule的使用"><a href="#Git中submodule的使用" class="headerlink" title="Git中submodule的使用"></a>Git中submodule的使用</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>面对比较复杂的项目，我们有可能会将代码根据功能拆解成不同的子模块。主项目对子模块有依赖关系，却又并不关心子模块的内部开发流程细节。</p>
+<p>这种情况下，通常不会把所有源码都放在同一个 Git 仓库中。</p>
+<p>有一种比较简单的方式，是在当前工作目录下，将子模块文件夹加入到 <code>.gitignore</code> 文件内容中，这样主项目就能够无视子项目的存在。这样做有一个弊端就是，使用主项目的人需要有一个先验知识：需要在当前目录下放置一份某版本的子模块代码。</p>
+<p>还有另外一种方式可供借鉴，可以使用 Git 的 <code>submodule</code> 功能，也是这篇文章的主题。</p>
+<p>实际上 Git 工具的 <code>submodule</code> 功能就是建立了当前项目与子模块之间的依赖关系：<code>子模块路径</code>、<code>子模块的远程仓库</code>、<code>子模块的版本号</code>。</p>
+<h2 id="使用流程"><a href="#使用流程" class="headerlink" title="使用流程"></a>使用流程</h2><p>假定我们有两个项目：<code>project-main</code> 和 <code>project-sub-1</code>，其中 <code>project-main</code> 表示主项目，而 <code>project-sub-1</code> 表示子模块项目。</p>
+<p>其中 <code>project-main</code> 的远程仓库地址为 <code>https://github.com/username/project-main.git</code>，而 <code>project-sub-1</code> 的远程仓库地址为 <code>https://github.com/username/project-sub-1.git</code>。</p>
+<p>接下来，我们希望在 <code>project-main</code> 中添加 <code>project-sub-1</code> ，而又保持 <code>project-sub-1</code> 自身独立的版本控制。</p>
+<h3 id="1-创建-submodule"><a href="#1-创建-submodule" class="headerlink" title="1.创建 submodule"></a><strong>1.创建 submodule</strong></h3><p>使用 <code>git submodule add &lt;submodule_url&gt;</code> 命令可以在项目中创建一个子模块。</p>
+<p>进入项目 <code>project-main</code> ，输入：</p>
+<blockquote>
+<p>➜ project-main git:(master) git submodule add <a href="https://link.zhihu.com/?target=https://github.com/username/project-sub-1.git">https://github.com/username/project-sub-1.git</a><br>正克隆到 ‘&#x2F;path&#x2F;to&#x2F;project-main&#x2F;project-sub-1’…<br>remote: Enumerating objects: 3, done.<br>remote: Counting objects: 100% (3&#x2F;3), done.<br>remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0<br>展开对象中: 100% (3&#x2F;3), 完成.</p>
+</blockquote>
+<p>此时项目仓库中会多出两个文件：<code>.gitmodules</code> 和 <code>project-sub-1</code> 。</p>
+<p>前者的内容是这样的，事实上就是子模块的相关信息；而后者那个文件，实际上保存的是子模块当前版本的版本号信息。</p>
+<blockquote>
+<p>[submodule “project-sub-1”]<br>path &#x3D; project-sub-1<br>url &#x3D; <a href="https://link.zhihu.com/?target=https://github.com/username/project-sub-1.git">https://github.com/username/project-sub-1.git</a></p>
+</blockquote>
+<p>如果此前项目中已经存在 <code>.gitmodules</code> 文件，则会在文件内容中多出上述三行记录。</p>
+<p>事实上，此时在 <code>.git/config</code> 文件中也会多出一些信息，在 <code>.git/modules</code> 文件夹下也会多出一份内容。</p>
+<p>通常此时可以使用 <code>git commit -m &quot;add submodule xxx&quot;</code> 提交一次，表示引入了某个子模块。提交后，在主项目仓库中，会显示出子模块文件夹，并带上其所在仓库的版本号。</p>
+<p><img src="/media/v2-8b77b08acc39bfc9cb569116ff6905e2_720w.webp" alt="img"></p>
+<h3 id="2-获取-submodule"><a href="#2-获取-submodule" class="headerlink" title="2.获取 submodule"></a><strong>2.获取 submodule</strong></h3><p>上述步骤在创建子模块的过程中，会自动将相关代码克隆到对应路径，但对于后续使用者而言，对于主项目使用普通的 <code>clone</code> 操作并不会拉取到子模块中的实际代码。</p>
+<p>使用以下命令进行克隆，完成后 <code>project-main/project-sub-1</code> 文件夹是空的：</p>
+<blockquote>
+<p>cd &#x2F;path&#x2F;to&#x2F;temp<br>git clone <a href="https://link.zhihu.com/?target=https://github.com/username/project-main.git">https://github.com/username/project-main.git</a></p>
+</blockquote>
+<p>如果希望子模块代码也获取到，一种方式是在克隆主项目的时候带上参数 <code>--recurse-submodules</code>，这样会递归地将项目中所有子模块的代码拉取。</p>
+<blockquote>
+<p>cd &#x2F;path&#x2F;to&#x2F;temp2<br>git clone <a href="https://link.zhihu.com/?target=https://github.com/username/project-main.git">https://github.com/username/project-main.git</a> –recurse-submodules</p>
+</blockquote>
+<p>此时 <code>project-main/project-sub-1</code> 文件夹是有内容的，并且固定在某个 Git 提交的版本上。</p>
+<p>另外一种可行的方式是，在当前主项目中执行：</p>
+<blockquote>
+<p>git submodule init<br>git submodule update</p>
+</blockquote>
+<p>则会根据主项目的配置信息，拉取更新子模块中的代码。</p>
+<p>一般使用更多的是，递归得将子项目中目录拉去下来</p>
+<blockquote>
+<p>git submodule update –init –recursive</p>
+</blockquote>
+<h3 id="3-子模块内容的更新"><a href="#3-子模块内容的更新" class="headerlink" title="3.子模块内容的更新"></a><strong>3.子模块内容的更新</strong></h3><p>对于子模块而言，并不需要知道引用自己的主项目的存在。对于自身来讲，子模块就是一个完整的 Git 仓库，按照正常的 Git 代码管理规范操作即可。</p>
+<p>对于主项目而言，子模块的内容发生变动时，通常有三种情况：</p>
+<p>1）当前项目下子模块文件夹内的内容发生了未跟踪的内容变动；</p>
+<p>2）当前项目下子模块文件夹内的内容发生了版本变化；</p>
+<p>3）当前项目下子模块文件夹内的内容没变，远程有更新；</p>
+<blockquote>
+<p>&gt; 情况1：子模块有未跟踪的内容变动</p>
+</blockquote>
+<p>对于第1种情况，通常是在开发环境中，直接修改子模块文件夹中的代码导致的。</p>
+<p>此时在主项目中使用 <code>git status</code> 能够看到关于子模块尚未暂存以备提交的变更，但是于主项目而言是无能为力的，使用 <code>git add/commit</code> 对其也不会产生影响。</p>
+<blockquote>
+<p>➜ project-main git:(master) git status<br>位于分支 master<br>您的分支与上游分支 ‘origin&#x2F;master’ 一致。<br>尚未暂存以备提交的变更：<br>（使用 “git add &lt;文件&gt;…” 更新要提交的内容）<br>（使用 “git checkout – &lt;文件&gt;…” 丢弃工作区的改动）<br>（提交或丢弃子模组中未跟踪或修改的内容）<br>修改： project-sub-1 (未跟踪的内容)<br>修改尚未加入提交（使用 “git add” 和&#x2F;或 “git commit -a”）</p>
+</blockquote>
+<p>在此情景下，通常需要进入子模块文件夹，按照子模块内部的版本控制体系提交代码。</p>
+<p>当提交完成后，主项目的状态则进入了情况2，即当前项目下子模块文件夹内的内容发生了版本变化。</p>
+<blockquote>
+<p>&gt; 情况2：子模块有版本变化</p>
+</blockquote>
+<p>当子模块版本变化时，在主项目中使用 <code>git status</code> 查看仓库状态时，会显示子模块有新的提交：</p>
+<blockquote>
+<p>➜ project-main git:(master) ✗ git status<br>位于分支 master<br>您的分支与上游分支 ‘origin&#x2F;master’ 一致。<br>尚未暂存以备提交的变更：<br>（使用 “git add &lt;文件&gt;…” 更新要提交的内容）<br>（使用 “git checkout – &lt;文件&gt;…” 丢弃工作区的改动）<br>修改： project-sub-1 (新提交)<br>修改尚未加入提交（使用 “git add” 和&#x2F;或 “git commit -a”）</p>
+</blockquote>
+<p>在这种情况下，可以使用 <code>git add/commit</code> 将其添加到主项目的代码提交中，实际的改动就是那个子模块 <code>文件</code> 所表示的版本信息：</p>
+<blockquote>
+<p>git diff HEAD HEAD^<br>diff –git a&#x2F;project-sub-1 b&#x2F;project-sub-1<br>index ace9770..7097c48 160000<br>— a&#x2F;project-sub-1<br>+++ b&#x2F;project-sub-1<br>@@ -1 +1 @@<br>-Subproject commit ace977071f94f4f88935f9bb9a33ac0f8b4ba935<br>+Subproject commit 7097c4887798b71cee360e99815f7dbd1aa17eb4</p>
+</blockquote>
+<p>通常当子项目更新后，主项目修改其所依赖的版本时，会产生类似这种情景的 commit 提交信息。</p>
+<blockquote>
+<p>&gt; 情况3：子模块远程有更新</p>
+</blockquote>
+<p>通常来讲，主项目与子模块的开发不会恰好是同时进行的。通常是子模块负责维护自己的版本升级后，推送到远程仓库，并告知主项目可以更新对子模块的版本依赖。</p>
+<p>在这种情况下，主项目是比较茫然的。</p>
+<p>之前曾经提到，主项目可以使用 <code>git submodule update</code> 更新子模块的代码，但那是指 <code>当前主项目文件夹下的子模块目录内容</code> 与 <code>当前主项目记录的子模块版本</code> 不一致时，会参考后者进行更新。</p>
+<p>但如今这种情况下，后者 <code>当前主项目记录的子模块版本</code> 还没有变化，在主项目看来当前情况一切正常。</p>
+<p>此时，需要让主项目主动进入子模块拉取新版代码，进行升级操作。</p>
+<p>通常流程是：</p>
+<blockquote>
+<p>cd project-sub-1<br>git pull origin master</p>
+</blockquote>
+<p>子模块目录下的代码版本会发生变化，转到情况2的流程进行主项目的提交。</p>
+<p>当主项目的子项目特别多时，可能会不太方便，此时可以使用 <code>git submodule</code> 的一个命令 <code>foreach</code> 执行：</p>
+<blockquote>
+<p>git submodule foreach ‘git pull origin master’</p>
+</blockquote>
+<blockquote>
+<p>&gt; 情况汇总</p>
+</blockquote>
+<p>终上所述，可知在不同场景下子模块的更新方式如下：</p>
+<ul>
+<li>对于子模块，只需要管理好自己的版本，并推送到远程分支即可；</li>
+<li>对于父模块，若子模块版本信息未提交，需要更新子模块目录下的代码，并执行 <code>commit</code> 操作提交子模块版本信息；</li>
+<li>对于父模块，若子模块版本信息已提交，需要使用 <code>git submodule update</code> （git submodule update –init –recursive），Git 会自动根据子模块版本信息更新所有子模块目录的相关代码。</li>
+</ul>
+<blockquote>
+<p><strong>4.删除子模块</strong></p>
+</blockquote>
+<p>网上流传了一些偏法，主要步骤是直接移除模块，并手动修改 <code>.gitmodules</code>、<code>.git/config</code> 和 <code>.git/modules</code> 内容。包含了一大堆类似<code>git rm --cached &lt;sub-module&gt;</code>、<code>rm -rf &lt;sub-moduel&gt;</code>、<code>rm .gitmodules</code> 和 <code>git rm --cached</code> 之类的代码。</p>
+<p>实际上这是一种比较野的做法，不建议使用。</p>
+<p>根据官方文档的说明，应该使用 <code>git submodule deinit</code> 命令卸载一个子模块。这个命令如果添加上参数 <code>--force</code>，则子模块工作区内即使有本地的修改，也会被移除。</p>
+<blockquote>
+<p>git submodule deinit project-sub-1<br>git rm project-sub-1</p>
+</blockquote>
+<p>执行 <code>git submodule deinit project-sub-1</code> 命令的实际效果，是自动在 <code>.git/config</code> 中删除了以下内容：</p>
+<blockquote>
+<p>[submodule “project-sub-1”]<br>url &#x3D; <a href="https://link.zhihu.com/?target=https://github.com/username/project-sub-1.git">https://github.com/username/project-sub-1.git</a></p>
+</blockquote>
+<p>执行 <code>git rm project-sub-1</code> 的效果，是移除了 <code>project-sub-1</code> 文件夹，并自动在 <code>.gitmodules</code> 中删除了以下内容：</p>
+<blockquote>
+<p>[submodule “project-sub-1”]<br>path &#x3D; project-sub-1<br>url &#x3D; <a href="https://link.zhihu.com/?target=https://github.com/username/project-sub-1.git">https://github.com/username/project-sub-1.git</a></p>
+</blockquote>
+<p>此时，主项目中关于子模块的信息基本已经删除（虽然貌似 <code>.git/modules</code> 目录下还有残余）：</p>
+<blockquote>
+<p>➜ project-main git:(master) ✗ gs<br>位于分支 master<br>您的分支与上游分支 ‘origin&#x2F;master’ 一致。<br>要提交的变更：<br>（使用 “git reset HEAD &lt;文件&gt;…” 以取消暂存）<br>修改： .gitmodules<br>删除： project-sub-1</p>
+</blockquote>
+<p>可以提交代码：</p>
+<blockquote>
+<p>git commit -m “delete submodule project-sub-1”</p>
+</blockquote>
+<p>至此完成对子模块的删除。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>当项目比较复杂，部分代码希望独立为子模块进行版本控制时，可以使用 <code>git submodule</code> 功能。</p>
+<p>使用 <code>git submodule</code> 功能时，主项目仓库并不会包含子模块的文件，只会保留一份子模块的配置信息及版本信息，作为主项目版本管理的一部分。</p>
+<p>本篇文章简单介绍了 <code>git submodule</code> 的添加和删除，以及项目开发过程中主项目与子模块不同状态时刻的操作方式。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://hanlin-cheng.github.io">Hanlin</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hanlin-cheng.github.io/2023/08/25/command/Git%E4%B8%ADsubmodule%E7%9A%84%E4%BD%BF%E7%94%A8/">https://hanlin-cheng.github.io/2023/08/25/command/Git%E4%B8%ADsubmodule%E7%9A%84%E4%BD%BF%E7%94%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Git/">Git</a></div><div class="post_share"><div class="social-share" data-image="/img/material-8.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/08/25/command/git_rebase%E7%9A%84%E4%B8%A4%E7%A7%8D%E7%94%A8%E6%B3%95/" title="git rebase的两种用法"><img class="cover" src="/img/material-8.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">git rebase的两种用法</div></div></a></div><div class="next-post pull-right"><a href="/2023/08/25/command/LIO-SAM%E8%BF%90%E8%A1%8C/" title="LIO-SAM运行"><img class="cover" src="/img/material-3.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">LIO-SAM运行</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2023/08/25/command/Git_Command/" title="Git Command"><img class="cover" src="/img/material-3.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-25</div><div class="title">Git Command</div></div></a></div><div><a href="/2023/08/25/command/git_cherry-pick/" title="git cherry-pick"><img class="cover" src="/img/material-3.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-25</div><div class="title">git cherry-pick</div></div></a></div><div><a href="/2023/08/25/command/git_rebase%E7%9A%84%E4%B8%A4%E7%A7%8D%E7%94%A8%E6%B3%95/" title="git rebase的两种用法"><img class="cover" src="/img/material-8.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-25</div><div class="title">git rebase的两种用法</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Hanlin</div><div class="author-info__description">Talk is cheap, show you code</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">63</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hanlin-cheng"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/hanlin-cheng" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:cheng.lv@slamtec.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git%E4%B8%ADsubmodule%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">Git中submodule的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">使用流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BA-submodule"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.创建 submodule</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%8E%B7%E5%8F%96-submodule"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.获取 submodule</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AD%90%E6%A8%A1%E5%9D%97%E5%86%85%E5%AE%B9%E7%9A%84%E6%9B%B4%E6%96%B0"><span class="toc-number">1.2.3.</span> <span class="toc-text">3.子模块内容的更新</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/08/25/slam_config/%E8%BD%A8%E8%BF%B9%E8%AF%84%E4%BC%B0%E4%BB%8B%E7%BB%8D%E4%B8%8Eevo%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" title="轨迹评估介绍与evo工具使用"><img src="/img/material-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="轨迹评估介绍与evo工具使用"/></a><div class="content"><a class="title" href="/2023/08/25/slam_config/%E8%BD%A8%E8%BF%B9%E8%AF%84%E4%BC%B0%E4%BB%8B%E7%BB%8D%E4%B8%8Eevo%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" title="轨迹评估介绍与evo工具使用">轨迹评估介绍与evo工具使用</a><time datetime="2023-08-25T09:26:09.011Z" title="Created 2023-08-25 17:26:09">2023-08-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/25/slam_config/%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E4%B8%8EIMU%E8%81%94%E5%90%88%E6%A0%87%E5%AE%9A(lidar_IMU_calib)/" title="激光雷达与IMU联合标定(lidar_IMU_calib）"><img src="/img/material-6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="激光雷达与IMU联合标定(lidar_IMU_calib）"/></a><div class="content"><a class="title" href="/2023/08/25/slam_config/%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E4%B8%8EIMU%E8%81%94%E5%90%88%E6%A0%87%E5%AE%9A(lidar_IMU_calib)/" title="激光雷达与IMU联合标定(lidar_IMU_calib）">激光雷达与IMU联合标定(lidar_IMU_calib）</a><time datetime="2023-08-25T09:26:09.009Z" title="Created 2023-08-25 17:26:09">2023-08-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85ZED%E4%BB%A5%E5%8F%8Aros%E9%A9%B1%E5%8A%A8/" title="安装ZED以及ros驱动"><img src="/img/material-8.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="安装ZED以及ros驱动"/></a><div class="content"><a class="title" href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85ZED%E4%BB%A5%E5%8F%8Aros%E9%A9%B1%E5%8A%A8/" title="安装ZED以及ros驱动">安装ZED以及ros驱动</a><time datetime="2023-08-25T09:26:09.005Z" title="Created 2023-08-25 17:26:09">2023-08-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85VINS-Fusion/" title="安装VINS-Fusion"><img src="/img/material-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="安装VINS-Fusion"/></a><div class="content"><a class="title" href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85VINS-Fusion/" title="安装VINS-Fusion">安装VINS-Fusion</a><time datetime="2023-08-25T09:26:09.003Z" title="Created 2023-08-25 17:26:09">2023-08-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85Rtabmap/" title="安装Rtabmap"><img src="/img/material-5.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="安装Rtabmap"/></a><div class="content"><a class="title" href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85Rtabmap/" title="安装Rtabmap">安装Rtabmap</a><time datetime="2023-08-25T09:26:09.002Z" title="Created 2023-08-25 17:26:09">2023-08-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By Hanlin</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my blog!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

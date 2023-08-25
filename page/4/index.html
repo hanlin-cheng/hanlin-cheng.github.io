@@ -1,0 +1,334 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HanLin</title><meta name="author" content="Hanlin,cheng.lv@slamtec.com"><meta name="copyright" content="Hanlin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Talk is cheap, show you code">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HanLin">
+<meta property="og:url" content="https://hanlin-cheng.github.io/page/4/">
+<meta property="og:site_name" content="HanLin">
+<meta property="og:description" content="Talk is cheap, show you code">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://hanlin-cheng.github.io/img/avatar1.jpg">
+<meta property="article:author" content="Hanlin">
+<meta property="article:tag" content="hanlin">
+<meta property="article:tag" content="slam">
+<meta property="article:tag" content="localization">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hanlin-cheng.github.io/img/avatar1.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hanlin-cheng.github.io/page/4/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HanLin',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-08-25 18:54:18'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">63</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-compass"></i><span> Directory</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/resource/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> Resource</span></a></div><div class="menus_item"><a class="site-page" href="/software/"><i class="fa-fw fa-solid fa-chalkboard"></i><span> Software</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> Resume</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/beautifulmountain.png')"><nav id="nav"><span id="blog-info"><a href="/" title="HanLin"><span class="site-name">HanLin</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-compass"></i><span> Directory</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/resource/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> Resource</span></a></div><div class="menus_item"><a class="site-page" href="/software/"><i class="fa-fw fa-solid fa-chalkboard"></i><span> Software</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> Resume</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">HanLin</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/hanlin-cheng" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:cheng.lv@slamtec.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2023/08/25/command/git_rebase%E7%9A%84%E4%B8%A4%E7%A7%8D%E7%94%A8%E6%B3%95/" title="git rebase的两种用法"><img class="post-bg" src="/img/material-8.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="git rebase的两种用法"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/08/25/command/git_rebase%E7%9A%84%E4%B8%A4%E7%A7%8D%E7%94%A8%E6%B3%95/" title="git rebase的两种用法">git rebase的两种用法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-08-25T08:54:21.183Z" title="Created 2023-08-25 16:54:21">2023-08-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/command/">command</a></span></div><div class="content">git rebase的两种用法用法一: 合并当前分支的多个commit记录你可能出现过对同一处代码进行多次处理的场景。这会导致如下提交记录:
+1234567$ git log --pretty=format:&#x27;%h: %s&#x27;d2399da: feat: modify c0134695: feat: modify beb63848: feat: modify b51c0bca: feat: modify b4cb600e: feat: modify ad29f331: Initial commit
+
+其实, 中间的对b的3次提交 完全可以合并成一次commit, 这个时候 rebase就很有用了。
+1. 找到想要合并的commit, 使用rebase -i1$ git rebase -i 4cb600e
+
+注意 git rebase -i [startPonit] [endPoint]
+前开后闭 区间 这里的 [startPonit] 是指需要合并的commit的前一个commit (即当前示例中的 “4cb600e: feat: modify a”)。 因为, 三个 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/08/25/command/Git_Command/" title="Git Command"><img class="post-bg" src="/img/material-3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Git Command"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/08/25/command/Git_Command/" title="Git Command">Git Command</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-08-25T08:54:21.181Z" title="Created 2023-08-25 16:54:21">2023-08-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/command/">command</a></span></div><div class="content">Git Command
+git clone 默认是克隆Head指向的master分支，如果是多分支，我们可以单个克隆分支项目。
+1.只克隆单分支（非master）：
+ git clone -b 分支名 https://xxx.git
+
+2.克隆所有分支（多分支）
+ cd project  //切换到指定目录
+ git clone https://xxx.git //克隆项目（默认master分支）
+
+​	git branch -a  &#x2F;&#x2F;列出远程跟踪及本地分支
+
+1.安装并设置地址12$ git config --global user.name &quot;Your Name&quot;$ git config --global user.email &quot;email@example.com&quot;
+
+
+
+2.创建版本库123456$ mkdir learngit$ cd learngit$ pwd/Users/michael/learngit$ git init
+
+
+
+3.版本管理
+添加文件
+
+12$ git add readme.txt$ git c ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/08/25/command/git_cherry-pick/" title="git cherry-pick"><img class="post-bg" src="/img/material-3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="git cherry-pick"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/08/25/command/git_cherry-pick/" title="git cherry-pick">git cherry-pick</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-08-25T08:54:21.153Z" title="Created 2023-08-25 16:54:21">2023-08-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/command/">command</a></span></div><div class="content">git cherry-pick前言对于多分支的代码库，将代码从一个分支转移到另一个分支是常见需求。
+这时分两种情况。
+你需要另一个分支的所有代码变动，那么就采用合并（git merge）。你只需要部分代码变动（某几个提交），这时可以采用 Cherry pick。Cherry pick直译为捡樱桃🍒，它的功能是把已经存在的commit进行挑选，然后重新提交。比较合适的一个场景是把A分支的某次或者多次的提交也提交到B分支上。
+图示比如此时分支情况如下：
+
+这幅图中，每个圆圈代表一次commit
+一条线是一个分支。
+比如c2，c3，这是两次提交，在同一个分支上。
+此时需求是：要把绿色分支的C3，蓝色分支的C5，紫色分支的C7合到一条新的分支上。
+此时就需要cherry-pick命令了。
+首先切到master分支，然后输入
+git cherry-pick C3 C5 C7
+此时，分支图示就变成了：
+一、转移一个提交
+先切换到 A 分支
+1$ git checkout A
+
+找到这次提交
+123456$ git logcommit f038d7ffb1685af7d4f870ad0b79867 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/08/24/C++/%E8%BD%AC%E6%8D%A2/" title="常规数据类型转换"><img class="post-bg" src="/img/material-7.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="常规数据类型转换"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/08/24/C++/%E8%BD%AC%E6%8D%A2/" title="常规数据类型转换">常规数据类型转换</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-08-24T14:38:18.654Z" title="Created 2023-08-24 22:38:18">2023-08-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C/">C++</a></span></div><div class="content">转换int to string1string = to_string(int a)
+
+
+
+string to char1*.c_str()
+
+
+
+char* to double1std::atof()
+
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/08/24/C++/%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4/" title="计算时间"><img class="post-bg" src="/img/material-4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算时间"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/08/24/C++/%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4/" title="计算时间">计算时间</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-08-24T14:38:18.653Z" title="Created 2023-08-24 22:38:18">2023-08-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C/">C++</a></span></div><div class="content">计算时间1234#include&lt;chrono&gt;std::chrono::steady_clock::time_point t1 = std::chrono::steady_clock::now();std::chrono::steady_clock::time_point t2 = std::chrono::steady_clock::now();double ttrack = std::chrono::duration_cast&lt; std::chrono::duration&lt;double&gt;&gt;(t2-t1).count();
+
+
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/08/24/C++/%E7%B1%BB%E7%9F%A5%E8%AF%86%E7%82%B9/" title="类知识点"><img class="post-bg" src="/img/material-3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="类知识点"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/08/24/C++/%E7%B1%BB%E7%9F%A5%E8%AF%86%E7%82%B9/" title="类知识点">类知识点</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-08-24T14:38:18.652Z" title="Created 2023-08-24 22:38:18">2023-08-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C/">C++</a></span></div><div class="content">类知识点
+类声明描述如何分配内存，但是并不分配内存
+
+对于静态成员函数，在类外进行初始化
+
+构造函数用于创建对象
+
+函数返回对象时会调用拷贝构造函数
+
+一个类的所有对象共享一组类方法
+
+继承类可以重新定义在父类中的函数，并且使用虚函数语法时，可以使用父类指针或者引用指向继承类对象，会根据指向的对象类型来选择函数方法，如果不使用虚函数，则只会根据引用或者指针类型选择函数方法，这样就会造成冲突。也就是使用了动态联编，而后者则是静态联编。
+
+最好对类数据成员采用私有访问控制，不要使用保护访问控制；同时使用基类方法使派生类能够访问基类数据。
+
+包含动态内存分配时（new delete）要考虑深浅拷贝问题！默认复制构造函数对于动态内存分配来说是不合适的，容易造成内存的泄露。
+
+一般使用对象作为函数参数时，应该按照引用传递而不是值传递，这样是为了提高效率，按值传递对象涉及到生成临时拷贝。返回对象与返回引用与参数时情况相似。
+
+使用explicit来防止单参数构造函数的隐式转换，使用const方法防止修改数据
+12class t(int a);t = 10; 存在隐式转换
+
+
+
+派生类的成员可以直接 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/08/24/C++/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E8%B0%83%E7%94%A8%E6%97%B6%E6%9C%BA/" title="构造函数的调用时机"><img class="post-bg" src="/img/material-6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="构造函数的调用时机"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/08/24/C++/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E8%B0%83%E7%94%A8%E6%97%B6%E6%9C%BA/" title="构造函数的调用时机">构造函数的调用时机</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-08-24T14:38:18.650Z" title="Created 2023-08-24 22:38:18">2023-08-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C/">C++</a></span></div><div class="content">构造函数的调用时机1234567891011121314151617181920212223242526272829303132333435363738394041//1. 无参构造调用方式void test01()&#123;        //调用无参构造函数    Person person1;     person1.PrintPerson();     //无参构造函数错误调用方式    //Person person2();    //person2.PrintPerson();&#125;//2. 调用有参构造函数void test02()&#123;        //第一种 括号法，最常用    Person person01(100);    person01.PrintPerson();     //调用拷贝构造函数    Person person02(person01);    person02.PrintPerson();     //第二种 匿名对象(显示调用构造函数)    Person(200); //匿名对象，没有名字的对象     Person p ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/08/24/C++/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%AD%97%E8%8A%82%E6%95%B0/" title="数据类型字节数"><img class="post-bg" src="/img/material-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数据类型字节数"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/08/24/C++/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%AD%97%E8%8A%82%E6%95%B0/" title="数据类型字节数">数据类型字节数</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-08-24T14:38:18.648Z" title="Created 2023-08-24 22:38:18">2023-08-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C/">C++</a></span></div><div class="content">数据类型字节数
+1个字节 &#x3D; 8位  n表示位
+整数有符号取值范围：[-2^(n-1), 2^(n-1) -1]
+整数无符号取值范围：[0, 2^n -1]
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647一、整型(int、short、long、long long)1、有符号整型有符号整型的数据类型通常包括 int、short、long、long long 四种，因为是有符号类型，所以前面要加上 signed ，但是通常省略，也就是说在代码中直接打出 int 类型就代表是有符号类型的。（1）int类型数据类型大小是 4 字节，能表示的数值范围是-2^(32-1) – 2^(32-1)-1 （即 -2147483648 ~ 2147483647）打印类型是 %d ，使用格式为 int 名 = 值;（2）short类型数据类型大小是 2 字节，能表示的数值范围是-2^(16-1) – 2^(16-1) -1 （即 -32768 ~ 32767）打印类型是 %h ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/08/24/C++/%E5%B8%B8%E8%A7%84%E5%87%BD%E6%95%B0%E4%B8%8E%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0/" title="常规函数与内联函数"><img class="post-bg" src="/img/material-9.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="常规函数与内联函数"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/08/24/C++/%E5%B8%B8%E8%A7%84%E5%87%BD%E6%95%B0%E4%B8%8E%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0/" title="常规函数与内联函数">常规函数与内联函数</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-08-24T14:38:18.646Z" title="Created 2023-08-24 22:38:18">2023-08-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C/">C++</a></span></div><div class="content">常规函数与内联函数常规函数调用将程序流程转到独立的函数就行运行
+内敛函数用相应的代码段替换函数调用，因此内联函数运行较快，但是更加占用内存
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/08/24/C++/%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" title="常用函数"><img class="post-bg" src="/img/material-8.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="常用函数"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/08/24/C++/%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" title="常用函数">常用函数</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-08-24T14:38:18.645Z" title="Created 2023-08-24 22:38:18">2023-08-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C/">C++</a></span></div><div class="content">常用函数
+swap（）：@brief：用于元素的交换
+1swap(a, b)
+
+
+
+substr（）:形式 ： s.substr(pos, len)
+返回值： string，包含s中从pos开始的len个字符的拷贝（pos的默认值是0，len的默认值是s.size() - pos，即不加参数会默认拷贝整个s）
+substr有2种常用用法：
+假设：string s &#x3D; “0123456789”;
+123string sub1 = s.substr(5); //只有一个数字5表示从下标为5开始一直到结尾：sub1 = “56789”string sub2 = s.substr(5, 3); //从下标为5开始截取长度为3位：sub2 = “567”
+
+
+
+compare():@brief：两个字符串相同，返回0。
+​				调用字符串小与被调用字符串，返回-1。
+​				调用字符串大于被调用字符串，返回1。
+123int compare(const string &amp;s) const;int conpare(const char *s) const;
+
+
+
+reverse ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/3/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/#content-inner">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/#content-inner">7</a><a class="extend next" rel="next" href="/page/5/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Hanlin</div><div class="author-info__description">Talk is cheap, show you code</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">63</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hanlin-cheng"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/hanlin-cheng" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:cheng.lv@slamtec.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/08/25/slam_config/%E8%BD%A8%E8%BF%B9%E8%AF%84%E4%BC%B0%E4%BB%8B%E7%BB%8D%E4%B8%8Eevo%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" title="轨迹评估介绍与evo工具使用"><img src="/img/material-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="轨迹评估介绍与evo工具使用"/></a><div class="content"><a class="title" href="/2023/08/25/slam_config/%E8%BD%A8%E8%BF%B9%E8%AF%84%E4%BC%B0%E4%BB%8B%E7%BB%8D%E4%B8%8Eevo%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" title="轨迹评估介绍与evo工具使用">轨迹评估介绍与evo工具使用</a><time datetime="2023-08-25T09:26:09.011Z" title="Created 2023-08-25 17:26:09">2023-08-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/25/slam_config/%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E4%B8%8EIMU%E8%81%94%E5%90%88%E6%A0%87%E5%AE%9A(lidar_IMU_calib)/" title="激光雷达与IMU联合标定(lidar_IMU_calib）"><img src="/img/material-6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="激光雷达与IMU联合标定(lidar_IMU_calib）"/></a><div class="content"><a class="title" href="/2023/08/25/slam_config/%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E4%B8%8EIMU%E8%81%94%E5%90%88%E6%A0%87%E5%AE%9A(lidar_IMU_calib)/" title="激光雷达与IMU联合标定(lidar_IMU_calib）">激光雷达与IMU联合标定(lidar_IMU_calib）</a><time datetime="2023-08-25T09:26:09.009Z" title="Created 2023-08-25 17:26:09">2023-08-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85ZED%E4%BB%A5%E5%8F%8Aros%E9%A9%B1%E5%8A%A8/" title="安装ZED以及ros驱动"><img src="/img/material-8.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="安装ZED以及ros驱动"/></a><div class="content"><a class="title" href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85ZED%E4%BB%A5%E5%8F%8Aros%E9%A9%B1%E5%8A%A8/" title="安装ZED以及ros驱动">安装ZED以及ros驱动</a><time datetime="2023-08-25T09:26:09.005Z" title="Created 2023-08-25 17:26:09">2023-08-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85VINS-Fusion/" title="安装VINS-Fusion"><img src="/img/material-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="安装VINS-Fusion"/></a><div class="content"><a class="title" href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85VINS-Fusion/" title="安装VINS-Fusion">安装VINS-Fusion</a><time datetime="2023-08-25T09:26:09.003Z" title="Created 2023-08-25 17:26:09">2023-08-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85Rtabmap/" title="安装Rtabmap"><img src="/img/material-5.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="安装Rtabmap"/></a><div class="content"><a class="title" href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85Rtabmap/" title="安装Rtabmap">安装Rtabmap</a><time datetime="2023-08-25T09:26:09.002Z" title="Created 2023-08-25 17:26:09">2023-08-25</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            <a class="card-more-btn" href="/categories/" title="More">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/C/"><span class="card-category-list-name">C++</span><span class="card-category-list-count">29</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/C/CMakelists/"><span class="card-category-list-name">CMakelists</span><span class="card-category-list-count">3</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Jottings/"><span class="card-category-list-name">Jottings</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Qt/"><span class="card-category-list-name">Qt</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/SLAM/"><span class="card-category-list-name">SLAM</span><span class="card-category-list-count">1</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/SLAM/ROS/"><span class="card-category-list-name">ROS</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/command/"><span class="card-category-list-name">command</span><span class="card-category-list-count">10</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/Qt/" style="font-size: 1.38em; color: rgb(137, 156, 104)">Qt</a><a href="/tags/Xavier/" style="font-size: 1.3em; color: rgb(164, 128, 186)">Xavier</a><a href="/tags/Linux/" style="font-size: 1.3em; color: rgb(103, 198, 139)">Linux</a><a href="/tags/Shell/" style="font-size: 1.22em; color: rgb(61, 170, 184)">Shell</a><a href="/tags/ROS/" style="font-size: 1.22em; color: rgb(140, 189, 42)">ROS</a><a href="/tags/LIO-SAM/" style="font-size: 1.22em; color: rgb(9, 136, 174)">LIO-SAM</a><a href="/tags/Git/" style="font-size: 1.38em; color: rgb(168, 179, 179)">Git</a><a href="/tags/Velodyne/" style="font-size: 1.15em; color: rgb(27, 155, 159)">Velodyne</a><a href="/tags/ORB-SLAM/" style="font-size: 1.22em; color: rgb(12, 55, 157)">ORB-SLAM</a><a href="/tags/C/" style="font-size: 1.45em; color: rgb(179, 149, 151)">C++</a><a href="/tags/CMakelists/" style="font-size: 1.3em; color: rgb(138, 120, 194)">CMakelists</a><a href="/tags/Eigen/" style="font-size: 1.22em; color: rgb(77, 73, 124)">Eigen</a><a href="/tags/Opencv/" style="font-size: 1.3em; color: rgb(45, 60, 154)">Opencv</a><a href="/tags/Ros/" style="font-size: 1.22em; color: rgb(44, 158, 182)">Ros</a><a href="/tags/Rtabmap/" style="font-size: 1.15em; color: rgb(160, 129, 157)">Rtabmap</a><a href="/tags/VINS/" style="font-size: 1.15em; color: rgb(10, 107, 154)">VINS</a><a href="/tags/Jottings/" style="font-size: 1.3em; color: rgb(151, 197, 167)">Jottings</a><a href="/tags/SLAM/" style="font-size: 1.22em; color: rgb(47, 174, 187)">SLAM</a><a href="/tags/evo/" style="font-size: 1.15em; color: rgb(125, 2, 35)">evo</a><a href="/tags/Clash/" style="font-size: 1.15em; color: rgb(171, 53, 69)">Clash</a><a href="/tags/Calib/" style="font-size: 1.15em; color: rgb(58, 94, 169)">Calib</a><a href="/tags/Ubuntu/" style="font-size: 1.15em; color: rgb(128, 96, 124)">Ubuntu</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">August 2023</span><span class="card-archive-list-count">63</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">63</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-08-25T10:54:18.725Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/beautifulmountain.png')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By Hanlin</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my blog!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: (str) => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: (subtitleType) => {
+    if (false) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        getScript('https://cdn.jsdelivr.net/npm/typed.js/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  }
+}
+</script><script>function subtitleType () {
+  if (false) {
+    typedJSFn.init(["Never put off till tomorrow what you can do today"])
+  } else {
+    document.getElementById("subtitle").textContent = "Never put off till tomorrow what you can do today"
+  }
+}
+typedJSFn.run(subtitleType)</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
