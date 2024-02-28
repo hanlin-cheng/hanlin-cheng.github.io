@@ -11,17 +11,17 @@
 <meta property="article:tag" content="slam">
 <meta property="article:tag" content="localization">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hanlin-cheng.github.io/img/avatar1.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hanlin-cheng.github.io/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+<meta name="twitter:image" content="https://hanlin-cheng.github.io/img/avatar1.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hanlin-cheng.github.io/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: undefined,
   localSearch: undefined,
   translate: undefined,
   noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
   copy: {
-    success: 'Copy successfully',
-    error: 'Copy error',
-    noSupport: 'The browser does not support'
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
   },
   relativeDate: {
     homepage: true,
@@ -29,7 +29,7 @@
   },
   runtime: '',
   dateSuffix: {
-    just: 'Just',
+    just: 'Just now',
     min: 'minutes ago',
     hour: 'hours ago',
     day: 'days ago',
@@ -38,11 +38,9 @@
   copyright: undefined,
   lightbox: 'mediumZoom',
   Snackbar: undefined,
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
-    }
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
   },
   isPhotoFigcaption: false,
   islazyload: false,
@@ -58,85 +56,78 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-11-01 17:39:00'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
+  postUpdate: '2024-02-28 14:05:02'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
         }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
-
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
         }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
 
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
         }
-        return item.value
-      }
-    }
-  
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
-  
-    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
-      const link = document.createElement('link')
-      link.rel = 'stylesheet'
-      link.href = url
-      if (id) link.id = id
-      link.onerror = reject
-      link.onload = link.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        link.onload = link.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(link)
-    })
-  
-      win.activateDarkMode = function () {
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
         document.documentElement.setAttribute('data-theme', 'dark')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
           document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
         }
       }
-      win.activateLightMode = function () {
+      win.activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
           document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
@@ -144,9 +135,9 @@
       }
       const t = saveToLocal.get('theme')
     
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
-        
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
       const asideStatus = saveToLocal.get('aside-status')
       if (asideStatus !== undefined) {
         if (asideStatus === 'hide') {
@@ -156,12 +147,12 @@
         }
       }
     
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
       }
-    }
-    detectApple()
+      detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
   const $loadingBox = document.getElementById('loading-box')
   const $body = document.body
@@ -183,75 +174,111 @@
     document.addEventListener('pjax:send', () => { preloader.initLoading() })
     document.addEventListener('pjax:complete', () => { preloader.endLoading() })
   }
-})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">63</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-compass"></i><span> Directory</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/resource/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> Resource</span></a></div><div class="menus_item"><a class="site-page" href="/software/"><i class="fa-fw fa-solid fa-chalkboard"></i><span> Software</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> Resume</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/beautifulmountain.png')"><nav id="nav"><span id="blog-info"><a href="/" title="HanLin"><span class="site-name">HanLin</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-compass"></i><span> Directory</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/resource/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> Resource</span></a></div><div class="menus_item"><a class="site-page" href="/software/"><i class="fa-fw fa-solid fa-chalkboard"></i><span> Software</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> Resume</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">HanLin</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/hanlin-cheng" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:cheng.lv@slamtec.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2023/08/25/slam_config/%E8%BD%A8%E8%BF%B9%E8%AF%84%E4%BC%B0%E4%BB%8B%E7%BB%8D%E4%B8%8Eevo%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" title="轨迹评估介绍与evo工具使用"><img class="post-bg" src="/img/material-6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="轨迹评估介绍与evo工具使用"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/08/25/slam_config/%E8%BD%A8%E8%BF%B9%E8%AF%84%E4%BC%B0%E4%BB%8B%E7%BB%8D%E4%B8%8Eevo%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" title="轨迹评估介绍与evo工具使用">轨迹评估介绍与evo工具使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-08-25T09:26:09.011Z" title="Created 2023-08-25 17:26:09">2023-08-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/slam-config/">slam_config</a></span></div><div class="content">轨迹评估介绍与evo工具使用介绍本文介绍了轨迹评估的基本概念，包括轨迹对齐、尺度变换、绝对轨迹误差、相对轨迹误差以及计算方法、相关文献，以及evo轨迹评估工具的安装、使用举例、命令参数详解。 
-第一部分：evo 介绍
-evo是一款用于视觉里程计和SLAM问题的轨迹评估工具. 核心功能是能够绘制相机的轨迹, 或评估轨迹与真值之间的误差. 
-它支持多种数据集的轨迹格式(TUM、KITTI、EuRoC MAV、ROS的bag)， 同时支持这些数据格式之间的相互转换。 
-灵活的输出&#x2F;绘图和导出选项(例如LaTeX绘图或Excel表格) 
-强大的可配置的CLI, 可以涵盖多种场景使用 
-用于自定义扩展的模块化 
-github：github.com&#x2F;MichaelGrup… 
-wiki： github.com&#x2F;MichaelGrup…
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-compass"></i><span> Directory</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/resource/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> Resource</span></a></div><div class="menus_item"><a class="site-page" href="/software/"><i class="fa-fw fa-solid fa-chalkboard"></i><span> Software</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> Resume</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/beautifulmountain.png')"><nav id="nav"><span id="blog-info"><a href="/" title="HanLin"><span class="site-name">HanLin</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-compass"></i><span> Directory</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/resource/"><i class="fa-fw fa-solid fa-graduation-cap"></i><span> Resource</span></a></div><div class="menus_item"><a class="site-page" href="/software/"><i class="fa-fw fa-solid fa-chalkboard"></i><span> Software</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> Resume</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">HanLin</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/hanlin-cheng" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:cheng.lv@slamtec.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2024/02/28/test/" title="Untitled"><img class="post-bg" src="/img/material-7.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Untitled"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/02/28/test/" title="Untitled">Untitled</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-02-28T05:42:19.124Z" title="Created 2024-02-28 13:42:19">2024-02-28</time></span></div><div class="content">test
 
-第二部分：安装 evo 工具Step1： python 3.8虚拟环境搭建目的：构筑一个纯净python 3.8环境（github上告知最新的evo版本支持Python 3.8+，若要支持Python2.7需使用 1.12.0及以下版 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/08/25/slam_config/%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E4%B8%8EIMU%E8%81%94%E5%90%88%E6%A0%87%E5%AE%9A(lidar_IMU_calib)/" title="激光雷达与IMU联合标定(lidar_IMU_calib）"><img class="post-bg" src="/img/material-6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="激光雷达与IMU联合标定(lidar_IMU_calib）"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/08/25/slam_config/%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E4%B8%8EIMU%E8%81%94%E5%90%88%E6%A0%87%E5%AE%9A(lidar_IMU_calib)/" title="激光雷达与IMU联合标定(lidar_IMU_calib）">激光雷达与IMU联合标定(lidar_IMU_calib）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-08-25T09:26:09.009Z" title="Created 2023-08-25 17:26:09">2023-08-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/slam-config/">slam_config</a></span></div><div class="content">激光雷达与IMU联合标定(lidar_IMU_calib）
-本文档主要介绍浙大开源标定算法lidar_IMU_calib 
-Github地址： https://github.com/APRIL-ZJU/lidar_IMU_calib 
-论文地址： https://arxiv.org/pdf/2007.14759.pdf 
-参考资料：https://www.cnblogs.com/chenlinchong/p/14048969.html 
-
-​	lidar_IMU_calib是基于连续时间批量估计的LiDAR-IMU系统的无目标标定，用于校准 6DoF 刚性变换以及 3D LiDAR 和 IMU 之间的时间偏移。基于 IMU 的成本和 LiDAR 点到冲浪距离被联合最小化，这使得校准问题在一般情况下受到很好的约束。 
-标定主要需要：Lidar的外参、IMU内参、Lidar与IMU之间的变换。 
-依赖条件ROS(tested with Kinetic and Melodic)1sudo apt-get install ros-melodic-pcl-ros ros-melodic-velo ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85ZED%E4%BB%A5%E5%8F%8Aros%E9%A9%B1%E5%8A%A8/" title="安装ZED以及ros驱动"><img class="post-bg" src="/img/material-9.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="安装ZED以及ros驱动"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85ZED%E4%BB%A5%E5%8F%8Aros%E9%A9%B1%E5%8A%A8/" title="安装ZED以及ros驱动">安装ZED以及ros驱动</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-08-25T09:26:09.005Z" title="Created 2023-08-25 17:26:09">2023-08-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/slam-config/">slam_config</a></span></div><div class="content">安装ZED以及ros驱动Part1：安装zed sdk前往官网下载与Jetpack以及CUDA版本匹配的zed sdk 
-12chmod +x ZED_SDK_Ubuntu16_cuda10.2_v3.1.2.run ./ZED_SDK_Ubuntu16_cuda10.2_v3.1.2.run 
-
-#如果出现错误API下载失败，可手动前去网站下载，然后 
-1Pip3 -m install *** 
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2024/02/28/slam/QT/%E9%A1%B9%E7%9B%AE%E9%BB%98%E8%AE%A4%E6%96%87%E4%BB%B6%E4%BB%8B%E7%BB%8D/" title="项目默认文件介绍"><img class="post-bg" src="/img/material-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="项目默认文件介绍"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/02/28/slam/QT/%E9%A1%B9%E7%9B%AE%E9%BB%98%E8%AE%A4%E6%96%87%E4%BB%B6%E4%BB%8B%E7%BB%8D/" title="项目默认文件介绍">项目默认文件介绍</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-02-28T03:42:34.596Z" title="Created 2024-02-28 11:42:34">2024-02-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Qt/">Qt</a></span></div><div class="content">项目默认文件介绍main.cpp123456789101112131415161718192021#include &quot;mainwindow.h&quot;#include &lt;QApplication&gt; //应用程序类//argc 命令行变量数量 argv 命令行变量数组int main(int argc, char *argv[])&#123;	//应用程序对象 在Qt中应用程序对象有且仅有一个	QApplication a(argc, argv);	//通过 窗口类实例化对象	MainWindow w;	//窗口不会默认弹出，需要调用show方法显示	w.show();	//a.exc();加入消息循环机制 阻塞功能	return a.exec();&#125;
 
 
 
-Part2:安装zed2 ros工具1234567891011121314cd ~/ZED_WS/src git clone https://github.com/stereolabs/zed-ros-wrapper.git cd ../ rosdep install --from-paths src --ignore-src -r -y catkin_make -DCMAKE_BUILD_TYPE=Release source ./devel/setup.bash  cd ~/catkin_ws/src git clone https://github.com/stereolabs/ ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85VINS-Fusion/" title="安装VINS-Fusion"><img class="post-bg" src="/img/material-4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="安装VINS-Fusion"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85VINS-Fusion/" title="安装VINS-Fusion">安装VINS-Fusion</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-08-25T09:26:09.003Z" title="Created 2023-08-25 17:26:09">2023-08-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/slam-config/">slam_config</a></span></div><div class="content">安装VINS-FusionPart1:123456mkdir -p ~/vin-fusion_ws/src   cd ~/vin-fusion_ws/src git clone https://github.com/HKUST-Aerial-Robotics/VINS-Fusion.git cd ../ catkin_make source ~/catkin_ws/devel/setup.bash 
+.pro文件12345678910111213QT += core gui //Qt包含的模块greaterThan(QT_MAJOR_VERSION, 4): QT += widgets //大于4版本 加入 widgets 模块TARGET = 01_QtFirst //生成.exe程序的名称 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2024/02/28/slam/QT/%E5%9F%BA%E4%BA%8Earm%E6%9E%B6%E6%9E%84%E7%9A%84NVIDIA_Xavier%E5%AE%89%E8%A3%85Qt/" title="基于arm架构的NVIDIA Xavier安装Qt"><img class="post-bg" src="/img/material-3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于arm架构的NVIDIA Xavier安装Qt"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/02/28/slam/QT/%E5%9F%BA%E4%BA%8Earm%E6%9E%B6%E6%9E%84%E7%9A%84NVIDIA_Xavier%E5%AE%89%E8%A3%85Qt/" title="基于arm架构的NVIDIA Xavier安装Qt">基于arm架构的NVIDIA Xavier安装Qt</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-02-28T03:42:34.595Z" title="Created 2024-02-28 11:42:34">2024-02-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Qt/">Qt</a></span></div><div class="content">基于arm架构的NVIDIA Xavier安装QtPart1：安装Qt1.安装Qt Creator1sudo apt-get install qt5-default qtcreator -y
 
-</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85Rtabmap/" title="安装Rtabmap"><img class="post-bg" src="/img/material-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="安装Rtabmap"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85Rtabmap/" title="安装Rtabmap">安装Rtabmap</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-08-25T09:26:09.002Z" title="Created 2023-08-25 17:26:09">2023-08-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/slam-config/">slam_config</a></span></div><div class="content">安装Rtabmap1、安装rtabmap1234567891011121314git clone https://github.com/introlab/rtabmap.git rtabmap sudo apt-get install ros-melodic-rtabmap ros-melodic-rtabmap-ros sudo apt-get remove ros-melodic-rtabmap ros-melodic-rtabmap-ros mkdir -p ~/rtabmap_ws/src cd ..      cd ~/rtabmap_ws                     catkin_make mkdir rtabmap/build cd rtabmap/build cmake -DCMAKE_INSTALL_PREFIX=~/rtabmap_ws/devel .. make -j4 make install 
+2.安装Qt示例和文档1sudo apt-get install qt5-doc qt5-doc-html qtbase5-doc-html qtbase5-examples -y
 
-2、安装rtabmap_ros123cd ~/rtabmap_ws git clone https://github.com/introlab/rtabm ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85Orb-slam2/" title="安装Orb-slam2"><img class="post-bg" src="/img/material-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="安装Orb-slam2"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85Orb-slam2/" title="安装Orb-slam2">安装Orb-slam2</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-08-25T09:26:09.001Z" title="Created 2023-08-25 17:26:09">2023-08-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/slam-config/">slam_config</a></span></div><div class="content">安装Orb-slam2Part1:安装orb-slam2的依赖库1sudo apt-get install libeigen3-dev 
 
-Part2：需要安装zed与opencvPart3：安装orb-slam2#创建工作空间，将代码克隆到src下 
-123456789mkdir -p orbslam_ws/src cd orbslam_ws/src catkin_init_workspace git clone https://github.com/raulmur/ORB_SLAM2.git ORB_SLAM2 cd ORB_SLAM2 chmod +x build.sh  ./build.sh cd ../ catkin_make 
 
-#添加运行环境#PATH为你得安装目录 
-1export ROS_PACKAGE_PATH=$&#123;ROS_PACKAGE_PATH&#125;:PATH/ORB_SLAM2/Examples/ROS//添加运行环境 
+Part2：配置Qt1.搜索Qt并打开应用程序，当然也可以用命令行直接打开：
+2.Tools-&gt;Options-&gt;Build &amp; Run-&gt;Compilers，单击add选择添加GCC编译器，GCC编译器默认路径为&#x2F;usr&#x2F;bin&#x2F;gcc，添加完路径之后还要修改开发平台，如图所示：
+3.切换到Kit下，添加开发套件。名称可以随便写，需要注意的是必须先配置上一步的GCC，这一步才能直接添加GCC，否则就会像Desktop套件一样报错：
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2024/02/28/slam/QT/QT%E8%BF%81%E7%A7%BB%E9%A1%B9%E7%9B%AE%E5%90%8E%E6%98%BE%E7%A4%BA%E4%BF%AE%E6%94%B9%E6%97%B6%E9%97%B4%E5%A4%A7%E4%BA%8E%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4/" title="QT迁移项目后显示修改时间大于当前时间"><img class="post-bg" src="/img/material-5.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="QT迁移项目后显示修改时间大于当前时间"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/02/28/slam/QT/QT%E8%BF%81%E7%A7%BB%E9%A1%B9%E7%9B%AE%E5%90%8E%E6%98%BE%E7%A4%BA%E4%BF%AE%E6%94%B9%E6%97%B6%E9%97%B4%E5%A4%A7%E4%BA%8E%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4/" title="QT迁移项目后显示修改时间大于当前时间">QT迁移项目后显示修改时间大于当前时间</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-02-28T03:42:34.594Z" title="Created 2024-02-28 11:42:34">2024-02-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Qt/">Qt</a></span></div><div class="content">QT迁移项目后显示修改时间大于当前时间打开终端输入
+1find /项目路径 -type f -exec touch &#123;&#125; +
 
-#将setup.bash添加到~&#x2F;.bashrc中 
-1source ~/.bashrc 
 
-#编译ROS驱动  ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85LIO-SAM/" title="安装LIO-SAM"><img class="post-bg" src="/img/material-1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="安装LIO-SAM"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85LIO-SAM/" title="安装LIO-SAM">安装LIO-SAM</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-08-25T09:26:09.000Z" title="Created 2023-08-25 17:26:09">2023-08-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/slam-config/">slam_config</a></span></div><div class="content">安装LIO-SAMpart1：安装依赖功能包123sudo apt-get install -y ros-melodic-navigation sudo apt-get install -y ros-melodic-robot-localization sudo apt-get install -y ros-melodic-robot-state-publisher 
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2024/02/28/slam/QT/Qt%E7%82%B9%E5%87%BB%E6%8C%89%E9%92%AE%E8%BF%9B%E8%A1%8C%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%88%87%E6%8D%A2/" title="Qt点击按钮进行页面的切换"><img class="post-bg" src="/img/material-3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Qt点击按钮进行页面的切换"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/02/28/slam/QT/Qt%E7%82%B9%E5%87%BB%E6%8C%89%E9%92%AE%E8%BF%9B%E8%A1%8C%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%88%87%E6%8D%A2/" title="Qt点击按钮进行页面的切换">Qt点击按钮进行页面的切换</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-02-28T03:42:34.593Z" title="Created 2024-02-28 11:42:34">2024-02-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Qt/">Qt</a></span></div><div class="content">Qt点击按钮进行页面的切换widget.h1234567891011121314151617#ifndef WIDGET_H#define WIDGET_H#include &lt;QWidget&gt;class Widget : public QWidget&#123;	Q_OBJECTpublic:	Widget(QWidget *parent = 0);	~Widget();	public slots:&#125;;#endif // WIDGET_H
 
-**part2:**安装gtsam1234git clone https://github.com/borglab/gtsam.git mkdir build &amp;&amp; cd build cmake -DGTSAM_BUILD_WITH_MARCH_NATIVE=OFF .. sudo make install -j4 
 
-part3:安装lio-sam12345mkdir ~/lio-sam_ws/src cd ~/lio-sam_ws/src git clone https://github.com/TixiaoShan/LIO-SAM.git cd ../ catkin_make 
 
-</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/08/25/slam_config/%E5%9F%BA%E4%BA%8EROS%E7%9A%84opencv%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8D%B8%E8%BD%BD/" title="基于ROS的opencv安装与卸载"><img class="post-bg" src="/img/material-4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于ROS的opencv安装与卸载"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/08/25/slam_config/%E5%9F%BA%E4%BA%8EROS%E7%9A%84opencv%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8D%B8%E8%BD%BD/" title="基于ROS的opencv安装与卸载">基于ROS的opencv安装与卸载</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-08-25T09:26:08.998Z" title="Created 2023-08-25 17:26:08">2023-08-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/slam-config/">slam_config</a></span></div><div class="content">基于ROS的opencv安装与卸载Part1:下载安装包前往官网下载所需版本的opencv。 
-Part2：安装依赖包12sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev 
+widget.cpp12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include &quot;widget.h&quot;#include &quot;subwidget.h&quot;#include &lt;QPushButton&gt;Widget::Widget(QWidget *parent) : QWidget(parent)&#123;	this-&gt;resize(800,600);	 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/11/10/slam/something_else/%E8%8E%B7%E5%8F%96Office2021%E5%AE%89%E8%A3%85%E5%8C%85%E5%8F%8A%E7%9B%B8%E5%85%B3%E6%BF%80%E6%B4%BB%E5%B7%A5%E5%85%B7/" title="获取Office 2021安装包及相关激活工具"><img class="post-bg" src="/img/material-5.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="获取Office 2021安装包及相关激活工具"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/10/slam/something_else/%E8%8E%B7%E5%8F%96Office2021%E5%AE%89%E8%A3%85%E5%8C%85%E5%8F%8A%E7%9B%B8%E5%85%B3%E6%BF%80%E6%B4%BB%E5%B7%A5%E5%85%B7/" title="获取Office 2021安装包及相关激活工具">获取Office 2021安装包及相关激活工具</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-11-10T06:00:24.961Z" title="Created 2023-11-10 14:00:24">2023-11-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Jottings/">Jottings</a></span></div><div class="content">获取Office 2021安装包及相关激活工具🛠️Office 2021 安装部署和激活方式💡
+概述
 
-Part3：编译opencv123456789101112cd opncv3.4.2  # 终端路径指向自己的opencv文件包，本文档以3.4.2为例 mkdir build &amp;&amp; cd build cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local .. # 路径指向自己需要安装的位置，一般在/usr/ ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/08/25/slam_config/xavier%E8%A3%85%E6%9C%BA%E6%96%87%E6%A1%A3/" title="xavier装机文档"><img class="post-bg" src="/img/material-7.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="xavier装机文档"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/08/25/slam_config/xavier%E8%A3%85%E6%9C%BA%E6%96%87%E6%A1%A3/" title="xavier装机文档">xavier装机文档</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-08-25T09:26:08.997Z" title="Created 2023-08-25 17:26:08">2023-08-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/slam-config/">slam_config</a></span></div><div class="content">xavier装机文档1、刷机刷 Jetpack 最新版本: 
-https://www.ncnynl.com/category/Xavier-basic/ 
-2、挂载固态硬盘https://www.ncnynl.com/archives/201912/3486.html 
-3、更新源列表及软件更新( 必须要先更新 )4、进入 xavier 基础依赖https://github.com/yqlbu/jetson-packages-family安装 
-Dependencies Installation注意不要安装Set CUDA Path 
-5、卸载 opencv刷机后系统自带 opencv,但是不支持 GPU,建议移除(一定要先安装Opencv,在安装ros,不然后面会出现想不到的错误) 
-进入https://github.com/yqlbu/jetson-packages-family 找到Table of Content 
-安装命令 
-12345678910111213sudo apt-get update sudo apt-get upgrade sudo apt-get insta ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/08/25/slam_config/ubuntu18.04%E7%B3%BB%E7%BB%9F%E4%B8%8B%E5%AE%89%E8%A3%85turtlebot2/" title="ubuntu18.04系统下安装turtlebot2"><img class="post-bg" src="/img/material-10.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ubuntu18.04系统下安装turtlebot2"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/08/25/slam_config/ubuntu18.04%E7%B3%BB%E7%BB%9F%E4%B8%8B%E5%AE%89%E8%A3%85turtlebot2/" title="ubuntu18.04系统下安装turtlebot2">ubuntu18.04系统下安装turtlebot2</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-08-25T09:26:08.995Z" title="Created 2023-08-25 17:26:08">2023-08-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/slam-config/">slam_config</a></span></div><div class="content">ubuntu 18.04系统下安装turtlebot2先完成ROS melodic安装安装依赖：12345678$ sudo apt-get install ros-melodic-kobuki-* $ sudo apt-get install ros-melodic-ecl-streams $ sudo apt-get install libusb-dev $ sudo apt-get install libspnav-dev $ sudo apt-get install ros-melodic-joystick-drivers $ sudo apt-get install bluetooth $ sudo apt-get install libbluetooth-dev $ sudo apt-get install libcwiid-dev 
+废话不多说,这里我大致搜集了几种能够免费安装Office 2021的方法以及激活方式,并总结出保姆级教程 如下:
 
-新建工作空间，准备相关包1234567891011121314$ mkdir -p ~/turtlebot_ws/src $ cd ~/turtlebot_ws/src $ git clone https://github.com/turt ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/#content-inner">7</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Hanlin</div><div class="author-info__description">Talk is cheap, show you code</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">63</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hanlin-cheng"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/hanlin-cheng" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:cheng.lv@slamtec.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/08/25/slam_config/%E8%BD%A8%E8%BF%B9%E8%AF%84%E4%BC%B0%E4%BB%8B%E7%BB%8D%E4%B8%8Eevo%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" title="轨迹评估介绍与evo工具使用"><img src="/img/material-6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="轨迹评估介绍与evo工具使用"/></a><div class="content"><a class="title" href="/2023/08/25/slam_config/%E8%BD%A8%E8%BF%B9%E8%AF%84%E4%BC%B0%E4%BB%8B%E7%BB%8D%E4%B8%8Eevo%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" title="轨迹评估介绍与evo工具使用">轨迹评估介绍与evo工具使用</a><time datetime="2023-08-25T09:26:09.011Z" title="Created 2023-08-25 17:26:09">2023-08-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/25/slam_config/%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E4%B8%8EIMU%E8%81%94%E5%90%88%E6%A0%87%E5%AE%9A(lidar_IMU_calib)/" title="激光雷达与IMU联合标定(lidar_IMU_calib）"><img src="/img/material-6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="激光雷达与IMU联合标定(lidar_IMU_calib）"/></a><div class="content"><a class="title" href="/2023/08/25/slam_config/%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E4%B8%8EIMU%E8%81%94%E5%90%88%E6%A0%87%E5%AE%9A(lidar_IMU_calib)/" title="激光雷达与IMU联合标定(lidar_IMU_calib）">激光雷达与IMU联合标定(lidar_IMU_calib）</a><time datetime="2023-08-25T09:26:09.009Z" title="Created 2023-08-25 17:26:09">2023-08-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85ZED%E4%BB%A5%E5%8F%8Aros%E9%A9%B1%E5%8A%A8/" title="安装ZED以及ros驱动"><img src="/img/material-9.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="安装ZED以及ros驱动"/></a><div class="content"><a class="title" href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85ZED%E4%BB%A5%E5%8F%8Aros%E9%A9%B1%E5%8A%A8/" title="安装ZED以及ros驱动">安装ZED以及ros驱动</a><time datetime="2023-08-25T09:26:09.005Z" title="Created 2023-08-25 17:26:09">2023-08-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85VINS-Fusion/" title="安装VINS-Fusion"><img src="/img/material-4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="安装VINS-Fusion"/></a><div class="content"><a class="title" href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85VINS-Fusion/" title="安装VINS-Fusion">安装VINS-Fusion</a><time datetime="2023-08-25T09:26:09.003Z" title="Created 2023-08-25 17:26:09">2023-08-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85Rtabmap/" title="安装Rtabmap"><img src="/img/material-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="安装Rtabmap"/></a><div class="content"><a class="title" href="/2023/08/25/slam_config/%E5%AE%89%E8%A3%85Rtabmap/" title="安装Rtabmap">安装Rtabmap</a><time datetime="2023-08-25T09:26:09.002Z" title="Created 2023-08-25 17:26:09">2023-08-25</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+通过Office 2021 RTM官方镜像下载与安装激活Office 2021
+Office Tool Plus部署和安装 Office 2021 和 Office 365
+通过Microsoft 365 订阅会员的方式白嫖Office 365
+
+以上方式以win10系统为例, 任选一种都可以,简单通俗 无脑易懂, 现在就开始吧!
+方式一 Office 2021 RTM官方镜像下载与安装激活🔥这是微软官方发布的Office 2021 RTM专业增强零售版
+由于微软目前发布的版本只有Office 2021英文版，因此如果想要切换为Office 2021中文版则需要再次手动安装中文语言包
+在后台回复关键字【 office 】 即可立即免费获取Office 2021 RTM专业增强零售版+中文语言包+激活工具
+1如图
+
+
+安装 Office 2021 RTM 专业增强零 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/11/10/slam/something_else/%E5%A6%82%E4%BD%95%E5%9C%A8Linux%E4%B8%AD%E4%BD%BF%E7%94%A8Clash/" title="如何在Linux中使用Clash"><img class="post-bg" src="/img/material-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何在Linux中使用Clash"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/10/slam/something_else/%E5%A6%82%E4%BD%95%E5%9C%A8Linux%E4%B8%AD%E4%BD%BF%E7%94%A8Clash/" title="如何在Linux中使用Clash">如何在Linux中使用Clash</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-11-10T06:00:24.958Z" title="Created 2023-11-10 14:00:24">2023-11-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Jottings/">Jottings</a></span></div><div class="content">如何在Linux中使用ClashStep 1下载相应的Clash文件，注意区分amd架构和arm架构，使用 uname -m 命令查询系统硬件型号。例如，本文使用系统是 aarch64，需要下载 arm 系列的Clash，选择下载 clash-linux-arm64-v1.13.0.gz
+
+Step 2将下载好的文件传输到Linux系统，解压文件夹或者在系统中解压缩都可以。在 /etc 目录下创建 clash 目录，使用 cd /etc/clash 命令切换到该目录。使用 gzip -d clash-linux-amd64 命令解压缩安装包到目标文件夹。使用 wget -O config.yaml &lt;url&gt; 命令下载订阅或者从windows版本订阅中打开编辑导出配置文件（这里的订阅文件必须命名为 config.yaml）。
+
+Step 3接着运行下面的命令修改运行文件名并运行：
+12345mv clash-linux-amd64  clashchmod +x clash./clash
+
+启动服务后，会自动下载 Country.mmdb 文件，需要等待一会儿，如果失败建议多 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/11/10/slam/something_else/stable-diffusion-webui%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/" title="stable-diffusion-webui手动安装详细步骤"><img class="post-bg" src="/img/material-9.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="stable-diffusion-webui手动安装详细步骤"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/10/slam/something_else/stable-diffusion-webui%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/" title="stable-diffusion-webui手动安装详细步骤">stable-diffusion-webui手动安装详细步骤</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-11-10T06:00:24.956Z" title="Created 2023-11-10 14:00:24">2023-11-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Jottings/">Jottings</a></span></div><div class="content">stable-diffusion-webui手动安装详细步骤环境OS：Windows10显卡类型：NVIDIA（英伟达）Python版本：3.10.6（必须为该版本）Git：必须
+安装过程升级CUDA驱动python3.10目前是不支持cuda10.2版本的torch包的,可以通过 CUDA版本对应的torch去查看，所以先要升级CUDA驱动，如果是更高版本的驱动可以跳过该步骤。
+需要根据自己显卡类型去下载相应的驱动，win + x -&gt;设备管理器 -&gt;显示适配器
+
+然后去 CUDA驱动 填写对应的显卡信息后搜索显卡驱动
+
+这里选择第一个驱动进行下载，下载之后是一个exe文件，直接按照步骤安装即可，过程比较简单不再赘述
+
+使用命令nvidia-smi查看，可以看到CUDA版本是11.4，相应的驱动版本是472.84
+12345678910111213141516171819202122PS C:\Users\samsung&gt; nvidia-smiSat Apr  1 14:02:38 2023+------------------------------------- ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/11/10/slam/README/" title="Untitled"><img class="post-bg" src="/img/material-5.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Untitled"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/10/slam/README/" title="Untitled">Untitled</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-11-10T06:00:23.700Z" title="Created 2023-11-10 14:00:23">2023-11-10</time></span></div><div class="content">Study-note from HanLin内心os：我好笨，我记不住，虽然好麻烦好麻烦，但是我得做笔记记录下来…本仓库包含以下内容：
+
+一些学习的心得笔记
+
+一些可能有用的电子书籍和学习资源（白嫖使我快乐）
+
+一些学习软件的安装（还是白嫖^_^，仅供自身学习使用，请勿外传，亲测无病毒，放心使用！）
+
+一些杂项
+
+TODO……!^_^
+
+
+心得笔记
+SLAM Theory
+匈牙利算法
+相机参数DKPR的解释
+多维高斯分布
+正态分布
+灰度质心法
+雅可比矩阵和海塞矩阵
+高斯牛顿法
+归一化与标准化
+超定方程组的最小二乘解
+单目视觉的尺度等价性
+多元函数的泰勒展开式
+矩阵的奇异值分解
+为什么使用齐次坐标
+向量积(矢积)与数量积(标积)的区别
+协方差矩阵
+重投影误差
+多线激光雷达与组合惯导外参标定原理
+图优化g2o
+矩阵微分
+本质矩阵&#x2F;基础矩阵&#x2F;自由度及其解法
+2d激光雷达运动补偿方法(去畸变)
+局部规划算法DWA
+ros2 cost function
+路径规划之A*算法
+路径规划之Theta*算法
+欧拉角与坐标系旋转变换
+本质矩阵基础矩阵的自由度及其解法
+SLAM中的位姿变 ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Hanlin</div><div class="author-info__description">Talk is cheap, show you code</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hanlin-cheng"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/hanlin-cheng" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:cheng.lv@slamtec.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/02/28/test/" title="Untitled"><img src="/img/material-7.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Untitled"/></a><div class="content"><a class="title" href="/2024/02/28/test/" title="Untitled">Untitled</a><time datetime="2024-02-28T05:42:19.124Z" title="Created 2024-02-28 13:42:19">2024-02-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/28/slam/QT/%E9%A1%B9%E7%9B%AE%E9%BB%98%E8%AE%A4%E6%96%87%E4%BB%B6%E4%BB%8B%E7%BB%8D/" title="项目默认文件介绍"><img src="/img/material-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="项目默认文件介绍"/></a><div class="content"><a class="title" href="/2024/02/28/slam/QT/%E9%A1%B9%E7%9B%AE%E9%BB%98%E8%AE%A4%E6%96%87%E4%BB%B6%E4%BB%8B%E7%BB%8D/" title="项目默认文件介绍">项目默认文件介绍</a><time datetime="2024-02-28T03:42:34.596Z" title="Created 2024-02-28 11:42:34">2024-02-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/28/slam/QT/%E5%9F%BA%E4%BA%8Earm%E6%9E%B6%E6%9E%84%E7%9A%84NVIDIA_Xavier%E5%AE%89%E8%A3%85Qt/" title="基于arm架构的NVIDIA Xavier安装Qt"><img src="/img/material-3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于arm架构的NVIDIA Xavier安装Qt"/></a><div class="content"><a class="title" href="/2024/02/28/slam/QT/%E5%9F%BA%E4%BA%8Earm%E6%9E%B6%E6%9E%84%E7%9A%84NVIDIA_Xavier%E5%AE%89%E8%A3%85Qt/" title="基于arm架构的NVIDIA Xavier安装Qt">基于arm架构的NVIDIA Xavier安装Qt</a><time datetime="2024-02-28T03:42:34.595Z" title="Created 2024-02-28 11:42:34">2024-02-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/28/slam/QT/QT%E8%BF%81%E7%A7%BB%E9%A1%B9%E7%9B%AE%E5%90%8E%E6%98%BE%E7%A4%BA%E4%BF%AE%E6%94%B9%E6%97%B6%E9%97%B4%E5%A4%A7%E4%BA%8E%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4/" title="QT迁移项目后显示修改时间大于当前时间"><img src="/img/material-5.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="QT迁移项目后显示修改时间大于当前时间"/></a><div class="content"><a class="title" href="/2024/02/28/slam/QT/QT%E8%BF%81%E7%A7%BB%E9%A1%B9%E7%9B%AE%E5%90%8E%E6%98%BE%E7%A4%BA%E4%BF%AE%E6%94%B9%E6%97%B6%E9%97%B4%E5%A4%A7%E4%BA%8E%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4/" title="QT迁移项目后显示修改时间大于当前时间">QT迁移项目后显示修改时间大于当前时间</a><time datetime="2024-02-28T03:42:34.594Z" title="Created 2024-02-28 11:42:34">2024-02-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/28/slam/QT/Qt%E7%82%B9%E5%87%BB%E6%8C%89%E9%92%AE%E8%BF%9B%E8%A1%8C%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%88%87%E6%8D%A2/" title="Qt点击按钮进行页面的切换"><img src="/img/material-3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Qt点击按钮进行页面的切换"/></a><div class="content"><a class="title" href="/2024/02/28/slam/QT/Qt%E7%82%B9%E5%87%BB%E6%8C%89%E9%92%AE%E8%BF%9B%E8%A1%8C%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%88%87%E6%8D%A2/" title="Qt点击按钮进行页面的切换">Qt点击按钮进行页面的切换</a><time datetime="2024-02-28T03:42:34.593Z" title="Created 2024-02-28 11:42:34">2024-02-28</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>Categories</span>
-            <a class="card-more-btn" href="/categories/" title="More">
-    <i class="fas fa-angle-right"></i></a>
+            
             </div>
             <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/C/"><span class="card-category-list-name">C++</span><span class="card-category-list-count">29</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/C/CMakelists/"><span class="card-category-list-name">CMakelists</span><span class="card-category-list-count">3</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Jottings/"><span class="card-category-list-name">Jottings</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Qt/"><span class="card-category-list-name">Qt</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/SLAM/"><span class="card-category-list-name">SLAM</span><span class="card-category-list-count">1</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/SLAM/ROS/"><span class="card-category-list-name">ROS</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/command/"><span class="card-category-list-name">command</span><span class="card-category-list-count">10</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/C/" style="font-size: 1.45em; color: rgb(61, 185, 98)">C++</a><a href="/tags/CMakelists/" style="font-size: 1.3em; color: rgb(113, 158, 4)">CMakelists</a><a href="/tags/Eigen/" style="font-size: 1.22em; color: rgb(23, 119, 62)">Eigen</a><a href="/tags/Opencv/" style="font-size: 1.3em; color: rgb(10, 140, 146)">Opencv</a><a href="/tags/Qt/" style="font-size: 1.38em; color: rgb(185, 94, 6)">Qt</a><a href="/tags/Xavier/" style="font-size: 1.3em; color: rgb(40, 41, 2)">Xavier</a><a href="/tags/SLAM/" style="font-size: 1.22em; color: rgb(160, 104, 152)">SLAM</a><a href="/tags/ROS/" style="font-size: 1.22em; color: rgb(16, 58, 154)">ROS</a><a href="/tags/Linux/" style="font-size: 1.3em; color: rgb(199, 191, 56)">Linux</a><a href="/tags/Shell/" style="font-size: 1.22em; color: rgb(53, 186, 77)">Shell</a><a href="/tags/Jottings/" style="font-size: 1.3em; color: rgb(72, 29, 158)">Jottings</a><a href="/tags/Clash/" style="font-size: 1.15em; color: rgb(112, 55, 61)">Clash</a><a href="/tags/Git/" style="font-size: 1.38em; color: rgb(72, 196, 61)">Git</a><a href="/tags/LIO-SAM/" style="font-size: 1.22em; color: rgb(169, 161, 26)">LIO-SAM</a><a href="/tags/ORB-SLAM/" style="font-size: 1.22em; color: rgb(155, 36, 170)">ORB-SLAM</a><a href="/tags/Velodyne/" style="font-size: 1.15em; color: rgb(44, 145, 65)">Velodyne</a><a href="/tags/Ubuntu/" style="font-size: 1.15em; color: rgb(163, 145, 118)">Ubuntu</a><a href="/tags/Ros/" style="font-size: 1.22em; color: rgb(198, 125, 51)">Ros</a><a href="/tags/VINS/" style="font-size: 1.15em; color: rgb(164, 181, 30)">VINS</a><a href="/tags/Rtabmap/" style="font-size: 1.15em; color: rgb(170, 2, 84)">Rtabmap</a><a href="/tags/Calib/" style="font-size: 1.15em; color: rgb(68, 95, 135)">Calib</a><a href="/tags/evo/" style="font-size: 1.15em; color: rgb(14, 60, 1)">evo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">August 2023</span><span class="card-archive-list-count">63</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">63</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-11-01T09:39:00.668Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/beautifulmountain.png')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By Hanlin</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my blog!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Jottings/"><span class="card-category-list-name">Jottings</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Qt/"><span class="card-category-list-name">Qt</span><span class="card-category-list-count">4</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/Qt/" style="font-size: 1.45em; color: rgb(19, 47, 101)">Qt</a><a href="/tags/Xavier/" style="font-size: 1.15em; color: rgb(103, 178, 184)">Xavier</a><a href="/tags/Jottings/" style="font-size: 1.3em; color: rgb(27, 94, 125)">Jottings</a><a href="/tags/Clash/" style="font-size: 1.15em; color: rgb(176, 142, 132)">Clash</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">February 2024</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">November 2023</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">9</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-02-28T06:05:02.794Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/beautifulmountain.png')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By Hanlin</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my blog!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
   init: (str) => {
     window.typed = new Typed('#subtitle', Object.assign({
       strings: str,
