@@ -1,4 +1,4 @@
-baseURL: "https://hanlin-cheng.github.io/hanlin.github.io/"
+baseURL: "https://hanlin-cheng.github.io/"
 languageCode: "zh-cn"
 title: "SLAM Study Notes"
 enableRobotsTXT: true
