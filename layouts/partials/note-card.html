@@ -1,5 +1,0 @@
-<a class="note-card" href="{{ .RelPermalink }}">
-  <span>{{ with .Params.categories }}{{ delimit . " / " }}{{ else }}笔记{{ end }}</span>
-  <strong>{{ .Title }}</strong>
-  {{ with .Summary }}<p>{{ . | plainify }}</p>{{ end }}
-</a>

@@ -1,10 +1,21 @@
 baseURL: "https://hanlin-cheng.github.io/"
 languageCode: "zh-cn"
+defaultContentLanguage: "zh-cn"
 title: "SLAM Study Notes"
+theme: "hugo-theme-stack"
 enableRobotsTXT: true
 hasCJKLanguage: true
 summaryLength: 120
 uglyURLs: true
+
+pagination:
+  pagerSize: 12
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
 
 markup:
   goldmark:
@@ -14,21 +25,82 @@ markup:
     noClasses: false
     style: github
 
+taxonomies:
+  category: categories
+  tag: tags
+
 params:
   description: "SLAM、ROS、算法、Linux 与工程实践笔记"
   githubRepo: "https://github.com/hanlin-cheng/slam-study-note"
   noteSubmodulePath: "notes"
   mainSections:
     - notes
+  rssFullContent: true
+  footer:
+    since: 2026
+  dateFormat:
+    published: "2006-01-02"
+    lastUpdated: "2006-01-02"
+  sidebar:
+    compact: false
+    emoji: ""
+    subtitle: "SLAM、ROS、算法、Linux 与工程实践笔记"
+    avatar:
+      enabled: false
+      local: false
+      src: ""
+  article:
+    headingAnchor: true
+    math: true
+    toc: true
+    readingTime: true
+    license:
+      enabled: false
+  widgets:
+    homepage:
+      - type: search
+      - type: archives
+        params:
+          limit: 5
+      - type: categories
+        params:
+          limit: 10
+    page:
+      - type: toc
+  opengraph:
+    twitter:
+      site: ""
+      card: "summary_large_image"
+  colorScheme:
+    toggle: true
+    default: "auto"
+  comments:
+    enabled: false
 
 menus:
   main:
+    - name: "首页"
+      pageRef: "/"
+      weight: 1
+      params:
+        icon: home
     - name: "全部笔记"
       pageRef: "/notes"
       weight: 10
+      params:
+        icon: archives
     - name: "分类"
       pageRef: "/categories"
       weight: 20
+      params:
+        icon: categories
+    - name: "搜索"
+      pageRef: "/search"
+      weight: 25
+      params:
+        icon: search
     - name: "笔记仓库"
       url: "https://github.com/hanlin-cheng/slam-study-note"
       weight: 30
+      params:
+        icon: brand-github
