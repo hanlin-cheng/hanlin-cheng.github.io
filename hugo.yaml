@@ -1,0 +1,34 @@
+baseURL: "https://hanlin-cheng.github.io/hanlin.github.io/"
+languageCode: "zh-cn"
+title: "SLAM Study Notes"
+enableRobotsTXT: true
+hasCJKLanguage: true
+summaryLength: 120
+uglyURLs: true
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
+    style: github
+
+params:
+  description: "SLAM、ROS、算法、Linux 与工程实践笔记"
+  githubRepo: "https://github.com/hanlin-cheng/slam-study-note"
+  noteSubmodulePath: "notes"
+  mainSections:
+    - notes
+
+menus:
+  main:
+    - name: "全部笔记"
+      pageRef: "/notes"
+      weight: 10
+    - name: "分类"
+      pageRef: "/categories"
+      weight: 20
+    - name: "笔记仓库"
+      url: "https://github.com/hanlin-cheng/slam-study-note"
+      weight: 30

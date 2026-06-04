@@ -1,0 +1,6 @@
+/public/
+/resources/
+/content/notes/
+/static/notes/
+/static/search-index.json
+/.hugo_build.lock

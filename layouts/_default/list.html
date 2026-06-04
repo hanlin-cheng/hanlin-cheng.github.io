@@ -1,0 +1,11 @@
+{{ define "main" }}
+  <section class="page-heading">
+    <p class="eyebrow">{{ .Kind }}</p>
+    <h1>{{ .Title }}</h1>
+  </section>
+  <section class="note-list">
+    {{ range .Pages.ByTitle }}
+      {{ partial "note-card.html" . }}
+    {{ end }}
+  </section>
+{{ end }}
