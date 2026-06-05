@@ -1,5 +1,5 @@
 baseURL: "https://hanlin-cheng.github.io/"
-languageCode: "zh-cn"
+locale: "zh-cn"
 defaultContentLanguage: "zh-cn"
 title: "SLAM Study Notes"
 theme: "hugo-theme-stack"
@@ -10,12 +10,6 @@ uglyURLs: true
 
 pagination:
   pagerSize: 12
-
-outputs:
-  home:
-    - HTML
-    - RSS
-    - JSON
 
 markup:
   goldmark:
@@ -45,10 +39,7 @@ params:
     compact: false
     emoji: ""
     subtitle: "SLAM、ROS、算法、Linux 与工程实践笔记"
-    avatar:
-      enabled: false
-      local: false
-      src: ""
+    avatar: ""
   article:
     headingAnchor: true
     math: true
@@ -74,6 +65,11 @@ params:
   colorScheme:
     toggle: true
     default: "auto"
+  imageProcessing:
+    content:
+      enabled: false
+    thumbnail:
+      enabled: false
   comments:
     enabled: false
 
