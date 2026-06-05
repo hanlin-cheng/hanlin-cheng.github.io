@@ -1,7 +1,7 @@
 baseURL: "https://hanlin-cheng.github.io/"
 locale: "zh-cn"
 defaultContentLanguage: "zh-cn"
-title: "SLAM Study Notes"
+title: "HanLin"
 theme: "hugo-theme-stack"
 enableRobotsTXT: true
 hasCJKLanguage: true
@@ -38,8 +38,8 @@ params:
   sidebar:
     compact: false
     emoji: ""
-    subtitle: "SLAM、ROS、算法、Linux 与工程实践笔记"
-    avatar: ""
+    subtitle: "伤心猪大肠"
+    avatar: "img/avatar.JPG"
   article:
     headingAnchor: true
     math: true
