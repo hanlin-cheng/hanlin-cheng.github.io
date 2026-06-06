@@ -7,6 +7,7 @@ import re
 import shutil
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import quote
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -59,15 +60,65 @@ def normalize_markdown(text: str) -> str:
     return text
 
 
-def front_matter(title: str, category: str, source: str, weight: int) -> str:
+MARKDOWN_IMAGE_RE = re.compile(r"!\[[^\]]*\]\(([^)]+)\)")
+HTML_IMAGE_RE = re.compile(r"<img\b[^>]*\bsrc=[\"']([^\"']+)[\"']", re.IGNORECASE)
+IMAGE_SUFFIXES = {".apng", ".avif", ".gif", ".jpeg", ".jpg", ".png", ".svg", ".webp", ""}
+
+
+def is_local_image(src: str) -> bool:
+    return not re.match(r"^(?:[a-z][a-z0-9+.-]*:)?//", src, re.IGNORECASE) and not src.startswith(
+        ("data:", "#", "/")
+    )
+
+
+def clean_image_src(src: str) -> str:
+    src = src.strip().strip("<>")
+    while src.startswith("./"):
+        src = src[2:]
+    return src.replace("\\", "/")
+
+
+def cover_url(section: str, src: str) -> str:
+    src = quote(clean_image_src(src), safe="/%+._-()")
+    return f"/notes/{section}/{src}"
+
+
+def first_local_image(text: str, section: str) -> str | None:
+    for pattern in (MARKDOWN_IMAGE_RE, HTML_IMAGE_RE):
+        for match in pattern.finditer(text):
+            src = clean_image_src(match.group(1))
+            if is_local_image(src):
+                return cover_url(section, src)
+    return None
+
+
+def fallback_section_image(section: str) -> str | None:
+    media_dir = NOTES_DIR / section / "media"
+    if not media_dir.exists():
+        return None
+
+    for path in sorted(media_dir.rglob("*")):
+        if path.is_file() and path.suffix.lower() in IMAGE_SUFFIXES:
+            rel = path.relative_to(NOTES_DIR / section).as_posix()
+            return cover_url(section, rel)
+    return None
+
+
+def front_matter(
+    title: str, category: str, source: str, weight: int, image: str | None = None
+) -> str:
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    return "\n".join(
+    lines = [
+        "---",
+        f"title: {quote_yaml(title)}",
+        f"date: {quote_yaml(now)}",
+        "draft: false",
+        f"weight: {weight}",
+    ]
+    if image:
+        lines.append(f"image: {quote_yaml(image)}")
+    lines.extend(
         [
-            "---",
-            f"title: {quote_yaml(title)}",
-            f"date: {quote_yaml(now)}",
-            "draft: false",
-            f"weight: {weight}",
             "categories:",
             f"  - {quote_yaml(category)}",
             "source:",
@@ -76,6 +127,7 @@ def front_matter(title: str, category: str, source: str, weight: int) -> str:
             "",
         ]
     )
+    return "\n".join(lines)
 
 
 def clean_generated() -> None:
@@ -118,10 +170,11 @@ def sync_markdown() -> list[dict[str, str]]:
 
         body = normalize_markdown(src.read_text(encoding="utf-8", errors="ignore"))
         title = title_from_markdown(body, src.stem)
+        image = first_local_image(body, section) or fallback_section_image(section)
         target = CONTENT_DIR / rel
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(
-            front_matter(title, category, str(rel), stable_weight(rel)) + body,
+            front_matter(title, category, str(rel), stable_weight(rel), image) + body,
             encoding="utf-8",
         )
         pages.append(
