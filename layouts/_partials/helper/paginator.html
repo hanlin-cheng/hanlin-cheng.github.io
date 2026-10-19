@@ -1,0 +1,7 @@
+{{- $result := slice -}}
+{{/* The home discovery list is shuffled in the browser; only full lists paginate. */}}
+{{- if and (not .IsHome) (in (slice "section" "taxonomy" "term") .Kind) -}}
+    {{- $pages := partial "helper/pages.html" . -}}
+    {{- $result = .Paginate $pages -}}
+{{- end -}}
+{{- return $result -}}

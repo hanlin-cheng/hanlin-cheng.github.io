@@ -1,10 +1,17 @@
 {{ define "main" }}
     <section id="notes" class="notes-section">
-        <header class="notes-heading"><div><p class="eyebrow">THE NOTEBOOK</p><h2>探索笔记</h2></div><a href="{{ with .Site.GetPage `/notes` }}{{ .RelPermalink }}{{ end }}">全部 {{ len (where .Site.RegularPages "Section" "notes") }} 篇 {{ partial "helper/icon" "chevron-right" }}</a></header>
-        {{ $paginator := partial "helper/paginator.html" . }}
-        <div class="article-list notebook-list">{{ range $paginator.Pages }}{{ partial "article-list/default.html" . }}{{ end }}</div>
+        {{ $pages := partial "helper/pages.html" . }}
+        <header class="notes-heading">
+            <div><p class="eyebrow">THE NOTEBOOK</p><h2>探索笔记</h2></div>
+            <div class="notes-actions">
+                <button type="button" class="notes-refresh" aria-controls="random-notes" hidden><span aria-hidden="true">↻</span> 换一批</button>
+                <a href="{{ with .Site.GetPage `/notes` }}{{ .RelPermalink }}{{ end }}">全部 {{ len $pages }} 篇 {{ partial "helper/icon" "chevron-right" }}</a>
+            </div>
+        </header>
+        <div id="random-notes" class="article-list notebook-list" data-count="8">{{ range first 8 $pages }}{{ partial "article-list/default.html" . }}{{ end }}</div>
+        <p class="random-notes-status" role="status" aria-atomic="true"></p>
+        <template id="random-notes-pool">{{ range $pages }}{{ partial "article-list/default.html" . }}{{ end }}</template>
     </section>
-    {{ partial "pagination.html" . }}
     {{ partial "footer/footer.html" . }}
 {{ end }}
 {{ define "right-sidebar" }}{{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}{{ end }}

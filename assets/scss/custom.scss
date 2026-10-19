@@ -53,7 +53,15 @@ html { scroll-behavior: smooth; scroll-padding-top: 92px; }
     .notes-heading { display: flex; align-items: center; justify-content: space-between; margin: 8px 0 22px; }
     .eyebrow { font-size: 9px; color: var(--card-text-color-secondary); letter-spacing: 2px; font-weight: 600; margin: 0 0 8px; }
     .notes-heading h2 { font-size: 23px; font-weight: 600; margin: 0; color: var(--card-text-color-main); }
-    .notes-heading > a { color: var(--card-text-color-secondary); display: inline-flex; gap: 8px; align-items: center; font-size: 12px; }
+    .notes-heading { gap: 16px; flex-wrap: wrap; }
+    .notes-actions { display: flex; gap: 16px; align-items: center; }
+    .notes-actions > a { color: var(--card-text-color-secondary); display: inline-flex; gap: 8px; align-items: center; font-size: 12px; }
+    .notes-refresh { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 8px 12px; border: 1px solid var(--card-separator-color); border-radius: 7px; background: var(--card-background); color: var(--accent-color); font: inherit; font-size: 12px; cursor: pointer; }
+    .notes-refresh[hidden] { display: none; }
+    .notes-refresh:hover { border-color: var(--accent-color); }
+    .notes-refresh:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 3px; }
+    .notes-refresh > span { font-size: 20px; line-height: 1; }
+    .random-notes-status { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
     .notes-heading svg { width: 15px; height: 15px; }
     .notebook-list { gap: 18px; }
     .note-card { box-shadow: var(--shadow-l1); background: var(--card-background); border: 1px solid var(--card-separator-color); border-radius: 12px; overflow: hidden; transition: border-color .2s, transform .2s; }

@@ -1,6 +1,6 @@
 # 博客生成与笔记维护规则
 
-供维护本仓库的 agent 使用。新增笔记先看“新增笔记流程”；修改生成机制时再阅读后续章节。以下描述的是当前代码行为，不代表已经实现的改进计划。
+供维护本仓库的 agent 使用。每次任务开始由 `AGENTS.md` 引导先读本文件；两个仓库的 README 面向读者，不放 Agent 入口、维护流程或提交授权说明。新增笔记先看“新增笔记流程”；修改生成机制时再阅读后续章节。以下描述的是当前代码行为，不代表已经实现的改进计划。
 
 ## 1. 项目与内容边界
 
@@ -30,11 +30,13 @@ notes/<分类目录>/*.md 与附件
 
 1. 先读根目录 [AGENTS.md](../AGENTS.md)，检查父仓库和笔记子模块的工作区状态，保留已有改动。
 2. 确认 `notes/` 已初始化且实际包含 Markdown；不要对空子模块目录直接执行同步，因为脚本会清理现有生成结果。
-3. 在 `notes/` 下已有分类目录中新建 Markdown，图片放在共享 `notes/media/<文章名>/` 中。不要修改生成后的笔记副本。
+3. 阅读子仓库 [AGENTS.md](../notes/AGENTS.md) 和 [CONTRIBUTING.md](../notes/CONTRIBUTING.md)，在 `notes/` 下已有分类目录中新建 Markdown，图片放在共享 `notes/media/<文章名>/` 中。不要修改生成后的笔记副本。
 4. 第一处一级标题应是完整文章名；正文分节使用二级及更低级标题。尽量不在文章名前添加序号或 Markdown 加粗符号。
-5. 从博客根目录运行同步，再构建或预览。
-6. 检查新文章、分类入口、搜索结果、正文图片和图片放大操作。
+5. 在 `notes/README.md` 对应分类添加新文章的相对链接。每次新增、删除、移动或重命名笔记/附件，都必须同时核对更新子仓库索引与引用、博客分类映射及地址兼容映射；已有分类自动收录文章，无需逐篇修改同步脚本。附件只在正文引用，不在 README 新增“参考资料”分组。
+6. 从博客根目录依次执行 `python3 scripts/check_note_links.py`、`python3 scripts/sync_notes.py`、`hugo --minify`，检查 README 覆盖全部可发布 Markdown，且无遗漏、重复或失效链接；验证新文章、分类/全部笔记入口、搜索结果、正文图片和图片放大操作。首页随机抽取，不以首页是否立即出现新文章判断收录成功。
 7. 交付时说明改动位于哪个仓库、验证结果及未完成项；未获明确授权时不提交、不推送、不发布。
+
+子仓库与博客联动是每次内容增删改的完成条件，不能只新增源文件。若从独立笔记仓库开始工作，应定位关联博客工作区并完成上述流程；无法访问时明确记录博客侧待办。“同时更新”不意味着每次都要修改博客模板或提交 Git；生成结果仍忽略，正式发布时需在用户授权后先提交推送子仓库，再更新父仓库的子模块指针。
 
 只读状态检查：
 
@@ -73,7 +75,7 @@ git submodule update --init --recursive
 
 ## 3. 分类与目录规则
 
-仅同步脚本 `SECTIONS` 中列出的八个顶层目录，名称区分大小写：
+仅同步脚本 `SECTIONS` 中列出的九个顶层目录，名称区分大小写：
 
 - `math` → 数学基础
 - `robotics` → SLAM 与机器人
@@ -83,12 +85,13 @@ git submodule update --init --recursive
 - `linux` → Linux 与嵌入式
 - `qt` → Qt 开发
 - `misc` → 应用与杂记
+- `papers` → 论文阅读
 
 每篇笔记只有一个由顶层目录生成的主分类，嵌套文件夹不会自动生成子分类。按文章核心问题归类，安装、运行、命令等是文章类型，不另作主分类。具体边界见 [笔记子仓库维护约定](../notes/CONTRIBUTING.md)。
 
 图片集中在 `notes/media/`。迁移图片保留原目录命名空间（如 `media/Algorithm/`），这不是主分类；新增图片推荐 `media/<文章名>/`。根目录 `media/` 只复制附件，不发布为文章分类。
 
-Markdown 同步跳过 `.git`、`.obsidian`、`.agents`、`.codex` 目录。附件复制排除 `.md`、`.whl`、`.pyc`，覆盖八个分类目录及共享 `media/`。PDF 等参考文件放在其所属分类下，所有公开附件都需要核对是否适合发布。
+Markdown 同步跳过 `.git`、`.obsidian`、`.agents`、`.codex` 目录。附件复制排除 `.md`、`.whl`、`.pyc`，覆盖上述分类目录及共享 `media/`。PDF 等参考文件放在其所属分类下，所有公开附件都需要核对是否适合发布。
 
 ## 4. 同步脚本的实际行为
 
@@ -129,18 +132,22 @@ Markdown 同步跳过 `.git`、`.obsidian`、`.agents`、`.codex` 目录。附�
 优先修改以下根目录文件，不直接改主题子模块：
 
 - [layouts/baseof.html](../layouts/baseof.html)：顶部导航、首页山景横幅和公共布局。
-- [layouts/home.html](../layouts/home.html)：首页笔记列表及分页。
-- [layouts/_partials/helper/pages.html](../layouts/_partials/helper/pages.html)：页面集合与首页排序。
+- [layouts/home.html](../layouts/home.html)：首页随机笔记列表、“换一批”按钮与全部笔记入口。
+- [layouts/_partials/helper/pages.html](../layouts/_partials/helper/pages.html)：页面集合与首页无脚本时的标题排序。
 - [layouts/_partials/helper/note-title.html](../layouts/_partials/helper/note-title.html)：展示标题清理；去除 Markdown 格式，超过 60 个字符时回退到文件名。
 - `layouts/_partials/article-list/default.html`：首页文字摘要卡片。
 - `layouts/_partials/sidebar/right.html`：资料、搜索、分类和文章目录。
 - `layouts/_partials/article/components/`：文章头部、正文、元信息与图片预览。
 - [assets/scss/custom.scss](../assets/scss/custom.scss)：站点样式、响应式、深色模式和图片预览样式。
-- [assets/ts/custom.ts](../assets/ts/custom.ts)：目录滚动时避让固定导航、图片放大交互。
+- [assets/ts/custom.ts](../assets/ts/custom.ts)：首页随机换批、目录滚动时避让固定导航、图片放大交互。
 - `static/img/mountain-hero.webp`：首页横幅；`assets/img/avatar.JPG`：头像。
 - `i18n/zh-cn.toml`：当前语言代码对应的中文翻译补充。
 
-首页当前按原始文章标题排序，并将指定源文件名对应的文章移到前面：`占据栅格地图构建`、`ORBSLAM3学习`、`轨迹评估介绍与evo工具使用`。这些文章之间仍保持标题排序，并非按列表中的书写顺序置顶。每页 8 篇；这不是按真实发布日期排列的“最新文章”列表。
+首页“探索笔记”从全部已发布笔记中等概率随机抽取 8 篇，每次进入首页、重新加载或从浏览器往返缓存恢复时重新抽取；点击“换一批”仅替换卡片，不重载页面。使用 Fisher–Yates 洗牌，同一批内无重复，不设置分类权重或固定置顶，不刻意排除上一批，因此两批间可以重复。
+
+`layouts/home.html` 内的惰性 `<template>` 保存所有笔记卡片，`assets/ts/custom.ts` 克隆随机选中的 8 张；只包含标题、摘要和站内链接，不请求全文或依赖搜索索引。新增笔记经同步和 Hugo 构建后自动进入抽取范围。JavaScript 不可用时按标题展示前 8 篇且隐藏换批按钮，仍可通过“全部”入口浏览完整列表。
+
+首页不再显示分页；`layouts/_partials/helper/paginator.html` 跳过首页，避免主题标题模板隐式生成首页分页。全部笔记、分类等完整列表仍按现有规则分页，每页 8 篇。
 
 标题展示清理不回写源笔记或生成元数据，搜索和分享数据仍可能使用原始 `.Title`。
 
@@ -155,7 +162,7 @@ Markdown 同步跳过 `.git`、`.obsidian`、`.agents`、`.codex` 目录。附�
 
 新增笔记后必须同步并构建，不能只更新手写静态索引。只改样式或模板时通常不必重跑同步，避免无意义地重写全部文章日期。
 
-需要 Python 3 与 Hugo Extended，版本至少满足当前 Stack 要求；仓库 README 的最低版本为 0.157.0，后续如升级主题，应重新核对版本要求。
+需要 Python 3 与 Hugo Extended，版本至少满足当前 Stack 要求；当前项目要求的最低版本为 0.157.0，后续如升级主题，应重新核对版本要求。
 
 ```bash
 # 新增、更新笔记后，在博客根目录运行
@@ -184,3 +191,11 @@ CI 不会自动跟踪笔记子模块的远端最新提交。本地未提交的�
 - 修改外观或交互：构建并在浏览器检查桌面、手机宽度，按范围验证导航、分页、搜索、目录、深色切换或图片预览；相关记录见 [design-qa.md](../design-qa.md)。
 
 当前已知限制：全量同步时间被当作文章日期；本次迁移已修复 `.y/media/GetImage65.jpeg` 路径笔误并规范了一处 Obsidian 图片引用，少量原有残缺 Markdown 仍待按内容任务处理。遇到这些问题应区分“原笔记内容问题”和“生成机制问题”，不要通过改写生成文件掩盖问题。
+
+## 10. 论文阅读导入与维护
+
+论文阅读分类源目录为 `notes/papers/`，配图位于 `notes/media/papers/<文章文件名>/`。已授权迁移的 98 篇来源、目标路径、图片 SHA-256 和公式兼容修正记录在 `data/paper-reading-sources.json`，迁移范围与验证见 [论文阅读迁移记录](paper-reading-import.md)。
+
+普通新增论文笔记直接按第 2 节流程操作，不依赖原站或导入依赖。只有需要重建这批迁移文章时，才安装 `scripts/requirements-paper-import.txt` 并运行 `scripts/import_paper_readings.py`。该脚本会覆盖带对应来源标记的已导入文件，并重建 README 论文索引；**重跑前先保留迁入后的人工作业**，不允许覆盖无对应标记的现有笔记。源 HTML 与图片缓存位于忽略的 `resources/paper-import-cache/`，失败后可使用缓存继续。
+
+Goldmark 启用 `\(...\)` 的 passthrough，保留行内公式转义。导入公式保留 LaTeX，用 `paper-math` 的 HTML span/div 包装并转义 HTML 字符，由主题现有 KaTeX 渲染 `\(...\)` 和 `\[...\]`。这样避免公式中的 `<` 被当成 HTML、独立 `=` 行被当成 Markdown 标题；复杂表格保留 HTML，表格内公式同样检查。PDF 和中文完整译文链接保留源站地址，这批迁移数量只计算阅读报告。

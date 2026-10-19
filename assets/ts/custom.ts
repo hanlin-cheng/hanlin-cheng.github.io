@@ -1,3 +1,33 @@
+// Each visit or refresh samples all published notes with equal probability.
+const randomNotes = document.querySelector<HTMLElement>('#random-notes');
+const notePool = document.querySelector<HTMLTemplateElement>('#random-notes-pool');
+const refreshNotes = document.querySelector<HTMLButtonElement>('.notes-refresh');
+if (randomNotes && notePool && refreshNotes) {
+    const cards = Array.from(notePool.content.querySelectorAll<HTMLElement>('.note-card'));
+    const count = Math.min(Number(randomNotes.dataset.count) || 8, cards.length);
+    const status = document.querySelector<HTMLElement>('.random-notes-status');
+    let batch = 0;
+    const showRandomNotes = () => {
+        const shuffled = [...cards];
+        // Fisher–Yates: no category weighting and no duplicates within a batch.
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        randomNotes.replaceChildren(...shuffled.slice(0, count).map(card => card.cloneNode(true)));
+        batch += 1;
+        if (status && batch > 1) status.textContent = `已随机展示 ${count} 篇笔记，第 ${batch} 批`;
+    };
+    if (count > 0) {
+        showRandomNotes();
+        refreshNotes.hidden = false;
+        refreshNotes.addEventListener('click', showRandomNotes);
+        window.addEventListener('pageshow', event => {
+            if (event.persisted) showRandomNotes();
+        });
+    }
+}
+
 // Keep section headings below the sticky navigation, including mobile navigation.
 document.addEventListener('click', (event: MouseEvent) => {
     const element = event.target instanceof Element ? event.target : null;

@@ -7,9 +7,11 @@
 - 开始新的开发任务时，先检查 Git 状态，再创建 `lvcheng/feature/**`、`lvcheng/bugfix/**` 或 `lvcheng/improvement/**` 开发分支；延续同一任务时沿用现有分支，保留未提交成果。
 - 上下文恢复或任务中断后，先检查当前状态，从未完成处继续，不重复生成已有文件。
 - 不生成 canvas 文件。
-- 新增或修改笔记、分类、同步脚本、页面模板、图片或部署配置前，阅读 [博客生成与笔记维护规则](docs/blog-generation.md)。
+- 每次开始任务先阅读本文件和 [博客生成与笔记维护规则](docs/blog-generation.md)；涉及子仓库时再读 `notes/AGENTS.md` 与 `notes/CONTRIBUTING.md`。不要依赖 README 提供规则入口。
 - 笔记源位于 `notes/` 子模块；不要直接维护会被重建的 `content/notes/`、`static/notes/`、`static/search-index.json` 或 `public/`。
 - 站点当前为 Hugo Extended + Stack，外观参考 Butterfly；不要误按 Hexo 项目操作。
 - 博客定制优先放在根目录 `layouts/`、`assets/`，不要直接修改主题子模块。
 - 生成逻辑发生变化时，同步更新上述规则文档；视觉变更还应更新相关预览验证记录。
-- 当前笔记使用八个主分类与共享 `notes/media/`；移动笔记前检查子仓库 `CONTRIBUTING.md`，同步修改相对链接、README 与迁移映射，完成后运行链接检查。
+- 当前笔记使用九个主分类（含论文阅读）与共享 `notes/media/`；移动笔记前检查子仓库 `CONTRIBUTING.md`，同步修改相对链接、README 与迁移映射，完成后运行链接检查。
+- 每次新增、删除、移动或重命名笔记/附件，都必须联动维护子仓库与博客仓库：新增文章补齐 `notes/README.md` 对应分类下的相对链接；附件由正文正确引用，不在 README 单列“参考资料”。核对博客分类映射，运行链接检查、笔记同步和 Hugo 构建，验证文章入口、搜索与图片。已有分类由同步脚本自动映射，无需为每篇新增文章改脚本；不能只新增源文件就视为完成。提交和推送仍需用户另行授权。
+- 两个仓库的 README 均用于对外展示，只保留项目介绍、阅读入口、分类目录与文章链接；不要添加 Agent 入口、内部维护规则、联动检查清单或提交授权说明。相关要求只写入 AGENTS.md 和专门的维护文档。

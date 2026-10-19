@@ -28,6 +28,7 @@ SECTIONS = {
     "linux": "Linux 与嵌入式",
     "qt": "Qt 开发",
     "misc": "应用与杂记",
+    "papers": "论文阅读",
 }
 MIGRATION_FILE = ROOT / "data" / "note-migration.json"
 
