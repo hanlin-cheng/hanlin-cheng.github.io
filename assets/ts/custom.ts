@@ -1,3 +1,31 @@
+// The home navigation overlays the cover, then gains a solid reading background.
+const homeHero = document.querySelector<HTMLElement>('.home-hero');
+const topbar = document.querySelector<HTMLElement>('.topbar');
+if (homeHero && topbar) {
+    let scheduled = false;
+    const updateNavigation = () => {
+        topbar.classList.toggle('is-scrolled', homeHero.getBoundingClientRect().bottom <= topbar.offsetHeight);
+        scheduled = false;
+    };
+    const scheduleNavigation = () => {
+        if (!scheduled) { scheduled = true; requestAnimationFrame(updateNavigation); }
+    };
+    window.addEventListener('scroll', scheduleNavigation, { passive: true });
+    window.addEventListener('resize', scheduleNavigation);
+    window.addEventListener('pageshow', updateNavigation);
+    updateNavigation();
+    const photo = homeHero.querySelector<HTMLImageElement>('.hero-photo');
+    if (photo) {
+        const useFallback = () => {
+            if (!photo.dataset.fallback) return;
+            photo.src = photo.dataset.fallback;
+            delete photo.dataset.fallback;
+        };
+        photo.addEventListener('error', useFallback, { once: true });
+        if (photo.complete && !photo.naturalWidth) useFallback();
+    }
+}
+
 // Each visit or refresh samples all published notes with equal probability.
 const randomNotes = document.querySelector<HTMLElement>('#random-notes');
 const notePool = document.querySelector<HTMLTemplateElement>('#random-notes-pool');

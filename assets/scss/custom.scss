@@ -216,3 +216,29 @@ html { scroll-behavior: smooth; scroll-padding-top: 92px; }
         .image-viewer-stage { padding: 12px; }
     }
 }
+
+/* Full-screen cover and downward reading transition, following Butterfly's demo. */
+.butterfly-preview.home-page {
+    .topbar { position: fixed; inset: 0 0 auto; background: transparent; border-bottom-color: transparent; transition: background-color .2s, box-shadow .2s; }
+    .topbar:not(.is-scrolled) {
+        .wordmark, .brand-dot, .topnav a, .scheme-toggle { color: #fff; text-shadow: 0 1px 5px rgba(0, 0, 0, .6); }
+        .scheme-toggle { border-color: rgba(255, 255, 255, .5); }
+        .topnav a:hover, .topnav a[aria-current] { border-bottom-color: #fff; }
+    }
+    .topbar.is-scrolled { background: var(--card-background); border-bottom-color: var(--card-separator-color); box-shadow: var(--shadow-l1); }
+    .home-hero { height: 100vh; height: 100svh; min-height: 420px; justify-content: center; }
+    .hero-photo { object-position: center; }
+    .hero-shade { background: rgba(0, 0, 0, .6); }
+    .hero-copy { text-align: center; padding: 90px 24px; text-shadow: 0 2px 8px rgba(0, 0, 0, .55); }
+    .hero-copy h1 { max-width: 100%; margin: 0 auto 16px; font-size: clamp(28px, 3.2vw, 44px); line-height: 1.5; }
+    .hero-copy > p:not(.hero-eyebrow) { max-width: 100%; margin: 0 auto; font-size: 20px; }
+    .hero-eyebrow { margin-bottom: 18px; }
+    .hero-scroll { position: absolute; bottom: unquote("max(18px, env(safe-area-inset-bottom))"); left: 50%; transform: translateX(-50%); display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; color: #fff; border-radius: 8px; }
+    .hero-scroll svg { width: 34px; height: 34px; transform: rotate(90deg); filter: drop-shadow(0 1px 3px rgba(0, 0, 0, .7)); }
+    .hero-scroll:hover { background: rgba(255, 255, 255, .15); }
+    .hero-scroll:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+    @media (max-width: 800px) {
+        .hero-copy h1 { max-width: 560px; font-size: 28px; }
+        .hero-copy > p:not(.hero-eyebrow) { font-size: 16px; }
+    }
+}

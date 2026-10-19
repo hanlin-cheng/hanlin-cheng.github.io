@@ -19,13 +19,15 @@
     </header>
     {{ if .IsHome }}
     <section class="home-hero" aria-labelledby="hero-title">
-        <img class="hero-photo" src="{{ `img/mountain-hero.webp` | relURL }}" alt="晨光中的层叠山峦" fetchpriority="high" width="1920" height="640">
+        {{/* User-selected background from the Butterfly demo; keep its source explicit. */}}
+        <img class="hero-photo" src="https://oss.012700.xyz/butterfly/2024/10/index.jpg" data-fallback="{{ `img/mountain-hero.webp` | relURL }}" alt="" fetchpriority="high" referrerpolicy="no-referrer">
         <div class="hero-shade"></div>
         <div class="hero-copy">
             <p class="hero-eyebrow">EXPLORE · BUILD · SHARE</p>
             <h1 id="hero-title">在探索中积累，在实践中成长。</h1>
             <p>保持好奇，持续前行</p>
         </div>
+        <a class="hero-scroll" href="#notes" aria-label="向下浏览笔记">{{ partial "helper/icon" "chevron-right" }}</a>
     </section>
     {{ end }}
     <div class="container main-container flex extended">

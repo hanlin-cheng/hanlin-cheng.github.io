@@ -131,7 +131,7 @@ Markdown 同步跳过 `.git`、`.obsidian`、`.agents`、`.codex` 目录。附�
 
 优先修改以下根目录文件，不直接改主题子模块：
 
-- [layouts/baseof.html](../layouts/baseof.html)：顶部导航、首页山景横幅和公共布局。
+- [layouts/baseof.html](../layouts/baseof.html)：顶部导航、首页整屏封面和公共布局。
 - [layouts/home.html](../layouts/home.html)：首页随机笔记列表、“换一批”按钮与全部笔记入口。
 - [layouts/_partials/helper/pages.html](../layouts/_partials/helper/pages.html)：页面集合与首页无脚本时的标题排序。
 - [layouts/_partials/helper/note-title.html](../layouts/_partials/helper/note-title.html)：展示标题清理；去除 Markdown 格式，超过 60 个字符时回退到文件名。
@@ -140,7 +140,7 @@ Markdown 同步跳过 `.git`、`.obsidian`、`.agents`、`.codex` 目录。附�
 - `layouts/_partials/article/components/`：文章头部、正文、元信息与图片预览。
 - [assets/scss/custom.scss](../assets/scss/custom.scss)：站点样式、响应式、深色模式和图片预览样式。
 - [assets/ts/custom.ts](../assets/ts/custom.ts)：首页随机换批、目录滚动时避让固定导航、图片放大交互。
-- `static/img/mountain-hero.webp`：首页横幅；`assets/img/avatar.JPG`：头像。
+- 首页当前按用户要求直接引用 Butterfly 示例站背景 `https://oss.012700.xyz/butterfly/2024/10/index.jpg`，未下载到仓库；`static/img/mountain-hero.webp` 保留为加载失败时的本地回退图，`assets/img/avatar.JPG` 为头像。封面图来源在首页页脚注明。
 - `i18n/zh-cn.toml`：当前语言代码对应的中文翻译补充。
 
 首页“探索笔记”从全部已发布笔记中等概率随机抽取 8 篇，每次进入首页、重新加载或从浏览器往返缓存恢复时重新抽取；点击“换一批”仅替换卡片，不重载页面。使用 Fisher–Yates 洗牌，同一批内无重复，不设置分类权重或固定置顶，不刻意排除上一批，因此两批间可以重复。
@@ -150,6 +150,8 @@ Markdown 同步跳过 `.git`、`.obsidian`、`.agents`、`.codex` 目录。附�
 首页不再显示分页；`layouts/_partials/helper/paginator.html` 跳过首页，避免主题标题模板隐式生成首页分页。全部笔记、分类等完整列表仍按现有规则分页，每页 8 篇。
 
 标题展示清理不回写源笔记或生成元数据，搜索和分享数据仍可能使用原始 `.Title`。
+
+首页采用与视口等高的整屏封面，文案居中，底部无文字箭头链接到 `#notes`，支持键盘和减少动态效果偏好。首页导航初始透明，封面底部滚过导航高度后切换为实色；其他页面仍使用原导航。背景图是外部资源，地址失效或加载失败时由 `assets/ts/custom.ts` 切换到本地回退图。
 
 已确认的界面约定：保留分类导航和详细分类列表；不要重新加入首页“算法与 SLAM / C++ / Linux”专题跳转块，也不要重新加入横幅中的“探索我的笔记”入口。
 
