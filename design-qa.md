@@ -172,3 +172,13 @@ final result: passed
 - 截图：既有预览目录 `32-translucent-85-applied.png`。Hugo 生产构建与 git diff --check 通过，沿用既有 libsass 弃用提示。
 - 分支 `lvcheng/improvement/translucent-card-previews`，未提交、推送或部署。
 - final result: passed
+
+## 本轮：简洁编辑器代码块
+
+- 用户选择方案 ①：圆角、细边框、语言工具栏和常显复制按钮；代码区实色，正文卡片透明度不变。字号 14px、行高 1.65，注释提亮；深浅色各自配色。
+- 根目录覆盖 Stack 的 code-copy 模块，不改主题子模块。浏览器示例页实测 4 个代码块对应 4 个工具栏、0 个旧复制按钮；包括未标注语言的原始 pre，语言显示“纯文本”。源笔记内容未改。
+- 浏览器点击复制后显示“已复制”，无障碍状态为“代码已复制”。浏览器连接器读取剪贴板返回空值，未据此宣称完成系统剪贴板内容比对；代码路径核对为 code.textContent，工具栏不参与复制。
+- 深色面板 rgb(25,28,35)，浅色 rgb(246,248,250)，浅色注释 rgb(94,109,128)。手机 390×844 下文档内容/滚动宽均 375px；长行的 pre 内 scrollWidth 大于 clientWidth，滚动区域 tabIndex=0，不撑宽页面。已恢复默认视口与深色。
+- Hugo 生产构建成功，git diff --check 通过；既有 libsass 弃用提示仍存在。截图为既有预览目录 `35-code-editor-applied.png`。
+- 分支 `lvcheng/improvement/code-block-previews`，未提交、推送或部署。
+- final result: passed
