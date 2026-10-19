@@ -163,3 +163,12 @@ final result: passed
 - 截图：既有预览目录 `28-meili-background.png`。Hugo 生产构建和 git diff --check 通过，沿用现有 libsass 弃用提示。
 - 分支 `lvcheng/improvement/meili-reading-background`，保留之前文字提亮改动，未提交、推送或部署。
 - final result: passed
+
+## 本轮：阅读卡片采用 85% 不透明度
+
+- 用户选定预览方案 ②：深色卡片为 rgba(18,18,18,.85)，浅色为 rgba(255,255,255,.85)，通过背景变量影响笔记、正文与侧栏。未使用容器 opacity，文字和图片自身亮度保持不变。
+- 导航使用独立实色变量，保持滚动后深色 #121212 / 浅色白色；首页封面上的透明导航行为不变。
+- 浏览器实测深色笔记/资料卡/文章正文背景 alpha=.85，摘要文字仍为白色 .9，卡片整体 opacity=1；浅色笔记/资料卡背景 alpha=.85。手机 390×844 下内容宽与滚动宽均 375px，无横向溢出，已恢复默认视口及深色模式。
+- 截图：既有预览目录 `32-translucent-85-applied.png`。Hugo 生产构建与 git diff --check 通过，沿用既有 libsass 弃用提示。
+- 分支 `lvcheng/improvement/translucent-card-previews`，未提交、推送或部署。
+- final result: passed

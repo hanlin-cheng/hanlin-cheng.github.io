@@ -1,6 +1,8 @@
 /* Butterfly-inspired presentation overrides; keep upstream Stack untouched. */
 :root {
     --body-background: #fff;
+    --card-background: rgba(255, 255, 255, .85);
+    --navigation-background: #fff;
     --accent-color: #267f94;
     --accent-color-darker: #1d6576;
     --body-text-color: #586577;
@@ -15,7 +17,8 @@
 }
 :root[data-scheme="dark"] {
     --body-background: #0d0d0d;
-    --card-background: #121212;
+    --card-background: rgba(18, 18, 18, .85);
+    --navigation-background: #121212;
     --card-background-selected: #1f1f1f;
     --card-text-color-main: #fff;
     --card-text-color-secondary: rgba(255, 255, 255, .9);
@@ -68,7 +71,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 92px; }
 .butterfly-preview {
     font-size: 15px;
     isolation: isolate;
-    .topbar { background: var(--card-background); border-bottom: 1px solid var(--card-separator-color); position: sticky; top: 0; z-index: 30; }
+    .topbar { background: var(--navigation-background); border-bottom: 1px solid var(--card-separator-color); position: sticky; top: 0; z-index: 30; }
     .topbar-inner { width: 100%; max-width: none; min-height: 60px; margin: 0; padding: 0 36px; display: flex; align-items: center; gap: 26px; }
     .wordmark { font-size: 22px; font-weight: 800; letter-spacing: -1px; color: var(--card-text-color-main); }
     .brand-dot { color: #2c8b9b; }
@@ -265,7 +268,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 92px; }
         .scheme-toggle { border-color: rgba(255, 255, 255, .5); }
         .topnav a:hover, .topnav a[aria-current] { border-bottom-color: #fff; }
     }
-    .topbar.is-scrolled { background: var(--card-background); border-bottom-color: var(--card-separator-color); box-shadow: var(--shadow-l1); }
+    .topbar.is-scrolled { background: var(--navigation-background); border-bottom-color: var(--card-separator-color); box-shadow: var(--shadow-l1); }
     .home-hero { height: 100vh; height: 100svh; min-height: 420px; justify-content: center; }
     .hero-photo { object-position: center; }
     .hero-shade { background: rgba(0, 0, 0, .6); }
