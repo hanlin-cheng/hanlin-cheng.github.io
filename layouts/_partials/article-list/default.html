@@ -1,0 +1,9 @@
+{{ $title := partial "helper/note-title.html" . }}
+<article class="note-card">
+    <div class="note-card-body">
+        <div class="note-category">{{ range .GetTerms "categories" }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}<span>技术笔记</span></div>
+        <h2><a href="{{ .RelPermalink }}">{{ $title }}</a></h2>
+        <p class="note-excerpt">{{ .Plain | htmlUnescape | strings.TrimPrefix $title | replaceRE `(?s)\s+` ` ` | truncate 110 }}</p>
+        <div class="note-card-footer"><span>{{ partial "helper/icon" "clock" }}约 {{ .ReadingTime }} 分钟阅读</span><a href="{{ .RelPermalink }}">阅读全文 {{ partial "helper/icon" "chevron-right" }}</a></div>
+    </div>
+</article>

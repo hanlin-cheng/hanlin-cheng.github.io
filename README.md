@@ -7,6 +7,12 @@
 3. 把笔记仓库作为子模块放到博客仓库的 `notes/` 目录。
 4. 构建前运行 `python3 scripts/sync_notes.py`，把子模块里的 Markdown 和附件同步到 Hugo 可发布目录。
 
+## Agent 维护入口
+
+新增笔记或修改生成机制前，请先阅读 [AGENTS.md](AGENTS.md) 和 [博客生成与笔记维护规则](docs/blog-generation.md)。后者说明内容源、生成目录、分类映射、图片放大、搜索索引、构建与部署流程。
+
+本文后续的 commit、push 示例供人工操作参考，agent 未经用户明确授权不得执行。
+
 ## 初始化博客仓库
 
 ```bash

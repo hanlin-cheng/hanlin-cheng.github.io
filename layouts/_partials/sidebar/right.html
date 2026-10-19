@@ -1,0 +1,17 @@
+{{ $context := .Context }}
+<aside class="sidebar right-sidebar sticky">
+    {{ if eq .Scope "homepage" }}
+    <section class="profile-card">
+        {{ $avatar := resources.Get "img/avatar.JPG" }}
+        <img class="profile-avatar" src="{{ $avatar.RelPermalink }}" alt="HanLin 的头像" width="84" height="84">
+        <h2>HanLin</h2><p class="profile-role">算法与软件 · 持续学习者</p><p class="profile-bio">生活不易，靓仔叹气。</p>
+        <div class="profile-stats"><a href="{{ with $context.Site.GetPage `/notes` }}{{ .RelPermalink }}{{ end }}"><strong>{{ len (where $context.Site.RegularPages "Section" "notes") }}</strong><span>篇笔记</span></a><a href="{{ with $context.Site.GetPage `/categories` }}{{ .RelPermalink }}{{ end }}"><strong>{{ len $context.Site.Taxonomies.categories }}</strong><span>个分类</span></a></div>
+        <a class="profile-github" href="{{ $context.Site.Params.githubRepo }}" target="_blank" rel="noopener">{{ partial "helper/icon" "brand-github" }} GitHub </a>
+    </section>
+    <section class="side-card"><h2>查找笔记</h2><form class="sidebar-search" action="{{ with $context.Site.GetPage `/search` }}{{ .RelPermalink }}{{ end }}"><label class="visually-hidden" for="sidebar-keyword">搜索关键词</label><input id="sidebar-keyword" name="keyword" placeholder="搜索文章、技术、工具…" required><button type="submit" aria-label="搜索笔记">{{ partial "helper/icon" "search" }}</button></form></section>
+    <section class="side-card"><h2>技术分类 <span>CATEGORIES</span></h2><div class="category-list">{{ range $context.Site.Taxonomies.categories.ByCount }}<a href="{{ .Page.RelPermalink }}"><span>{{ .Page.Title }}</span><span class="category-count">{{ .Count }}</span></a>{{ end }}</div></section>
+    <section class="side-card small-note"><p class="eyebrow">A LITTLE REMINDER</p><p>葡萄美酒夜光杯，欲饮琵琶马上催。<br>醉卧沙场君莫笑，古来征战几人回？</p></section>
+    {{ else }}
+        {{ range $widget := (index $context.Site.Params.widgets .Scope) }}{{ partial (printf "widget/%s" .type) (dict "Context" $context "Params" (default dict .params)) }}{{ end }}
+    {{ end }}
+</aside>

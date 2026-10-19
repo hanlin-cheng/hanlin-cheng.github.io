@@ -3,11 +3,14 @@ from __future__ import annotations
 
 import hashlib
 import json
+import posixpath
 import re
 import shutil
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import quote
+from urllib.parse import quote, unquote, urlsplit
+
+from note_links import link_targets, rewrite_links
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,14 +20,17 @@ STATIC_DIR = ROOT / "static" / "notes"
 STATIC_SEARCH_INDEX = ROOT / "static" / "search-index.json"
 
 SECTIONS = {
-    "Algorithm": "算法",
-    "C++": "C++",
-    "Linux": "Linux",
-    "QT": "Qt",
-    "command": "命令与工具",
-    "slam_config": "SLAM 配置",
-    "something_else": "其他",
+    "math": "数学基础",
+    "robotics": "SLAM 与机器人",
+    "ros": "ROS 与中间件",
+    "cpp": "C++ 开发",
+    "engineering": "开发工具与工程实践",
+    "linux": "Linux 与嵌入式",
+    "qt": "Qt 开发",
+    "misc": "应用与杂记",
 }
+MIGRATION_FILE = ROOT / "data" / "note-migration.json"
+
 
 SKIP_DIRS = {".git", ".obsidian", ".agents", ".codex"}
 SKIP_SUFFIXES = {".whl", ".pyc"}
@@ -52,16 +58,30 @@ def section_for(path: Path) -> tuple[str, str]:
     return section, SECTIONS.get(section, section)
 
 
-def normalize_markdown(text: str) -> str:
-    text = text.replace("](/./media/", "](media/")
-    text = text.replace("](./media/", "](media/")
-    text = text.replace('src="./media/', 'src="media/')
-    text = text.replace('src="/./media/', 'src="media/')
-    return text
+def normalize_markdown(text: str, source: str | None = None) -> str:
+    def rewrite(value: str, kind: str) -> str:
+        if value.startswith("/./media/"):
+            value = value[3:]
+        elif value.startswith("./media/"):
+            value = value[2:]
+        if not source or not kind.startswith("html"):
+            return value
+        url = urlsplit(value)
+        if url.scheme or url.netloc or value.startswith(("/", "#")):
+            return value
+        target = posixpath.normpath(posixpath.join(posixpath.dirname(source), unquote(url.path)))
+        if target.startswith("../"):
+            raise ValueError(f"HTML attachment escapes notes root: {source}: {value}")
+        result = "/notes/" + quote(target, safe="/%+._-()")
+        if url.query:
+            result += "?" + url.query
+        if url.fragment:
+            result += "#" + url.fragment
+        return result
+
+    return rewrite_links(text, rewrite)
 
 
-MARKDOWN_IMAGE_RE = re.compile(r"!\[[^\]]*\]\(([^)]+)\)")
-HTML_IMAGE_RE = re.compile(r"<img\b[^>]*\bsrc=[\"']([^\"']+)[\"']", re.IGNORECASE)
 IMAGE_SUFFIXES = {".apng", ".avif", ".gif", ".jpeg", ".jpg", ".png", ".svg", ".webp", ""}
 
 
@@ -80,15 +100,18 @@ def clean_image_src(src: str) -> str:
 
 def cover_url(section: str, src: str) -> str:
     src = quote(clean_image_src(src), safe="/%+._-()")
-    return f"/notes/{section}/{src}"
+    return "/notes/" + posixpath.normpath(f"{section}/{src}")
 
 
 def first_local_image(text: str, section: str) -> str | None:
-    for pattern in (MARKDOWN_IMAGE_RE, HTML_IMAGE_RE):
-        for match in pattern.finditer(text):
-            src = clean_image_src(match.group(1))
-            if is_local_image(src):
-                return cover_url(section, src)
+    for link in link_targets(text):
+        if link.kind not in {"image", "html-image"}:
+            continue
+        src = clean_image_src(link.value)
+        if link.kind == "html-image" and src.startswith("/notes/"):
+            return src
+        if is_local_image(src):
+            return cover_url(section, src)
     return None
 
 
@@ -105,7 +128,8 @@ def fallback_section_image(section: str) -> str | None:
 
 
 def front_matter(
-    title: str, category: str, source: str, weight: int, image: str | None = None
+    title: str, category: str, source: str, weight: int, image: str | None = None,
+    aliases: list[str] | None = None
 ) -> str:
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     lines = [
@@ -115,6 +139,9 @@ def front_matter(
         "draft: false",
         f"weight: {weight}",
     ]
+    if aliases:
+        lines.append("aliases:")
+        lines.extend(f"  - {quote_yaml(alias)}" for alias in aliases)
     if image:
         lines.append(f"image: {quote_yaml(image)}")
     lines.extend(
@@ -143,7 +170,7 @@ def clean_generated() -> None:
 
 def copy_assets() -> None:
     for item in NOTES_DIR.iterdir():
-        if item.name in SKIP_DIRS or item.name not in SECTIONS:
+        if item.name in SKIP_DIRS or item.name not in {*SECTIONS, "media"}:
             continue
         if not item.is_dir():
             continue
@@ -160,6 +187,8 @@ def copy_assets() -> None:
 
 def sync_markdown() -> list[dict[str, str]]:
     pages: list[dict[str, str]] = []
+    migration = json.loads(MIGRATION_FILE.read_text()) if MIGRATION_FILE.exists() else {}
+    legacy_urls = migration.get("legacy_urls", {})
     for src in sorted(NOTES_DIR.rglob("*.md")):
         rel = src.relative_to(NOTES_DIR)
         if any(part in SKIP_DIRS for part in rel.parts):
@@ -168,13 +197,13 @@ def sync_markdown() -> list[dict[str, str]]:
         if section not in SECTIONS:
             continue
 
-        body = normalize_markdown(src.read_text(encoding="utf-8", errors="ignore"))
+        body = normalize_markdown(src.read_text(encoding="utf-8", errors="ignore"), rel.as_posix())
         title = title_from_markdown(body, src.stem)
         image = first_local_image(body, section) or fallback_section_image(section)
         target = CONTENT_DIR / rel
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(
-            front_matter(title, category, str(rel), stable_weight(rel), image) + body,
+            front_matter(title, category, rel.as_posix(), stable_weight(rel), image, legacy_urls.get(rel.as_posix())) + body,
             encoding="utf-8",
         )
         pages.append(
@@ -204,6 +233,9 @@ def main() -> None:
         raise SystemExit(
             "notes/ submodule not found. Run: git submodule update --init --recursive"
         )
+    if not any(path.is_file() and path.suffix.lower() == ".md"
+               for section in SECTIONS for path in (NOTES_DIR / section).glob("**/*")):
+        raise SystemExit("No publishable notes found; refusing to clear generated files.")
     clean_generated()
     copy_assets()
     pages = sync_markdown()

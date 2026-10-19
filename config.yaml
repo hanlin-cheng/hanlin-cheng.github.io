@@ -9,7 +9,7 @@ summaryLength: 120
 uglyURLs: true
 
 pagination:
-  pagerSize: 12
+  pagerSize: 8
 
 markup:
   goldmark:
@@ -64,7 +64,7 @@ params:
       card: "summary_large_image"
   colorScheme:
     toggle: true
-    default: "auto"
+    default: "light"
   imageProcessing:
     content:
       enabled: false

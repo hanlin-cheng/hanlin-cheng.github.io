@@ -5,3 +5,7 @@
 /static/search-index.json
 /assets/jsconfig.json
 /.hugo_build.lock
+
+# Python tooling
+__pycache__/
+*.py[cod]

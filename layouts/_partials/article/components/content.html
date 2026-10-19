@@ -1,0 +1,14 @@
+<section class="article-content">
+    {{ $content := .Content }}
+    {{ $heading := findRE `(?s)^<h1\b[^>]*>.*?</h1>` $content 1 }}
+    {{ with $heading }}
+        {{ $first := index . 0 }}
+        {{ if eq ($first | plainify | htmlUnescape | strings.TrimSpace) (partial "helper/note-title.html" $) }}
+            {{/* Preserve existing heading deep links without repeating the title. */}}
+            {{ $anchor := $first | replaceRE `(?s)^<h1\b([^>]*)>.*?</h1>` `<span${1}></span>` }}
+            {{ $content = replace $content $first $anchor 1 }}
+        {{ end }}
+    {{ end }}
+    {{ $wrappedTable := printf "<div class=\"table-wrapper\">${1}</div>" }}
+    {{ $content | replaceRE "(<table>(?:.|\n)+?</table>)" $wrappedTable | safeHTML }}
+</section>

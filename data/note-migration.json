@@ -1,0 +1,847 @@
+{
+  "source_commit": "7b7ddec116b7900b8e45a6c052f3d6130a58e402",
+  "categories": {
+    "math": "数学基础",
+    "robotics": "SLAM 与机器人",
+    "ros": "ROS 与中间件",
+    "cpp": "C++ 开发",
+    "engineering": "开发工具与工程实践",
+    "linux": "Linux 与嵌入式",
+    "qt": "Qt 开发",
+    "misc": "应用与杂记"
+  },
+  "pages": {
+    "Algorithm/2d激光雷达运动补偿方法(去畸变).md": "robotics/2d激光雷达运动补偿方法(去畸变).md",
+    "Algorithm/IMU预积分.md": "robotics/IMU预积分.md",
+    "Algorithm/ORBSLAM3学习.md": "robotics/ORBSLAM3学习.md",
+    "Algorithm/ROS2_command.md": "ros/ROS2_command.md",
+    "Algorithm/ROS2的Launch文件简介.md": "ros/ROS2的Launch文件简介.md",
+    "Algorithm/ROSNodehandle句柄的理解.md": "ros/ROSNodehandle句柄的理解.md",
+    "Algorithm/ROSparam的使用.md": "ros/ROSparam的使用.md",
+    "Algorithm/ROS激光雷达信息、点云信息和PCL信息之间的转换.md": "ros/ROS激光雷达信息、点云信息和PCL信息之间的转换.md",
+    "Algorithm/Ros中Remap(话题重映射)的两种使用方法.md": "ros/Ros中Remap(话题重映射)的两种使用方法.md",
+    "Algorithm/SLAM中的位姿变换与轨迹评价指标.md": "robotics/SLAM中的位姿变换与轨迹评价指标.md",
+    "Algorithm/SVD与非线性优化在最小二乘问题中的区别.md": "math/SVD与非线性优化在最小二乘问题中的区别.md",
+    "Algorithm/Theta_star-Any-Angle-Path-Planning-on-Grids.md": "robotics/Theta_star-Any-Angle-Path-Planning-on-Grids.md",
+    "Algorithm/Voronoi Graph.md": "robotics/Voronoi Graph.md",
+    "Algorithm/cartographer相关参数解析.md": "robotics/cartographer相关参数解析.md",
+    "Algorithm/cuVSLAM.md": "robotics/cuVSLAM.md",
+    "Algorithm/lightning-lm.md": "robotics/lightning-lm.md",
+    "Algorithm/ros2_cost_function.md": "robotics/ros2_cost_function.md",
+    "Algorithm/为什么使用齐次坐标.md": "math/为什么使用齐次坐标.md",
+    "Algorithm/二维空间中的点坐标旋转关系.md": "math/二维空间中的点坐标旋转关系.md",
+    "Algorithm/匈牙利算法.md": "math/匈牙利算法.md",
+    "Algorithm/协方差矩阵.md": "math/协方差矩阵.md",
+    "Algorithm/单目视觉的尺度等价性.md": "robotics/单目视觉的尺度等价性.md",
+    "Algorithm/占据栅格地图构建.md": "robotics/占据栅格地图构建.md",
+    "Algorithm/双目立体视觉SAD匹配算法.md": "robotics/双目立体视觉SAD匹配算法.md",
+    "Algorithm/向量积(矢积)与数量积(标积)的区别.md": "math/向量积(矢积)与数量积(标积)的区别.md",
+    "Algorithm/多元函数的泰勒展开式.md": "math/多元函数的泰勒展开式.md",
+    "Algorithm/多维高斯分布.md": "math/多维高斯分布.md",
+    "Algorithm/局部规划算法DWA.md": "robotics/局部规划算法DWA.md",
+    "Algorithm/归一化与标准化.md": "math/归一化与标准化.md",
+    "Algorithm/旋转下激光雷达数据与地图产生错位的问题.md": "robotics/旋转下激光雷达数据与地图产生错位的问题.md",
+    "Algorithm/本质矩阵基础矩阵的自由度及其解法.md": "robotics/本质矩阵基础矩阵的自由度及其解法.md",
+    "Algorithm/欧拉角与坐标系旋转变换.md": "math/欧拉角与坐标系旋转变换.md",
+    "Algorithm/正态分布.md": "math/正态分布.md",
+    "Algorithm/激光雷达与相机外参联合标定调研.md": "robotics/激光雷达与相机外参联合标定调研.md",
+    "Algorithm/激光雷达性能指标.md": "robotics/激光雷达性能指标.md",
+    "Algorithm/灰度质心法.md": "robotics/灰度质心法.md",
+    "Algorithm/相机参数DKPR的解释.md": "robotics/相机参数DKPR的解释.md",
+    "Algorithm/矩阵的奇异值分解.md": "math/矩阵的奇异值分解.md",
+    "Algorithm/超定方程组的最小二乘解.md": "math/超定方程组的最小二乘解.md",
+    "Algorithm/路径规划之A-star算法.md": "robotics/路径规划之A-star算法.md",
+    "Algorithm/重投影误差.md": "robotics/重投影误差.md",
+    "Algorithm/雅克比矩阵和海塞矩阵.md": "math/雅克比矩阵和海塞矩阵.md",
+    "Algorithm/高斯牛顿法.md": "math/高斯牛顿法.md",
+    "C++/C++11chrono库.md": "cpp/C++11chrono库.md",
+    "C++/C++下const增强.md": "cpp/C++下const增强.md",
+    "C++/CMakeLists简易模板.md": "engineering/CMakeLists简易模板.md",
+    "C++/CMakelists基础指令.md": "engineering/CMakelists基础指令.md",
+    "C++/EigenGeometry.md": "cpp/EigenGeometry.md",
+    "C++/Eigen几何模块的引入.md": "cpp/Eigen几何模块的引入.md",
+    "C++/Find_package.md": "engineering/Find_package.md",
+    "C++/GoogleTest.md": "engineering/GoogleTest.md",
+    "C++/Opencv_Mat.md": "cpp/Opencv_Mat.md",
+    "C++/Protocol_Buffers基本使用.md": "cpp/Protocol_Buffers基本使用.md",
+    "C++/ROS指令.md": "ros/ROS指令.md",
+    "C++/STL容器使用时机.md": "cpp/STL容器使用时机.md",
+    "C++/boostcondition_variable.md": "cpp/boostcondition_variable.md",
+    "C++/c++_boost_circular_buffer.md": "cpp/c++_boost_circular_buffer.md",
+    "C++/c++并发与多线程.md": "cpp/c++并发与多线程.md",
+    "C++/cin与get()getline()输入问题.md": "cpp/cin与get()getline()输入问题.md",
+    "C++/const成员函数.md": "cpp/const成员函数.md",
+    "C++/gflags使用.md": "engineering/gflags使用.md",
+    "C++/string和cstring头文件的区别.md": "cpp/string和cstring头文件的区别.md",
+    "C++/二叉树遍历.md": "cpp/二叉树遍历.md",
+    "C++/内联函数.md": "cpp/内联函数.md",
+    "C++/函数指针的定义方式.md": "cpp/函数指针的定义方式.md",
+    "C++/单例模式.md": "cpp/单例模式.md",
+    "C++/如何正确使用resize和reserve.md": "cpp/如何正确使用resize和reserve.md",
+    "C++/左值与右值.md": "cpp/左值与右值.md",
+    "C++/常用函数.md": "cpp/常用函数.md",
+    "C++/常规函数与内联函数.md": "cpp/常规函数与内联函数.md",
+    "C++/数据类型字节数.md": "cpp/数据类型字节数.md",
+    "C++/构造函数的调用时机.md": "cpp/构造函数的调用时机.md",
+    "C++/类知识点.md": "cpp/类知识点.md",
+    "C++/计算时间.md": "cpp/计算时间.md",
+    "C++/设计模式之生产者-消费者模型.md": "cpp/设计模式之生产者-消费者模型.md",
+    "C++/转换.md": "cpp/转换.md",
+    "Linux/Shell的变量功能.md": "linux/Shell的变量功能.md",
+    "Linux/认识BASH这个Shell.md": "linux/认识BASH这个Shell.md",
+    "QT/QT迁移项目后显示修改时间大于当前时间.md": "qt/QT迁移项目后显示修改时间大于当前时间.md",
+    "QT/Qt点击按钮进行页面的切换.md": "qt/Qt点击按钮进行页面的切换.md",
+    "QT/基于arm架构的NVIDIA_Xavier安装Qt.md": "qt/基于arm架构的NVIDIA_Xavier安装Qt.md",
+    "QT/项目默认文件介绍.md": "qt/项目默认文件介绍.md",
+    "command/Docker简要教程.md": "engineering/Docker简要教程.md",
+    "command/Git_Command.md": "engineering/Git_Command.md",
+    "command/Git中submodule的使用.md": "engineering/Git中submodule的使用.md",
+    "command/ROS查看ZED节点效果.md": "ros/ROS查看ZED节点效果.md",
+    "command/Ubuntu-xavier.md": "linux/Jetson常用命令.md",
+    "command/Xsens传感器调用.md": "linux/Xsens传感器调用.md",
+    "command/conda_常用命令速查表.md": "engineering/conda_常用命令速查表.md",
+    "command/git_cherry-pick.md": "engineering/git_cherry-pick.md",
+    "command/git_rebase的两种用法.md": "engineering/git_rebase的两种用法.md",
+    "slam_config/Matlab标定单目相机内参.md": "robotics/Matlab标定单目相机内参.md",
+    "slam_config/Rosdep_update_failed.md": "ros/Rosdep_update_failed.md",
+    "slam_config/Ubuntu-xavier.md": "linux/Ubuntu-xavier.md",
+    "slam_config/Ubuntu18.04环境配置.md": "linux/Ubuntu18.04环境配置.md",
+    "slam_config/VSCode使用Clangd.md": "engineering/VSCode使用Clangd.md",
+    "slam_config/ros2_cicd_gitlab.md": "engineering/ros2_cicd_gitlab.md",
+    "slam_config/turbot建图导航算法汇总.md": "robotics/turbot建图导航算法汇总.md",
+    "slam_config/ubuntu18.04系统下安装turtlebot2.md": "robotics/ubuntu18.04系统下安装turtlebot2.md",
+    "slam_config/windows下orb和hfnet安装.md": "robotics/windows下orb和hfnet安装.md",
+    "slam_config/基于ROS的opencv安装与卸载.md": "linux/基于ROS的opencv安装与卸载.md",
+    "slam_config/激光雷达与IMU联合标定(lidar_IMU_calib).md": "robotics/激光雷达与IMU联合标定(lidar_IMU_calib).md",
+    "slam_config/轨迹评估介绍与evo工具使用.md": "robotics/轨迹评估介绍与evo工具使用.md",
+    "something_else/stable-diffusion-webui手动安装详细步骤.md": "misc/stable-diffusion-webui手动安装详细步骤.md",
+    "something_else/如何在Linux中使用Clash.md": "linux/如何在Linux中使用Clash.md",
+    "something_else/获取Office2021安装包及相关激活工具.md": "misc/获取Office2021安装包及相关激活工具.md"
+  },
+  "assets": {
+    "Algorithm/lidar_calibration_cn.pdf": "robotics/lidar_calibration_cn.pdf",
+    "Algorithm/media/0582f69b0e918882aa14f62fc8468a79.png": "media/Algorithm/0582f69b0e918882aa14f62fc8468a79.png",
+    "Algorithm/media/1.png": "media/Algorithm/1.png",
+    "Algorithm/media/10.png": "media/Algorithm/10.png",
+    "Algorithm/media/11.png": "media/Algorithm/11.png",
+    "Algorithm/media/12.png": "media/Algorithm/12.png",
+    "Algorithm/media/13.png": "media/Algorithm/13.png",
+    "Algorithm/media/13f1962dfff89bcc41cbd1520d6db7e1.png": "media/Algorithm/13f1962dfff89bcc41cbd1520d6db7e1.png",
+    "Algorithm/media/14.png": "media/Algorithm/14.png",
+    "Algorithm/media/15.png": "media/Algorithm/15.png",
+    "Algorithm/media/2.png": "media/Algorithm/2.png",
+    "Algorithm/media/20150410185658311": "media/Algorithm/20150410185658311",
+    "Algorithm/media/20150410190429698": "media/Algorithm/20150410190429698",
+    "Algorithm/media/20150410190447182": "media/Algorithm/20150410190447182",
+    "Algorithm/media/20150410190527758": "media/Algorithm/20150410190527758",
+    "Algorithm/media/20150410190553592": "media/Algorithm/20150410190553592",
+    "Algorithm/media/20150410190721891": "media/Algorithm/20150410190721891",
+    "Algorithm/media/20150410190821152": "media/Algorithm/20150410190821152",
+    "Algorithm/media/20150410190936610": "media/Algorithm/20150410190936610",
+    "Algorithm/media/20150410191017918": "media/Algorithm/20150410191017918",
+    "Algorithm/media/20150410191146168": "media/Algorithm/20150410191146168",
+    "Algorithm/media/20150410192038912": "media/Algorithm/20150410192038912",
+    "Algorithm/media/20150410192044388": "media/Algorithm/20150410192044388",
+    "Algorithm/media/20160519202841069": "media/Algorithm/20160519202841069",
+    "Algorithm/media/20180524193644787": "media/Algorithm/20180524193644787",
+    "Algorithm/media/20180524193731616": "media/Algorithm/20180524193731616",
+    "Algorithm/media/20180524193743628": "media/Algorithm/20180524193743628",
+    "Algorithm/media/20190927174150276.png": "media/Algorithm/20190927174150276.png",
+    "Algorithm/media/2021-05-14-01.png": "media/Algorithm/2021-05-14-01.png",
+    "Algorithm/media/2021-05-14-02.png": "media/Algorithm/2021-05-14-02.png",
+    "Algorithm/media/2021-05-14-03.png": "media/Algorithm/2021-05-14-03.png",
+    "Algorithm/media/2021-05-14-04.png": "media/Algorithm/2021-05-14-04.png",
+    "Algorithm/media/2021-05-14-05.png": "media/Algorithm/2021-05-14-05.png",
+    "Algorithm/media/2021-05-14-06.png": "media/Algorithm/2021-05-14-06.png",
+    "Algorithm/media/2021-05-14-07.png": "media/Algorithm/2021-05-14-07.png",
+    "Algorithm/media/2021-05-14-08.png": "media/Algorithm/2021-05-14-08.png",
+    "Algorithm/media/2021-05-14-09.png": "media/Algorithm/2021-05-14-09.png",
+    "Algorithm/media/2021-05-14-10.png": "media/Algorithm/2021-05-14-10.png",
+    "Algorithm/media/2022-10-1817-18-03屏幕截图.png": "media/Algorithm/2022-10-1817-18-03屏幕截图.png",
+    "Algorithm/media/2f63b02ceb943ad47650de6c01427d52.png": "media/Algorithm/2f63b02ceb943ad47650de6c01427d52.png",
+    "Algorithm/media/3.png": "media/Algorithm/3.png",
+    "Algorithm/media/377b47dd5440c5ec565e0fba35703b90.png": "media/Algorithm/377b47dd5440c5ec565e0fba35703b90.png",
+    "Algorithm/media/4.png": "media/Algorithm/4.png",
+    "Algorithm/media/429.jpg": "media/Algorithm/429.jpg",
+    "Algorithm/media/47448-20171205160012238-457627183.png": "media/Algorithm/47448-20171205160012238-457627183.png",
+    "Algorithm/media/488.jpg": "media/Algorithm/488.jpg",
+    "Algorithm/media/493.jpg": "media/Algorithm/493.jpg",
+    "Algorithm/media/494.jpg": "media/Algorithm/494.jpg",
+    "Algorithm/media/4d588f81052b1f7a7fd6c84afdb8cac5.png": "media/Algorithm/4d588f81052b1f7a7fd6c84afdb8cac5.png",
+    "Algorithm/media/5.png": "media/Algorithm/5.png",
+    "Algorithm/media/6.png": "media/Algorithm/6.png",
+    "Algorithm/media/7.png": "media/Algorithm/7.png",
+    "Algorithm/media/8.png": "media/Algorithm/8.png",
+    "Algorithm/media/8576381-02135acffd23603b.png": "media/Algorithm/8576381-02135acffd23603b.png",
+    "Algorithm/media/8576381-8cb69c7d91f1a481.png": "media/Algorithm/8576381-8cb69c7d91f1a481.png",
+    "Algorithm/media/8576381-b89d5e7ae7f1aaa9.png": "media/Algorithm/8576381-b89d5e7ae7f1aaa9.png",
+    "Algorithm/media/8576381-e21b08ec5255fed0.png": "media/Algorithm/8576381-e21b08ec5255fed0.png",
+    "Algorithm/media/8576381-fd941393e7e1b37a.png": "media/Algorithm/8576381-fd941393e7e1b37a.png",
+    "Algorithm/media/88910f7fd458ce76bb4d94eb7e8e23dc.png": "media/Algorithm/88910f7fd458ce76bb4d94eb7e8e23dc.png",
+    "Algorithm/media/9.png": "media/Algorithm/9.png",
+    "Algorithm/media/90ff3180e53ed06f2cbe20c19399f484.png": "media/Algorithm/90ff3180e53ed06f2cbe20c19399f484.png",
+    "Algorithm/media/Get1.png": "media/Algorithm/Get1.png",
+    "Algorithm/media/GetImage (1).png": "media/Algorithm/GetImage (1).png",
+    "Algorithm/media/GetImage 44.png": "media/Algorithm/GetImage 44.png",
+    "Algorithm/media/GetImage(1).png": "media/Algorithm/GetImage(1).png",
+    "Algorithm/media/GetImage(11).png": "media/Algorithm/GetImage(11).png",
+    "Algorithm/media/GetImage.png": "media/Algorithm/GetImage.png",
+    "Algorithm/media/GetImage10.png": "media/Algorithm/GetImage10.png",
+    "Algorithm/media/GetImage11.png": "media/Algorithm/GetImage11.png",
+    "Algorithm/media/GetImage111.jpeg": "media/Algorithm/GetImage111.jpeg",
+    "Algorithm/media/GetImage12.png": "media/Algorithm/GetImage12.png",
+    "Algorithm/media/GetImage13.png": "media/Algorithm/GetImage13.png",
+    "Algorithm/media/GetImage14.png": "media/Algorithm/GetImage14.png",
+    "Algorithm/media/GetImage15.png": "media/Algorithm/GetImage15.png",
+    "Algorithm/media/GetImage16.png": "media/Algorithm/GetImage16.png",
+    "Algorithm/media/GetImage17.png": "media/Algorithm/GetImage17.png",
+    "Algorithm/media/GetImage18.png": "media/Algorithm/GetImage18.png",
+    "Algorithm/media/GetImage19.png": "media/Algorithm/GetImage19.png",
+    "Algorithm/media/GetImage2.png": "media/Algorithm/GetImage2.png",
+    "Algorithm/media/GetImage20.png": "media/Algorithm/GetImage20.png",
+    "Algorithm/media/GetImage21.png": "media/Algorithm/GetImage21.png",
+    "Algorithm/media/GetImage22.png": "media/Algorithm/GetImage22.png",
+    "Algorithm/media/GetImage23.png": "media/Algorithm/GetImage23.png",
+    "Algorithm/media/GetImage24.png": "media/Algorithm/GetImage24.png",
+    "Algorithm/media/GetImage25.png": "media/Algorithm/GetImage25.png",
+    "Algorithm/media/GetImage26.png": "media/Algorithm/GetImage26.png",
+    "Algorithm/media/GetImage27.png": "media/Algorithm/GetImage27.png",
+    "Algorithm/media/GetImage28.jpeg": "media/Algorithm/GetImage28.jpeg",
+    "Algorithm/media/GetImage29.jpeg": "media/Algorithm/GetImage29.jpeg",
+    "Algorithm/media/GetImage3.png": "media/Algorithm/GetImage3.png",
+    "Algorithm/media/GetImage30.jpeg": "media/Algorithm/GetImage30.jpeg",
+    "Algorithm/media/GetImage31.png": "media/Algorithm/GetImage31.png",
+    "Algorithm/media/GetImage32.png": "media/Algorithm/GetImage32.png",
+    "Algorithm/media/GetImage33.png": "media/Algorithm/GetImage33.png",
+    "Algorithm/media/GetImage34.png": "media/Algorithm/GetImage34.png",
+    "Algorithm/media/GetImage35.jpeg": "media/Algorithm/GetImage35.jpeg",
+    "Algorithm/media/GetImage36.png": "media/Algorithm/GetImage36.png",
+    "Algorithm/media/GetImage37.png": "media/Algorithm/GetImage37.png",
+    "Algorithm/media/GetImage38.png": "media/Algorithm/GetImage38.png",
+    "Algorithm/media/GetImage39.png": "media/Algorithm/GetImage39.png",
+    "Algorithm/media/GetImage4.png": "media/Algorithm/GetImage4.png",
+    "Algorithm/media/GetImage40.png": "media/Algorithm/GetImage40.png",
+    "Algorithm/media/GetImage41.jpeg": "media/Algorithm/GetImage41.jpeg",
+    "Algorithm/media/GetImage42.jpeg": "media/Algorithm/GetImage42.jpeg",
+    "Algorithm/media/GetImage43.jpeg": "media/Algorithm/GetImage43.jpeg",
+    "Algorithm/media/GetImage45.png": "media/Algorithm/GetImage45.png",
+    "Algorithm/media/GetImage46.jpeg": "media/Algorithm/GetImage46.jpeg",
+    "Algorithm/media/GetImage47.png": "media/Algorithm/GetImage47.png",
+    "Algorithm/media/GetImage48.png": "media/Algorithm/GetImage48.png",
+    "Algorithm/media/GetImage49.png": "media/Algorithm/GetImage49.png",
+    "Algorithm/media/GetImage5.png": "media/Algorithm/GetImage5.png",
+    "Algorithm/media/GetImage50.png": "media/Algorithm/GetImage50.png",
+    "Algorithm/media/GetImage51.jpeg": "media/Algorithm/GetImage51.jpeg",
+    "Algorithm/media/GetImage51.png": "media/Algorithm/GetImage51.png",
+    "Algorithm/media/GetImage52.png": "media/Algorithm/GetImage52.png",
+    "Algorithm/media/GetImage53.png": "media/Algorithm/GetImage53.png",
+    "Algorithm/media/GetImage54.png": "media/Algorithm/GetImage54.png",
+    "Algorithm/media/GetImage55.png": "media/Algorithm/GetImage55.png",
+    "Algorithm/media/GetImage56.jpeg": "media/Algorithm/GetImage56.jpeg",
+    "Algorithm/media/GetImage57.jpeg": "media/Algorithm/GetImage57.jpeg",
+    "Algorithm/media/GetImage58.jpeg": "media/Algorithm/GetImage58.jpeg",
+    "Algorithm/media/GetImage59.jpeg": "media/Algorithm/GetImage59.jpeg",
+    "Algorithm/media/GetImage6.png": "media/Algorithm/GetImage6.png",
+    "Algorithm/media/GetImage60.jpeg": "media/Algorithm/GetImage60.jpeg",
+    "Algorithm/media/GetImage61.jpeg": "media/Algorithm/GetImage61.jpeg",
+    "Algorithm/media/GetImage62.jpeg": "media/Algorithm/GetImage62.jpeg",
+    "Algorithm/media/GetImage63.jpeg": "media/Algorithm/GetImage63.jpeg",
+    "Algorithm/media/GetImage64.jpeg": "media/Algorithm/GetImage64.jpeg",
+    "Algorithm/media/GetImage65.jpeg": "media/Algorithm/GetImage65.jpeg",
+    "Algorithm/media/GetImage66.jpeg": "media/Algorithm/GetImage66.jpeg",
+    "Algorithm/media/GetImage67.jpeg": "media/Algorithm/GetImage67.jpeg",
+    "Algorithm/media/GetImage68.jpeg": "media/Algorithm/GetImage68.jpeg",
+    "Algorithm/media/GetImage69.jpeg": "media/Algorithm/GetImage69.jpeg",
+    "Algorithm/media/GetImage7.png": "media/Algorithm/GetImage7.png",
+    "Algorithm/media/GetImage8.png": "media/Algorithm/GetImage8.png",
+    "Algorithm/media/GetImage9.png": "media/Algorithm/GetImage9.png",
+    "Algorithm/media/Snipaste_2024-08-25_20-17-16.png": "media/Algorithm/Snipaste_2024-08-25_20-17-16.png",
+    "Algorithm/media/asdg.png": "media/Algorithm/asdg.png",
+    "Algorithm/media/asdg1.png": "media/Algorithm/asdg1.png",
+    "Algorithm/media/bc9ad891445f758279dc9967f00984ed.png": "media/Algorithm/bc9ad891445f758279dc9967f00984ed.png",
+    "Algorithm/media/c75c10385343fbf2601562e25509718764388fb2.jpeg@f_auto": "media/Algorithm/c75c10385343fbf2601562e25509718764388fb2.jpeg@f_auto",
+    "Algorithm/media/cf8412d2b39c68250f41379fe7cca2d7.png": "media/Algorithm/cf8412d2b39c68250f41379fe7cca2d7.png",
+    "Algorithm/media/e65b31e0353f44528cde953e1cc27787.png": "media/Algorithm/e65b31e0353f44528cde953e1cc27787.png",
+    "Algorithm/media/e9a301c65ff1edb7d6fe58e6049113e7.png": "media/Algorithm/e9a301c65ff1edb7d6fe58e6049113e7.png",
+    "Algorithm/media/f89b2b5aaaf84e2b8a2ee78ef7ab76bb.png": "media/Algorithm/f89b2b5aaaf84e2b8a2ee78ef7ab76bb.png",
+    "Algorithm/media/ff5f9c4e6759d4ba1d90e71f937ff8cb.png": "media/Algorithm/ff5f9c4e6759d4ba1d90e71f937ff8cb.png",
+    "Algorithm/media/file-20250325134659505.png": "media/Algorithm/file-20250325134659505.png",
+    "Algorithm/media/file-20250804114842372.png": "media/Algorithm/file-20250804114842372.png",
+    "Algorithm/media/image-20220828213045659.png": "media/Algorithm/image-20220828213045659.png",
+    "Algorithm/media/image-20220828213306107.png": "media/Algorithm/image-20220828213306107.png",
+    "Algorithm/media/image-20220828213322558.png": "media/Algorithm/image-20220828213322558.png",
+    "Algorithm/media/image-20220828213342198.png": "media/Algorithm/image-20220828213342198.png",
+    "Algorithm/media/image-20220828213355588.png": "media/Algorithm/image-20220828213355588.png",
+    "Algorithm/media/image-20220828213408371.png": "media/Algorithm/image-20220828213408371.png",
+    "Algorithm/media/image-20220828213418367.png": "media/Algorithm/image-20220828213418367.png",
+    "Algorithm/media/image-20220828213602415.png": "media/Algorithm/image-20220828213602415.png",
+    "Algorithm/media/image-20220828214605614.png": "media/Algorithm/image-20220828214605614.png",
+    "Algorithm/media/image-20220828214613714.png": "media/Algorithm/image-20220828214613714.png",
+    "Algorithm/media/image-20220828214620137.png": "media/Algorithm/image-20220828214620137.png",
+    "Algorithm/media/image-20220828214625367.png": "media/Algorithm/image-20220828214625367.png",
+    "Algorithm/media/image-20220828214630394.png": "media/Algorithm/image-20220828214630394.png",
+    "Algorithm/media/image-20220828214636940.png": "media/Algorithm/image-20220828214636940.png",
+    "Algorithm/media/image-20220828214653288.png": "media/Algorithm/image-20220828214653288.png",
+    "Algorithm/media/image-20220828214659888.png": "media/Algorithm/image-20220828214659888.png",
+    "Algorithm/media/image-20220828214705339.png": "media/Algorithm/image-20220828214705339.png",
+    "Algorithm/media/image-20220828214710593.png": "media/Algorithm/image-20220828214710593.png",
+    "Algorithm/media/image-20220828214715343.png": "media/Algorithm/image-20220828214715343.png",
+    "Algorithm/media/image-20220828214720521.png": "media/Algorithm/image-20220828214720521.png",
+    "Algorithm/media/image-20220828214725448.png": "media/Algorithm/image-20220828214725448.png",
+    "Algorithm/media/image-20220828214730397.png": "media/Algorithm/image-20220828214730397.png",
+    "Algorithm/media/image-20230105182232760.png": "media/Algorithm/image-20230105182232760.png",
+    "Algorithm/media/image-20230105200334537.png": "media/Algorithm/image-20230105200334537.png",
+    "Algorithm/media/image-20230105200349426.png": "media/Algorithm/image-20230105200349426.png",
+    "Algorithm/media/image-20230105201756001.png": "media/Algorithm/image-20230105201756001.png",
+    "Algorithm/media/image-20230105202240108.png": "media/Algorithm/image-20230105202240108.png",
+    "Algorithm/media/image-20230105202445560.png": "media/Algorithm/image-20230105202445560.png",
+    "Algorithm/media/image-20230105203131811.png": "media/Algorithm/image-20230105203131811.png",
+    "Algorithm/media/image-20230105203432503.png": "media/Algorithm/image-20230105203432503.png",
+    "Algorithm/media/image-20230106100016396.png": "media/Algorithm/image-20230106100016396.png",
+    "Algorithm/media/image-20230106100432305.png": "media/Algorithm/image-20230106100432305.png",
+    "Algorithm/media/image-20230106100650449.png": "media/Algorithm/image-20230106100650449.png",
+    "Algorithm/media/image-20230106101238741.png": "media/Algorithm/image-20230106101238741.png",
+    "Algorithm/media/image-20230106104130416.png": "media/Algorithm/image-20230106104130416.png",
+    "Algorithm/media/image-20230106104536141.png": "media/Algorithm/image-20230106104536141.png",
+    "Algorithm/media/image-20230106112403692.png": "media/Algorithm/image-20230106112403692.png",
+    "Algorithm/media/image-20230106112544371.png": "media/Algorithm/image-20230106112544371.png",
+    "Algorithm/media/image-20230106112817002.png": "media/Algorithm/image-20230106112817002.png",
+    "Algorithm/media/image-20230106121259887.png": "media/Algorithm/image-20230106121259887.png",
+    "Algorithm/media/image-20230106122014894.png": "media/Algorithm/image-20230106122014894.png",
+    "Algorithm/media/image-20230106122027361.png": "media/Algorithm/image-20230106122027361.png",
+    "Algorithm/media/image-20230106122042849.png": "media/Algorithm/image-20230106122042849.png",
+    "Algorithm/media/image-20230106122055594.png": "media/Algorithm/image-20230106122055594.png",
+    "Algorithm/media/image-20230106122147272.png": "media/Algorithm/image-20230106122147272.png",
+    "Algorithm/media/image-20230106130636020.png": "media/Algorithm/image-20230106130636020.png",
+    "Algorithm/media/image-20230106174717136.png": "media/Algorithm/image-20230106174717136.png",
+    "Algorithm/media/image-20230106180705236.png": "media/Algorithm/image-20230106180705236.png",
+    "Algorithm/media/image-20230106183533341.png": "media/Algorithm/image-20230106183533341.png",
+    "Algorithm/media/image-20230106190344944.png": "media/Algorithm/image-20230106190344944.png",
+    "Algorithm/media/image-20230106190548471.png": "media/Algorithm/image-20230106190548471.png",
+    "Algorithm/media/image-20230106192358694.png": "media/Algorithm/image-20230106192358694.png",
+    "Algorithm/media/image-20230106192928942.png": "media/Algorithm/image-20230106192928942.png",
+    "Algorithm/media/image-20230106193924373.png": "media/Algorithm/image-20230106193924373.png",
+    "Algorithm/media/image-20230106195109898.png": "media/Algorithm/image-20230106195109898.png",
+    "Algorithm/media/image-20240622141952419.png": "media/Algorithm/image-20240622141952419.png",
+    "Algorithm/media/image-20240701183630892.png": "media/Algorithm/image-20240701183630892.png",
+    "Algorithm/media/image-20240701183652679.png": "media/Algorithm/image-20240701183652679.png",
+    "Algorithm/media/image-20240701183715915.png": "media/Algorithm/image-20240701183715915.png",
+    "Algorithm/media/image-20240701183725741.png": "media/Algorithm/image-20240701183725741.png",
+    "Algorithm/media/image-20240701183737196.png": "media/Algorithm/image-20240701183737196.png",
+    "Algorithm/media/image-20240701183747746.png": "media/Algorithm/image-20240701183747746.png",
+    "Algorithm/media/image-20240701183808137.png": "media/Algorithm/image-20240701183808137.png",
+    "Algorithm/media/image-20240701183817982.png": "media/Algorithm/image-20240701183817982.png",
+    "Algorithm/media/image-20240701183834409.png": "media/Algorithm/image-20240701183834409.png",
+    "Algorithm/media/image-20240701183849084.png": "media/Algorithm/image-20240701183849084.png",
+    "Algorithm/media/image-20240701183901181.png": "media/Algorithm/image-20240701183901181.png",
+    "Algorithm/media/image-20240701183931881.png": "media/Algorithm/image-20240701183931881.png",
+    "Algorithm/media/image-20240701183942520.png": "media/Algorithm/image-20240701183942520.png",
+    "Algorithm/media/image-20240701184006521.png": "media/Algorithm/image-20240701184006521.png",
+    "Algorithm/media/image-20250316235910043.png": "media/Algorithm/image-20250316235910043.png",
+    "Algorithm/media/image-20250804115017437.png": "media/Algorithm/image-20250804115017437.png",
+    "Algorithm/media/image-20250804115041054.png": "media/Algorithm/image-20250804115041054.png",
+    "Algorithm/media/image-20250804115059584.png": "media/Algorithm/image-20250804115059584.png",
+    "Algorithm/media/image-20250804115131196.png": "media/Algorithm/image-20250804115131196.png",
+    "Algorithm/media/image-20250804115152515.png": "media/Algorithm/image-20250804115152515.png",
+    "Algorithm/media/image-20250827112425435.png": "media/Algorithm/image-20250827112425435.png",
+    "Algorithm/media/math": "media/Algorithm/math",
+    "Algorithm/media/v2-0c1267f8d79420fb94c8a5a521f9289e_720w.webp": "media/Algorithm/v2-0c1267f8d79420fb94c8a5a521f9289e_720w.webp",
+    "Algorithm/media/v2-0dffe120d42031e1cfdadf45aaad2311_720w.jpg": "media/Algorithm/v2-0dffe120d42031e1cfdadf45aaad2311_720w.jpg",
+    "Algorithm/media/v2-23ee934cfd027ddb9b0e1ef08251ae2d_720w.webp": "media/Algorithm/v2-23ee934cfd027ddb9b0e1ef08251ae2d_720w.webp",
+    "Algorithm/media/v2-29cbc868c5df209ed4c6496064333132_720w.jpg": "media/Algorithm/v2-29cbc868c5df209ed4c6496064333132_720w.jpg",
+    "Algorithm/media/v2-2fc83acafcf8b6efb7f1d7750f27c23a_720w.jpg": "media/Algorithm/v2-2fc83acafcf8b6efb7f1d7750f27c23a_720w.jpg",
+    "Algorithm/media/v2-3285595c53bf4f943a1bb3287b20c262_720w.jpg": "media/Algorithm/v2-3285595c53bf4f943a1bb3287b20c262_720w.jpg",
+    "Algorithm/media/v2-345bf13ce1c7cfc91bae31973e6a6b3f_720w.jpg": "media/Algorithm/v2-345bf13ce1c7cfc91bae31973e6a6b3f_720w.jpg",
+    "Algorithm/media/v2-4cc8ad2ba4c01b569a4fcf966e4331db_720w.jpg": "media/Algorithm/v2-4cc8ad2ba4c01b569a4fcf966e4331db_720w.jpg",
+    "Algorithm/media/v2-4d87f7bef79e4c6e535cb20bcbb907f8_720w.jpg": "media/Algorithm/v2-4d87f7bef79e4c6e535cb20bcbb907f8_720w.jpg",
+    "Algorithm/media/v2-4dbde4dcd15fd45edec4c09eeea059bf_720w.webp": "media/Algorithm/v2-4dbde4dcd15fd45edec4c09eeea059bf_720w.webp",
+    "Algorithm/media/v2-67ae439aeae72922b1a8c458846c5a64_720w.jpg": "media/Algorithm/v2-67ae439aeae72922b1a8c458846c5a64_720w.jpg",
+    "Algorithm/media/v2-6d927643217a7da1b53207afa51e0209_720w.jpg": "media/Algorithm/v2-6d927643217a7da1b53207afa51e0209_720w.jpg",
+    "Algorithm/media/v2-700980140cb4b0ec5697b47c0246811b_720w.jpg": "media/Algorithm/v2-700980140cb4b0ec5697b47c0246811b_720w.jpg",
+    "Algorithm/media/v2-7094f38bfd0e1025697e4cab95dd5060_720w.jpg": "media/Algorithm/v2-7094f38bfd0e1025697e4cab95dd5060_720w.jpg",
+    "Algorithm/media/v2-7f40319631bf68ad0f24b63cc7f66d05_720w.jpg": "media/Algorithm/v2-7f40319631bf68ad0f24b63cc7f66d05_720w.jpg",
+    "Algorithm/media/v2-90f544b12d6a2f18285e5fb2a5f51439_720w.jpg": "media/Algorithm/v2-90f544b12d6a2f18285e5fb2a5f51439_720w.jpg",
+    "Algorithm/media/v2-938427f59fe65b9588c0ff31a32ed02b_720w.webp": "media/Algorithm/v2-938427f59fe65b9588c0ff31a32ed02b_720w.webp",
+    "Algorithm/media/v2-982783c1d6a2ba8aed96e81c98c6ef26_720w.jpg": "media/Algorithm/v2-982783c1d6a2ba8aed96e81c98c6ef26_720w.jpg",
+    "Algorithm/media/v2-985562f15e754452321a2d0dc206ad70_720w.webp": "media/Algorithm/v2-985562f15e754452321a2d0dc206ad70_720w.webp",
+    "Algorithm/media/v2-9efc8442e0ec92198a85812d6f944ae0_720w.jpg": "media/Algorithm/v2-9efc8442e0ec92198a85812d6f944ae0_720w.jpg",
+    "Algorithm/media/v2-c172a9aacef38c58e612e6fbb70a68e2_720w.jpg": "media/Algorithm/v2-c172a9aacef38c58e612e6fbb70a68e2_720w.jpg",
+    "Algorithm/media/v2-e3a66f60807a7f4599f6eab7c814ecb9_720w.webp": "media/Algorithm/v2-e3a66f60807a7f4599f6eab7c814ecb9_720w.webp",
+    "Algorithm/media/v2-e90d6211e074cec2b7643f2a79c6584a_720w.jpg": "media/Algorithm/v2-e90d6211e074cec2b7643f2a79c6584a_720w.jpg",
+    "Algorithm/media/v2-eee0cc857cb113cff95cbf3aedb8d230_r.jpg": "media/Algorithm/v2-eee0cc857cb113cff95cbf3aedb8d230_r.jpg",
+    "Algorithm/media/v2-f6ff6f353dbee518467f058ecec97a31_720w.webp": "media/Algorithm/v2-f6ff6f353dbee518467f058ecec97a31_720w.webp",
+    "Algorithm/media/v2-fa1bcb777fcba599e4d42f53ca980b0f_720w.jpg": "media/Algorithm/v2-fa1bcb777fcba599e4d42f53ca980b0f_720w.jpg",
+    "Algorithm/图优化g2o.pdf": "robotics/图优化g2o.pdf",
+    "Algorithm/矩阵微分-清华.pdf": "math/矩阵微分-清华.pdf",
+    "C++/media/1dc08fc545592a16bdd4e69456f7603f.png": "media/C++/1dc08fc545592a16bdd4e69456f7603f.png",
+    "C++/media/20170322112825204": "media/C++/20170322112825204",
+    "C++/media/20170322113142191": "media/C++/20170322113142191",
+    "C++/media/20170322113220859": "media/C++/20170322113220859",
+    "C++/media/20170322113301504": "media/C++/20170322113301504",
+    "C++/media/20170322113321860": "media/C++/20170322113321860",
+    "C++/media/20170322113338489": "media/C++/20170322113338489",
+    "C++/media/3d9e381b93fe4df790357680b15d4635.png": "media/C++/3d9e381b93fe4df790357680b15d4635.png",
+    "C++/media/4c410326f68b9c901ae092e6d1bee594.png": "media/C++/4c410326f68b9c901ae092e6d1bee594.png",
+    "C++/media/69f20a18f8f1c1c329109e71c3456afc.png": "media/C++/69f20a18f8f1c1c329109e71c3456afc.png",
+    "C++/media/7186eb58ef60fc61dc55f573da016c01.png": "media/C++/7186eb58ef60fc61dc55f573da016c01.png",
+    "C++/media/82e528c1d8aeb1e85113f6a7d826cdfd.png": "media/C++/82e528c1d8aeb1e85113f6a7d826cdfd.png",
+    "C++/media/84e9d962295b753134094e778499e2a0.png": "media/C++/84e9d962295b753134094e778499e2a0.png",
+    "C++/media/899e5f1f4f1d4a5651454501e4b6a19c.png": "media/C++/899e5f1f4f1d4a5651454501e4b6a19c.png",
+    "C++/media/90765ad142ae9c04739fde85d776f281.png": "media/C++/90765ad142ae9c04739fde85d776f281.png",
+    "C++/media/GetImage(1).png": "media/C++/GetImage(1).png",
+    "C++/media/GetImage.png": "media/C++/GetImage.png",
+    "C++/media/a5f23af609c2c0cc2c6cfe51f1ca22f0.png": "media/C++/a5f23af609c2c0cc2c6cfe51f1ca22f0.png",
+    "C++/media/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzk0NDM2NS01NjYzNTk5ZTg0MzNmNWI4LnBuZw.png": "media/C++/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzk0NDM2NS01NjYzNTk5ZTg0MzNmNWI4LnBuZw.png",
+    "C++/media/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzk0NDM2NS03ZGI3ZTczMjExYjRjODliLnBuZw.png": "media/C++/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzk0NDM2NS03ZGI3ZTczMjExYjRjODliLnBuZw.png",
+    "C++/media/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzk0NDM2NS03ZGJhY2Q4N2Y0NDlkYmI4LnBuZw.png": "media/C++/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzk0NDM2NS03ZGJhY2Q4N2Y0NDlkYmI4LnBuZw.png",
+    "C++/media/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzk0NDM2NS04Nzc5YmMwOWE1M2ViNDBjLnBuZw.png": "media/C++/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzk0NDM2NS04Nzc5YmMwOWE1M2ViNDBjLnBuZw.png",
+    "C++/media/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzk0NDM2NS0wM2ViZDRkZjlkZTVkNTU1LnBuZw.png": "media/C++/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzk0NDM2NS0wM2ViZDRkZjlkZTVkNTU1LnBuZw.png",
+    "C++/media/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzk0NDM2NS1hOWIzZmMyZWQxNmY2MWU1LnBuZw.png": "media/C++/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzk0NDM2NS1hOWIzZmMyZWQxNmY2MWU1LnBuZw.png",
+    "C++/media/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzk0NDM2NS1iNDg4YzYyMDk0NTE2ZTBjLnBuZw.png": "media/C++/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzk0NDM2NS1iNDg4YzYyMDk0NTE2ZTBjLnBuZw.png",
+    "C++/media/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzk0NDM2NS1iZjE3MjU0NTIwOWI4N2UxLnBuZw.png": "media/C++/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzk0NDM2NS1iZjE3MjU0NTIwOWI4N2UxLnBuZw.png",
+    "C++/media/b5d733fac8312c1270eb8bc87d58c555.png": "media/C++/b5d733fac8312c1270eb8bc87d58c555.png",
+    "C++/media/b80e022befbbb1f86356f354c265237d.png": "media/C++/b80e022befbbb1f86356f354c265237d.png",
+    "C++/media/c++const修饰的局部变量分配到符号表上.png": "media/C++/c++const修饰的局部变量分配到符号表上.png",
+    "C++/media/c48e58454fc351e9fe69d2891a001cae.png": "media/C++/c48e58454fc351e9fe69d2891a001cae.png",
+    "C++/media/c82db2f4acae4beca4e03132627cf710.png": "media/C++/c82db2f4acae4beca4e03132627cf710.png",
+    "C++/media/d6ca82565cfb4370a021b391b02e93ea.png": "media/C++/d6ca82565cfb4370a021b391b02e93ea.png",
+    "C++/media/e3b2ae52a820296728e9a11336313dcd.png": "media/C++/e3b2ae52a820296728e9a11336313dcd.png",
+    "C++/media/f1a009c02af2e121f29b74a8c7899747.png": "media/C++/f1a009c02af2e121f29b74a8c7899747.png",
+    "C++/media/f700387f242b93abd4799aae4384a23a.png": "media/C++/f700387f242b93abd4799aae4384a23a.png",
+    "Linux/media/0320bash_1.jpg": "media/Linux/0320bash_1.jpg",
+    "Linux/media/file-20250325102636115.png": "media/Linux/file-20250325102636115.png",
+    "Linux/media/ppid.gif": "media/Linux/ppid.gif",
+    "Linux/media/var_01.gif": "media/Linux/var_01.gif",
+    "Linux/media/var_02.gif": "media/Linux/var_02.gif",
+    "QT/media/1f6646aa0ab8a10bff97905f3abc2bd0.png": "media/QT/1f6646aa0ab8a10bff97905f3abc2bd0.png",
+    "QT/media/58a8c77bc1b373fbe5c744399c14d865.png": "media/QT/58a8c77bc1b373fbe5c744399c14d865.png",
+    "QT/media/fda7277fe1a8ca54433d8f2a47a26758.png": "media/QT/fda7277fe1a8ca54433d8f2a47a26758.png",
+    "command/media/12b959efcc454da5a15b9fdec493d61b.png": "media/command/12b959efcc454da5a15b9fdec493d61b.png",
+    "command/media/1303dcff987147d79a1340c6abe0233e.png": "media/command/1303dcff987147d79a1340c6abe0233e.png",
+    "command/media/19a206038ee44136a2713e8809b6a870.png": "media/command/19a206038ee44136a2713e8809b6a870.png",
+    "command/media/30f3d615cb354306a900383295ef8166.png": "media/command/30f3d615cb354306a900383295ef8166.png",
+    "command/media/36efc2704d174acab598c4b9addd3694.png": "media/command/36efc2704d174acab598c4b9addd3694.png",
+    "command/media/3c5b8613a9e440fdbee8274d463a6427.png": "media/command/3c5b8613a9e440fdbee8274d463a6427.png",
+    "command/media/474feca2a40949c0a9dc579122ef4ece.png": "media/command/474feca2a40949c0a9dc579122ef4ece.png",
+    "command/media/47e2a05c214d49f7bbe30c7d58bcd331.png": "media/command/47e2a05c214d49f7bbe30c7d58bcd331.png",
+    "command/media/a7d7fe639765492abea6951ae25170c8.png": "media/command/a7d7fe639765492abea6951ae25170c8.png",
+    "command/media/c98f8577d9e440afacc1f33900f90835.png": "media/command/c98f8577d9e440afacc1f33900f90835.png",
+    "command/media/d46f4d8198bf146ef7995d5708b2b454.png": "media/command/d46f4d8198bf146ef7995d5708b2b454.png",
+    "command/media/dbebbbdaf4c6e4278a0ac2e62db89a81.png": "media/command/dbebbbdaf4c6e4278a0ac2e62db89a81.png",
+    "command/media/e26b16e4dfa08f27a6be90000c53f58e.png": "media/command/e26b16e4dfa08f27a6be90000c53f58e.png",
+    "command/media/ea41ef6e45a44d1780182e7f1f483c60.png": "media/command/ea41ef6e45a44d1780182e7f1f483c60.png",
+    "command/media/v2-8b77b08acc39bfc9cb569116ff6905e2_720w.webp": "media/command/v2-8b77b08acc39bfc9cb569116ff6905e2_720w.webp",
+    "slam_config/media/11fd0716dfd4da9dcce36ddf315580bb-1733653137231-3.png": "media/slam_config/11fd0716dfd4da9dcce36ddf315580bb-1733653137231-3.png",
+    "slam_config/media/11fd0716dfd4da9dcce36ddf315580bb.png": "media/slam_config/11fd0716dfd4da9dcce36ddf315580bb.png",
+    "slam_config/media/1GetImage(1).png": "media/slam_config/1GetImage(1).png",
+    "slam_config/media/1GetImage.jpeg": "media/slam_config/1GetImage.jpeg",
+    "slam_config/media/1GetImage.png": "media/slam_config/1GetImage.png",
+    "slam_config/media/41895494f7064942bc224d6b3783b77b.png": "media/slam_config/41895494f7064942bc224d6b3783b77b.png",
+    "slam_config/media/4e18cfce966b47a599ab6ae87e7cd069.png": "media/slam_config/4e18cfce966b47a599ab6ae87e7cd069.png",
+    "slam_config/media/6a677661b9aa46c8919bafb2aa6fce52.png": "media/slam_config/6a677661b9aa46c8919bafb2aa6fce52.png",
+    "slam_config/media/91923e61b62c4872ab222d9b86800dbb.png": "media/slam_config/91923e61b62c4872ab222d9b86800dbb.png",
+    "slam_config/media/GetImage(2).png": "media/slam_config/GetImage(2).png",
+    "slam_config/media/GetImage(3).png": "media/slam_config/GetImage(3).png",
+    "slam_config/media/GetImage1.png": "media/slam_config/GetImage1.png",
+    "slam_config/media/GetImage10.png": "media/slam_config/GetImage10.png",
+    "slam_config/media/GetImage11.png": "media/slam_config/GetImage11.png",
+    "slam_config/media/GetImage12.png": "media/slam_config/GetImage12.png",
+    "slam_config/media/GetImage13.png": "media/slam_config/GetImage13.png",
+    "slam_config/media/GetImage14.png": "media/slam_config/GetImage14.png",
+    "slam_config/media/GetImage15.png": "media/slam_config/GetImage15.png",
+    "slam_config/media/GetImage16.png": "media/slam_config/GetImage16.png",
+    "slam_config/media/GetImage17.png": "media/slam_config/GetImage17.png",
+    "slam_config/media/GetImage18.png": "media/slam_config/GetImage18.png",
+    "slam_config/media/GetImage19.png": "media/slam_config/GetImage19.png",
+    "slam_config/media/GetImage2.png": "media/slam_config/GetImage2.png",
+    "slam_config/media/GetImage20.png": "media/slam_config/GetImage20.png",
+    "slam_config/media/GetImage21.png": "media/slam_config/GetImage21.png",
+    "slam_config/media/GetImage22.png": "media/slam_config/GetImage22.png",
+    "slam_config/media/GetImage23.png": "media/slam_config/GetImage23.png",
+    "slam_config/media/GetImage24.png": "media/slam_config/GetImage24.png",
+    "slam_config/media/GetImage3.png": "media/slam_config/GetImage3.png",
+    "slam_config/media/GetImage4.png": "media/slam_config/GetImage4.png",
+    "slam_config/media/GetImage5.jpeg": "media/slam_config/GetImage5.jpeg",
+    "slam_config/media/GetImage6.png": "media/slam_config/GetImage6.png",
+    "slam_config/media/GetImage7.png": "media/slam_config/GetImage7.png",
+    "slam_config/media/GetImage8.png": "media/slam_config/GetImage8.png",
+    "slam_config/media/GetImage9.png": "media/slam_config/GetImage9.png",
+    "slam_config/media/d4517e01d32c4567bd9327c728938916.png": "media/slam_config/d4517e01d32c4567bd9327c728938916.png",
+    "slam_config/media/e9b6edfe57347d0d747289e2808a29d5.png": "media/slam_config/e9b6edfe57347d0d747289e2808a29d5.png",
+    "slam_config/media/image-20231221170830065.png": "media/slam_config/image-20231221170830065.png",
+    "slam_config/media/image-20231221173740474.png": "media/slam_config/image-20231221173740474.png",
+    "slam_config/media/image-20231221173821485.png": "media/slam_config/image-20231221173821485.png",
+    "slam_config/media/image-20231221174119604.png": "media/slam_config/image-20231221174119604.png",
+    "slam_config/media/image-20231221174306798.png": "media/slam_config/image-20231221174306798.png",
+    "slam_config/media/image-20231221174948586.png": "media/slam_config/image-20231221174948586.png",
+    "slam_config/media/image-20231221175822432.png": "media/slam_config/image-20231221175822432.png",
+    "slam_config/media/image-20231221180457802.png": "media/slam_config/image-20231221180457802.png",
+    "slam_config/media/image-20231221180643309.png": "media/slam_config/image-20231221180643309.png",
+    "slam_config/media/image-20231221181824028.png": "media/slam_config/image-20231221181824028.png",
+    "slam_config/media/image-20231221182227926.png": "media/slam_config/image-20231221182227926.png",
+    "slam_config/media/image-20231221184536137.png": "media/slam_config/image-20231221184536137.png",
+    "slam_config/media/image-20231221184743692.png": "media/slam_config/image-20231221184743692.png",
+    "slam_config/media/image-20231221184958930.png": "media/slam_config/image-20231221184958930.png",
+    "slam_config/media/image-20231221191554462.png": "media/slam_config/image-20231221191554462.png",
+    "slam_config/media/image-20231221191557376.png": "media/slam_config/image-20231221191557376.png",
+    "slam_config/media/image-20231221194201573.png": "media/slam_config/image-20231221194201573.png",
+    "slam_config/media/image-20231221195704822.png": "media/slam_config/image-20231221195704822.png",
+    "slam_config/media/image-20231221195955247.png": "media/slam_config/image-20231221195955247.png",
+    "slam_config/media/image-20231222100423798.png": "media/slam_config/image-20231222100423798.png",
+    "slam_config/media/image-20231222101141084.png": "media/slam_config/image-20231222101141084.png",
+    "slam_config/media/image-20231222101500578.png": "media/slam_config/image-20231222101500578.png",
+    "slam_config/media/image-20231222102551761.png": "media/slam_config/image-20231222102551761.png",
+    "slam_config/media/image-20231222112628682.png": "media/slam_config/image-20231222112628682.png",
+    "slam_config/media/image-20241208182814334.png": "media/slam_config/image-20241208182814334.png",
+    "slam_config/media/image-20250813181936887.png": "media/slam_config/image-20250813181936887.png",
+    "slam_config/media/image-20250813181940461.png": "media/slam_config/image-20250813181940461.png",
+    "slam_config/media/image-20250813181953983.png": "media/slam_config/image-20250813181953983.png",
+    "slam_config/media/image-20250813182250360.png": "media/slam_config/image-20250813182250360.png",
+    "slam_config/media/image-20250813182324252.png": "media/slam_config/image-20250813182324252.png",
+    "slam_config/media/image-20250813182906791.png": "media/slam_config/image-20250813182906791.png",
+    "slam_config/media/image-20250813183158392.png": "media/slam_config/image-20250813183158392.png",
+    "slam_config/media/image-20250813183218582.png": "media/slam_config/image-20250813183218582.png",
+    "slam_config/media/image-20250813183417171.png": "media/slam_config/image-20250813183417171.png",
+    "slam_config/media/image-20250813183609989.png": "media/slam_config/image-20250813183609989.png",
+    "slam_config/media/image-20250813183756400.png": "media/slam_config/image-20250813183756400.png",
+    "slam_config/media/image-20250813183914802.png": "media/slam_config/image-20250813183914802.png",
+    "slam_config/media/image-20250813184023914.png": "media/slam_config/image-20250813184023914.png",
+    "slam_config/media/image-20250813184045974.png": "media/slam_config/image-20250813184045974.png",
+    "slam_config/media/image-20250813184148285.png": "media/slam_config/image-20250813184148285.png",
+    "slam_config/激光+imu标定(lidar_align​).pdf": "robotics/激光+imu标定(lidar_align​).pdf",
+    "slam_config/激光雷达+相机标定.pdf": "robotics/激光雷达+相机标定.pdf",
+    "slam_config/相机+imu标定.pdf": "robotics/相机+imu标定.pdf",
+    "something_else/media/10e8e9317eca4b14b8682eb30fcbfd6c.png": "media/something_else/10e8e9317eca4b14b8682eb30fcbfd6c.png",
+    "something_else/media/180ccb58ffd741a589b0b44079f2c589.png": "media/something_else/180ccb58ffd741a589b0b44079f2c589.png",
+    "something_else/media/240693210.png": "media/something_else/240693210.png",
+    "something_else/media/46ce665f69594feeae6a97b5bd605acc.png": "media/something_else/46ce665f69594feeae6a97b5bd605acc.png",
+    "something_else/media/5ef388c5c9214b6c8fab73fbc87d0071.png": "media/something_else/5ef388c5c9214b6c8fab73fbc87d0071.png",
+    "something_else/media/640": "media/something_else/640",
+    "something_else/media/7d3bd10620d3484cb3cb8fb8714935c1.png": "media/something_else/7d3bd10620d3484cb3cb8fb8714935c1.png",
+    "something_else/media/GetImage(1).jpeg": "media/something_else/GetImage(1).jpeg",
+    "something_else/media/GetImage(2).jpeg": "media/something_else/GetImage(2).jpeg",
+    "something_else/media/GetImage.jpeg": "media/something_else/GetImage.jpeg",
+    "something_else/media/a8aee10bbf754abf9bb85b3ad2ac05f9.png": "media/something_else/a8aee10bbf754abf9bb85b3ad2ac05f9.png",
+    "something_else/media/ad0e5659850d4708b89e93f9340c9e9e.png": "media/something_else/ad0e5659850d4708b89e93f9340c9e9e.png",
+    "something_else/media/aed0d72bbc3449959f6423e074167458.png": "media/something_else/aed0d72bbc3449959f6423e074167458.png",
+    "something_else/media/b871c543fa5142f08deee9b5fdb5bdf5.png": "media/something_else/b871c543fa5142f08deee9b5fdb5bdf5.png",
+    "something_else/media/c58d9bc86cac4a9f8b993aefaebe4151.png": "media/something_else/c58d9bc86cac4a9f8b993aefaebe4151.png",
+    "something_else/media/e2030cb9f4954d5f9d38a93f20c3265a.png": "media/something_else/e2030cb9f4954d5f9d38a93f20c3265a.png",
+    "something_else/media/f3bdcd5cb41b42a6bc70d01e7f62be57.png": "media/something_else/f3bdcd5cb41b42a6bc70d01e7f62be57.png",
+    "something_else/media/f9cc100e8e0f482fb801795123574c78.png": "media/something_else/f9cc100e8e0f482fb801795123574c78.png",
+    "something_else/media/image-20230423204352633.png": "media/something_else/image-20230423204352633.png",
+    "something_else/media/image-20230423204921026.png": "media/something_else/image-20230423204921026.png",
+    "something_else/media/image-20230821183317880.png": "media/something_else/image-20230821183317880.png",
+    "something_else/media/image-20230821184834825.png": "media/something_else/image-20230821184834825.png"
+  },
+  "legacy_urls": {
+    "misc/获取Office2021安装包及相关激活工具.md": [
+      "/notes/something_else/获取office2021安装包及相关激活工具.html"
+    ],
+    "cpp/内联函数.md": [
+      "/notes/c++/内联函数.html"
+    ],
+    "robotics/占据栅格地图构建.md": [
+      "/notes/algorithm/占据栅格地图构建.html"
+    ],
+    "cpp/Eigen几何模块的引入.md": [
+      "/notes/c++/eigen几何模块的引入.html"
+    ],
+    "qt/基于arm架构的NVIDIA_Xavier安装Qt.md": [
+      "/notes/qt/基于arm架构的nvidia_xavier安装qt.html"
+    ],
+    "engineering/Docker简要教程.md": [
+      "/notes/command/docker简要教程.html"
+    ],
+    "robotics/Matlab标定单目相机内参.md": [
+      "/notes/slam_config/matlab标定单目相机内参.html"
+    ],
+    "linux/Shell的变量功能.md": [
+      "/notes/linux/shell的变量功能.html"
+    ],
+    "cpp/Protocol_Buffers基本使用.md": [
+      "/notes/c++/protocol_buffers基本使用.html"
+    ],
+    "engineering/GoogleTest.md": [
+      "/notes/c++/googletest.html"
+    ],
+    "cpp/函数指针的定义方式.md": [
+      "/notes/c++/函数指针的定义方式.html"
+    ],
+    "robotics/轨迹评估介绍与evo工具使用.md": [
+      "/notes/slam_config/轨迹评估介绍与evo工具使用.html"
+    ],
+    "robotics/ORBSLAM3学习.md": [
+      "/notes/algorithm/orbslam3学习.html"
+    ],
+    "math/向量积(矢积)与数量积(标积)的区别.md": [
+      "/notes/algorithm/向量积矢积与数量积标积的区别.html"
+    ],
+    "cpp/c++并发与多线程.md": [
+      "/notes/c++/c++并发与多线程.html"
+    ],
+    "robotics/IMU预积分.md": [
+      "/notes/algorithm/imu预积分.html"
+    ],
+    "cpp/单例模式.md": [
+      "/notes/c++/单例模式.html"
+    ],
+    "robotics/灰度质心法.md": [
+      "/notes/algorithm/灰度质心法.html"
+    ],
+    "engineering/git_cherry-pick.md": [
+      "/notes/command/git_cherry-pick.html"
+    ],
+    "ros/ROSparam的使用.md": [
+      "/notes/algorithm/rosparam的使用.html"
+    ],
+    "ros/Ros中Remap(话题重映射)的两种使用方法.md": [
+      "/notes/algorithm/ros中remap话题重映射的两种使用方法.html"
+    ],
+    "ros/ROS查看ZED节点效果.md": [
+      "/notes/command/ros查看zed节点效果.html"
+    ],
+    "linux/Xsens传感器调用.md": [
+      "/notes/command/xsens传感器调用.html"
+    ],
+    "robotics/Theta_star-Any-Angle-Path-Planning-on-Grids.md": [
+      "/notes/algorithm/theta_star-any-angle-path-planning-on-grids.html"
+    ],
+    "math/二维空间中的点坐标旋转关系.md": [
+      "/notes/algorithm/二维空间中的点坐标旋转关系.html"
+    ],
+    "cpp/cin与get()getline()输入问题.md": [
+      "/notes/c++/cin与getgetline输入问题.html"
+    ],
+    "robotics/单目视觉的尺度等价性.md": [
+      "/notes/algorithm/单目视觉的尺度等价性.html"
+    ],
+    "math/高斯牛顿法.md": [
+      "/notes/algorithm/高斯牛顿法.html"
+    ],
+    "ros/ROS激光雷达信息、点云信息和PCL信息之间的转换.md": [
+      "/notes/algorithm/ros激光雷达信息点云信息和pcl信息之间的转换.html"
+    ],
+    "robotics/windows下orb和hfnet安装.md": [
+      "/notes/slam_config/windows下orb和hfnet安装.html"
+    ],
+    "qt/项目默认文件介绍.md": [
+      "/notes/qt/项目默认文件介绍.html"
+    ],
+    "cpp/构造函数的调用时机.md": [
+      "/notes/c++/构造函数的调用时机.html"
+    ],
+    "robotics/turbot建图导航算法汇总.md": [
+      "/notes/slam_config/turbot建图导航算法汇总.html"
+    ],
+    "engineering/Git_Command.md": [
+      "/notes/command/git_command.html"
+    ],
+    "misc/stable-diffusion-webui手动安装详细步骤.md": [
+      "/notes/something_else/stable-diffusion-webui手动安装详细步骤.html"
+    ],
+    "linux/基于ROS的opencv安装与卸载.md": [
+      "/notes/slam_config/基于ros的opencv安装与卸载.html"
+    ],
+    "robotics/局部规划算法DWA.md": [
+      "/notes/algorithm/局部规划算法dwa.html"
+    ],
+    "cpp/string和cstring头文件的区别.md": [
+      "/notes/c++/string和cstring头文件的区别.html"
+    ],
+    "cpp/类知识点.md": [
+      "/notes/c++/类知识点.html"
+    ],
+    "robotics/ros2_cost_function.md": [
+      "/notes/algorithm/ros2_cost_function.html"
+    ],
+    "engineering/CMakeLists简易模板.md": [
+      "/notes/c++/cmakelists简易模板.html"
+    ],
+    "cpp/boostcondition_variable.md": [
+      "/notes/c++/boostcondition_variable.html"
+    ],
+    "cpp/STL容器使用时机.md": [
+      "/notes/c++/stl容器使用时机.html"
+    ],
+    "math/匈牙利算法.md": [
+      "/notes/algorithm/匈牙利算法.html"
+    ],
+    "math/欧拉角与坐标系旋转变换.md": [
+      "/notes/algorithm/欧拉角与坐标系旋转变换.html"
+    ],
+    "engineering/gflags使用.md": [
+      "/notes/c++/gflags使用.html"
+    ],
+    "ros/ROS2的Launch文件简介.md": [
+      "/notes/algorithm/ros2的launch文件简介.html"
+    ],
+    "math/正态分布.md": [
+      "/notes/algorithm/正态分布.html"
+    ],
+    "math/雅克比矩阵和海塞矩阵.md": [
+      "/notes/algorithm/雅克比矩阵和海塞矩阵.html"
+    ],
+    "robotics/Voronoi Graph.md": [
+      "/notes/algorithm/voronoi-graph.html"
+    ],
+    "robotics/激光雷达与IMU联合标定(lidar_IMU_calib).md": [
+      "/notes/slam_config/激光雷达与imu联合标定lidar_imu_calib.html"
+    ],
+    "robotics/旋转下激光雷达数据与地图产生错位的问题.md": [
+      "/notes/algorithm/旋转下激光雷达数据与地图产生错位的问题.html"
+    ],
+    "ros/ROS指令.md": [
+      "/notes/c++/ros指令.html"
+    ],
+    "ros/Rosdep_update_failed.md": [
+      "/notes/slam_config/rosdep_update_failed.html"
+    ],
+    "robotics/重投影误差.md": [
+      "/notes/algorithm/重投影误差.html"
+    ],
+    "math/超定方程组的最小二乘解.md": [
+      "/notes/algorithm/超定方程组的最小二乘解.html"
+    ],
+    "engineering/Find_package.md": [
+      "/notes/c++/find_package.html"
+    ],
+    "ros/ROS2_command.md": [
+      "/notes/algorithm/ros2_command.html"
+    ],
+    "robotics/2d激光雷达运动补偿方法(去畸变).md": [
+      "/notes/algorithm/2d激光雷达运动补偿方法去畸变.html"
+    ],
+    "cpp/常规函数与内联函数.md": [
+      "/notes/c++/常规函数与内联函数.html"
+    ],
+    "robotics/路径规划之A-star算法.md": [
+      "/notes/algorithm/路径规划之a-star算法.html"
+    ],
+    "cpp/C++下const增强.md": [
+      "/notes/c++/c++下const增强.html"
+    ],
+    "robotics/激光雷达与相机外参联合标定调研.md": [
+      "/notes/algorithm/激光雷达与相机外参联合标定调研.html"
+    ],
+    "robotics/双目立体视觉SAD匹配算法.md": [
+      "/notes/algorithm/双目立体视觉sad匹配算法.html"
+    ],
+    "qt/QT迁移项目后显示修改时间大于当前时间.md": [
+      "/notes/qt/qt迁移项目后显示修改时间大于当前时间.html"
+    ],
+    "cpp/左值与右值.md": [
+      "/notes/c++/左值与右值.html"
+    ],
+    "engineering/CMakelists基础指令.md": [
+      "/notes/c++/cmakelists基础指令.html"
+    ],
+    "math/归一化与标准化.md": [
+      "/notes/algorithm/归一化与标准化.html"
+    ],
+    "robotics/激光雷达性能指标.md": [
+      "/notes/algorithm/激光雷达性能指标.html"
+    ],
+    "robotics/cartographer相关参数解析.md": [
+      "/notes/algorithm/cartographer相关参数解析.html"
+    ],
+    "cpp/二叉树遍历.md": [
+      "/notes/c++/二叉树遍历.html"
+    ],
+    "cpp/const成员函数.md": [
+      "/notes/c++/const成员函数.html"
+    ],
+    "engineering/Git中submodule的使用.md": [
+      "/notes/command/git中submodule的使用.html"
+    ],
+    "robotics/SLAM中的位姿变换与轨迹评价指标.md": [
+      "/notes/algorithm/slam中的位姿变换与轨迹评价指标.html"
+    ],
+    "cpp/设计模式之生产者-消费者模型.md": [
+      "/notes/c++/设计模式之生产者-消费者模型.html"
+    ],
+    "cpp/c++_boost_circular_buffer.md": [
+      "/notes/c++/c++_boost_circular_buffer.html"
+    ],
+    "cpp/转换.md": [
+      "/notes/c++/转换.html"
+    ],
+    "robotics/ubuntu18.04系统下安装turtlebot2.md": [
+      "/notes/slam_config/ubuntu18.04系统下安装turtlebot2.html"
+    ],
+    "cpp/Opencv_Mat.md": [
+      "/notes/c++/opencv_mat.html"
+    ],
+    "math/为什么使用齐次坐标.md": [
+      "/notes/algorithm/为什么使用齐次坐标.html"
+    ],
+    "cpp/常用函数.md": [
+      "/notes/c++/常用函数.html"
+    ],
+    "engineering/VSCode使用Clangd.md": [
+      "/notes/slam_config/vscode使用clangd.html"
+    ],
+    "cpp/EigenGeometry.md": [
+      "/notes/c++/eigengeometry.html"
+    ],
+    "math/协方差矩阵.md": [
+      "/notes/algorithm/协方差矩阵.html"
+    ],
+    "ros/ROSNodehandle句柄的理解.md": [
+      "/notes/algorithm/rosnodehandle句柄的理解.html"
+    ],
+    "linux/认识BASH这个Shell.md": [
+      "/notes/linux/认识bash这个shell.html"
+    ],
+    "qt/Qt点击按钮进行页面的切换.md": [
+      "/notes/qt/qt点击按钮进行页面的切换.html"
+    ],
+    "robotics/相机参数DKPR的解释.md": [
+      "/notes/algorithm/相机参数dkpr的解释.html"
+    ],
+    "math/多维高斯分布.md": [
+      "/notes/algorithm/多维高斯分布.html"
+    ],
+    "math/多元函数的泰勒展开式.md": [
+      "/notes/algorithm/多元函数的泰勒展开式.html"
+    ],
+    "robotics/本质矩阵基础矩阵的自由度及其解法.md": [
+      "/notes/algorithm/本质矩阵基础矩阵的自由度及其解法.html"
+    ],
+    "engineering/git_rebase的两种用法.md": [
+      "/notes/command/git_rebase的两种用法.html"
+    ],
+    "linux/如何在Linux中使用Clash.md": [
+      "/notes/something_else/如何在linux中使用clash.html"
+    ],
+    "cpp/C++11chrono库.md": [
+      "/notes/c++/c++11chrono库.html"
+    ],
+    "cpp/如何正确使用resize和reserve.md": [
+      "/notes/c++/如何正确使用resize和reserve.html"
+    ],
+    "math/矩阵的奇异值分解.md": [
+      "/notes/algorithm/矩阵的奇异值分解.html"
+    ],
+    "cpp/数据类型字节数.md": [
+      "/notes/c++/数据类型字节数.html"
+    ],
+    "linux/Ubuntu18.04环境配置.md": [
+      "/notes/slam_config/ubuntu18.04环境配置.html"
+    ],
+    "cpp/计算时间.md": [
+      "/notes/c++/计算时间.html"
+    ],
+    "math/SVD与非线性优化在最小二乘问题中的区别.md": [
+      "/notes/algorithm/svd与非线性优化在最小二乘问题中的区别.html"
+    ],
+    "linux/Jetson常用命令.md": [
+      "/notes/command/ubuntu-xavier.html"
+    ]
+  },
+  "removed_from_source": [
+    "command/LIO-SAM运行.md",
+    "command/Orb-slam2运行.md",
+    "slam_config/xavier装机文档.md"
+  ]
+}

@@ -1,0 +1,16 @@
+{{- $destination := .Destination -}}
+{{- $url := urls.Parse $destination -}}
+{{- if and .Page.Params.source.path (not $url.IsAbs) (not $url.Host) (not (strings.HasPrefix $destination "/")) (not (strings.HasPrefix $destination "#")) -}}
+    {{- $destination = $url.Path -}}
+    {{- $source := path.Clean (printf "%s/%s" (path.Dir .Page.Params.source.path) $url.Path) -}}
+    {{- if eq (path.Ext $source) ".md" -}}
+        {{- with .Page.Site.GetPage (printf "/notes/%s" $source) -}}
+            {{- $destination = .RelPermalink -}}
+        {{- end -}}
+    {{- else -}}
+        {{- $destination = printf "/notes/%s" $source | relURL -}}
+    {{- end -}}
+    {{- with $url.RawQuery -}}{{- $destination = printf "%s?%s" $destination . -}}{{- end -}}
+    {{- with $url.Fragment -}}{{- $destination = printf "%s#%s" $destination . -}}{{- end -}}
+{{- end -}}
+<a class="link" href="{{ $destination | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if strings.HasPrefix $destination "http" }} target="_blank" rel="noopener"{{ end }}>{{ .Text | safeHTML }}</a>

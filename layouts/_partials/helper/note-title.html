@@ -1,0 +1,5 @@
+{{- $title := .Title | markdownify | plainify | htmlUnescape -}}
+{{- if and .File (gt (strings.RuneCount $title) 60) -}}
+    {{- $title = .File.ContentBaseName -}}
+{{- end -}}
+{{- return $title -}}

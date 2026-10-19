@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+<head>
+    {{ partial "head/head.html" . }}
+    {{ block "head" . }}{{ end }}
+</head>
+<body class="butterfly-preview {{ if .IsHome }}home-page{{ end }} {{ block `body-class` . }}{{ end }}">
+    {{ partial "head/colorScheme" . }}
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="wordmark" href="{{ .Site.Home.RelPermalink }}">HanLin<span class="brand-dot">.</span></a>
+            <nav class="topnav" aria-label="主导航">
+                {{ range .Site.Menus.main }}
+                <a href="{{ .URL }}" {{ if eq $.RelPermalink .URL }}aria-current="page"{{ end }}>{{ .Name }}</a>
+                {{ end }}
+            </nav>
+            <button id="dark-mode-toggle" class="scheme-toggle" type="button" aria-label="切换浅色与深色模式" title="切换浅色与深色模式">{{ partial "helper/icon" "toggle-left" }}{{ partial "helper/icon" "toggle-right" }}<span>切换外观</span></button>
+        </div>
+    </header>
+    {{ if .IsHome }}
+    <section class="home-hero" aria-labelledby="hero-title">
+        <img class="hero-photo" src="{{ `img/mountain-hero.webp` | relURL }}" alt="晨光中的层叠山峦" fetchpriority="high" width="1920" height="640">
+        <div class="hero-shade"></div>
+        <div class="hero-copy">
+            <p class="hero-eyebrow">EXPLORE · BUILD · SHARE</p>
+            <h1 id="hero-title">在探索中积累，在实践中成长。</h1>
+            <p>保持好奇，持续前行</p>
+        </div>
+    </section>
+    {{ end }}
+    <div class="container main-container flex extended">
+        {{ block "right-sidebar" . }}{{ end }}
+        <main class="main full-width" id="main-content">
+            {{ block "main" . }}{{ end }}
+        </main>
+    </div>
+    {{ partial "footer/include.html" . }}
+</body>
+</html>

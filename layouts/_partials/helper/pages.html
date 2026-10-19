@@ -1,0 +1,26 @@
+{{- $pages := .Pages -}}
+
+{{- if .IsHome -}}
+    {{- $pages = where .Site.RegularPages "Type" "in" .Site.Params.mainSections -}}
+{{- else if or (eq .Kind "section") (eq .Kind "taxonomy") (eq .Kind "term") -}}
+    {{- $subsections := .Sections -}}
+    {{- $pages = .Pages | complement $subsections -}}
+
+    {{- if eq (len $pages) 0 -}}
+        {{- $pages = $subsections -}}
+    {{- end -}}
+{{- end -}}
+
+{{- $pages := partial "helper/pages-sort.html" (dict "Pages" $pages "Context" .) -}}
+
+{{- if .IsHome -}}
+    {{- $pages = $pages.ByTitle -}}
+    {{- $featured := slice -}}
+    {{- range $pages -}}
+        {{- if in (slice "占据栅格地图构建" "ORBSLAM3学习" "轨迹评估介绍与evo工具使用") .File.ContentBaseName -}}
+            {{- $featured = $featured | append . -}}
+        {{- end -}}
+    {{- end -}}
+    {{- $pages = $featured | append ($pages | complement $featured) -}}
+{{- end -}}
+{{- return $pages -}}

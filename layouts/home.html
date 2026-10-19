@@ -1,0 +1,10 @@
+{{ define "main" }}
+    <section id="notes" class="notes-section">
+        <header class="notes-heading"><div><p class="eyebrow">THE NOTEBOOK</p><h2>探索笔记</h2></div><a href="{{ with .Site.GetPage `/notes` }}{{ .RelPermalink }}{{ end }}">全部 {{ len (where .Site.RegularPages "Section" "notes") }} 篇 {{ partial "helper/icon" "chevron-right" }}</a></header>
+        {{ $paginator := partial "helper/paginator.html" . }}
+        <div class="article-list notebook-list">{{ range $paginator.Pages }}{{ partial "article-list/default.html" . }}{{ end }}</div>
+    </section>
+    {{ partial "pagination.html" . }}
+    {{ partial "footer/footer.html" . }}
+{{ end }}
+{{ define "right-sidebar" }}{{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}{{ end }}
