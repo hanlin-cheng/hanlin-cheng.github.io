@@ -1,3 +1,37 @@
+// Type, pause, erase, and repeat the existing motto without an external library.
+const heroTypewriter = document.querySelector<HTMLElement>('.hero-typewriter');
+if (heroTypewriter) {
+    const text = heroTypewriter.textContent || '';
+    const characters = Array.from(text);
+    const subtitle = heroTypewriter.closest<HTMLElement>('.hero-subtitle');
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    let timer: number | undefined;
+    const restartTyping = () => {
+        window.clearTimeout(timer);
+        subtitle?.classList.remove('is-typing');
+        heroTypewriter.textContent = text;
+        if (!characters.length || reducedMotion.matches || document.hidden) return;
+        let position = 0;
+        let erasing = false;
+        subtitle?.classList.add('is-typing');
+        heroTypewriter.textContent = '';
+        const tick = () => {
+            position += erasing ? -1 : 1;
+            heroTypewriter.textContent = characters.slice(0, position).join('');
+            let delay = erasing ? 80 : 150;
+            if (position === characters.length) { erasing = true; delay = 2200; }
+            else if (position === 0) { erasing = false; delay = 600; }
+            timer = window.setTimeout(tick, delay);
+        };
+        timer = window.setTimeout(tick, 400);
+    };
+    reducedMotion.addEventListener('change', restartTyping);
+    document.addEventListener('visibilitychange', restartTyping);
+    window.addEventListener('pagehide', () => window.clearTimeout(timer));
+    window.addEventListener('pageshow', event => { if (event.persisted) restartTyping(); });
+    restartTyping();
+}
+
 // The home navigation overlays the cover, then gains a solid reading background.
 const homeHero = document.querySelector<HTMLElement>('.home-hero');
 const topbar = document.querySelector<HTMLElement>('.topbar');

@@ -1,6 +1,6 @@
 /* Butterfly-inspired presentation overrides; keep upstream Stack untouched. */
 :root {
-    --body-background: #f5f7f9;
+    --body-background: #fff;
     --accent-color: #267f94;
     --accent-color-darker: #1d6576;
     --body-text-color: #586577;
@@ -14,26 +14,55 @@
     --shadow-l1: 0 4px 24px rgba(33, 52, 73, .045);
 }
 :root[data-scheme="dark"] {
-    --body-background: #151b23;
-    --card-background: #1f2833;
-    --card-background-selected: #2b3745;
-    --card-text-color-main: #e8eef4;
-    --card-text-color-secondary: #b2bfce;
-    --card-text-color-tertiary: #a3b2c2;
-    --body-text-color: #b2bfce;
-    --accent-color: #72c3d3;
-    --accent-color-darker: #9bdce7;
-    --card-separator-color: #354251;
+    --body-background: #0d0d0d;
+    --card-background: #121212;
+    --card-background-selected: #1f1f1f;
+    --card-text-color-main: rgba(255, 255, 255, .9);
+    --card-text-color-secondary: rgba(255, 255, 255, .7);
+    --card-text-color-tertiary: rgba(255, 255, 255, .6);
+    --body-text-color: rgba(255, 255, 255, .7);
+    --accent-color: rgba(255, 255, 255, .9);
+    --accent-color-darker: #ccc;
+    --card-separator-color: rgba(255, 255, 255, .12);
+    --code-background-color: #1f1f1f;
+    --pre-background-color: #1f1f1f;
+    --blockquote-background-color: #1f1f1f;
+    --tr-even-background-color: #1f1f1f;
+    --table-border-color: #444;
+    --shadow-l1: 0 3px 8px 6px rgba(7, 17, 27, .05);
+}
+:root[data-scheme="dark"] .butterfly-preview {
+    color: var(--body-text-color);
+    .note-card, .profile-card, .side-card { border-color: transparent; }
+    .note-card:hover { border-color: #444; }
+    .brand-dot { color: var(--card-text-color-main); }
+    .note-category a, .profile-github { background: #1f1f1f; color: #ccc; }
+    .profile-github:hover { background: #303030; }
 }
 html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+.hero-subtitle { min-height: 1.8em; }
+.hero-cursor { display: none; }
+.hero-subtitle.is-typing .hero-cursor {
+    display: inline-block;
+    height: 1em;
+    margin-left: 4px;
+    border-left: 2px solid currentColor;
+    vertical-align: -.12em;
+    animation: hero-cursor-blink .8s step-end infinite;
+}
+@keyframes hero-cursor-blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+    .hero-subtitle .hero-cursor { animation: none; }
+}
 .butterfly-preview {
     font-size: 15px;
+    isolation: isolate;
     .topbar { background: var(--card-background); border-bottom: 1px solid var(--card-separator-color); position: sticky; top: 0; z-index: 30; }
-    .topbar-inner { max-width: 1200px; min-height: 74px; margin: auto; padding: 0 28px; display: flex; align-items: center; gap: 36px; }
-    .wordmark { font-size: 29px; font-weight: 800; letter-spacing: -1px; color: var(--card-text-color-main); }
+    .topbar-inner { width: 100%; max-width: none; min-height: 60px; margin: 0; padding: 0 36px; display: flex; align-items: center; gap: 26px; }
+    .wordmark { font-size: 22px; font-weight: 800; letter-spacing: -1px; color: var(--card-text-color-main); }
     .brand-dot { color: #2c8b9b; }
     .topnav { display: flex; align-items: center; gap: 30px; margin-left: auto; }
-    .topnav a { color: var(--card-text-color-secondary); font-size: 14px; padding: 26px 0; border-bottom: 2px solid transparent; }
+    .topnav a { color: var(--card-text-color-secondary); font-size: 14px; padding: 16px 0; border-bottom: 2px solid transparent; }
     .topnav a:hover, .topnav a[aria-current] { color: var(--accent-color); border-bottom-color: var(--accent-color); }
     .scheme-toggle { display: flex; align-items: center; justify-content: center; background: transparent; border: 1px solid var(--card-separator-color); color: var(--card-text-color-secondary); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; flex-shrink: 0; }
     .scheme-toggle svg { width: 21px; height: 21px; }
