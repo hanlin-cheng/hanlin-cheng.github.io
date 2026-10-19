@@ -6,6 +6,12 @@
 </head>
 <body class="butterfly-preview {{ if .IsHome }}home-page{{ end }} {{ block `body-class` . }}{{ end }}">
     {{ partial "head/colorScheme" . }}
+    <div class="reading-backdrop" aria-hidden="true">
+        <picture>
+            <source media="(max-width: 800px)" srcset="{{ `img/meili-reading-mobile.webp` | relURL }}">
+            <img src="{{ `img/meili-reading.webp` | relURL }}" alt="" decoding="async">
+        </picture>
+    </div>
     <header class="topbar">
         <div class="topbar-inner">
             <a class="wordmark" href="{{ .Site.Home.RelPermalink }}">HanLin<span class="brand-dot">.</span></a>

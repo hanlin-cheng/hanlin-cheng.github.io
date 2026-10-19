@@ -151,11 +151,11 @@ Markdown 同步跳过 `.git`、`.obsidian`、`.agents`、`.codex` 目录。附�
 
 标题展示清理不回写源笔记或生成元数据，搜索和分享数据仍可能使用原始 `.Title`。
 
-深色配色以 Butterfly 示例站实际计算样式为准：页面底色 `#0d0d0d`，正文/笔记/侧栏卡片与实色导航 `#121212`，按钮底色 `#1f1f1f`；主要文字白色 90% 不透明度、正文/摘要白色 70% 不透明度。不要恢复旧蓝灰色卡片（`#1f2833`）或青色 GitHub 按钮；浅色模式保持现有配色。
+深色配色以 Butterfly 示例站实际计算样式为准：页面底色 `#0d0d0d`，正文/笔记/侧栏卡片与实色导航 `#121212`，按钮底色 `#1f1f1f`；按用户的可读性反馈，标题使用纯白，正文、摘要和侧栏主要文字使用白色 90% 不透明度，辅助文字维持 60% 不透明度；这是在参考站黑灰底色上主动提高文字亮度的定制，不要回退到此前正文 70% 的设置。不要恢复旧蓝灰色卡片（`#1f2833`）或青色 GitHub 按钮；浅色模式保持现有配色。
 
 顶部导航为通栏布局，桌面站点名距左侧 36px，末尾控件距右侧 36px，不受正文 1200px 居中容器限制；手机两侧保留 18px，导航可分行。
 
-阅读区沿用 Butterfly 示例站的彩带背景实现：`layouts/_partials/footer/custom.html` 加载本地 `static/js/vendor/canvas-ribbon.min.js`，来自官方 npm 包 `butterfly-extsrc@1.1.6`，原代码及 Apache-2.0 许可证保留于 `static/js/vendor/butterfly-extsrc.LICENSE`。与示例站相同配置为 size=150、alpha=0.6、zIndex=-1、mobile=false、data-click=false，随机生成静态彩带，点击卡片不重绘。它不是图片，也不是 Codex Canvas 文件；不需要给子仓库新增笔记索引。桌面背景固定在阅读内容背后，真实移动设备按上游配置禁用；白天底色为白色，深色底色为 #0d0d0d。不要用手绘近似图替换或改成会拦截点击的覆盖层。
+阅读区使用用户选定的梅里雪山卡瓦格博实景照片（JL Cogburn，CC BY-SA 2.0）。`layouts/baseof.html` 的 `.reading-backdrop` 是不接收点击的固定装饰层，首页封面保持原样，卡片保持不透明。桌面使用本地 `static/img/meili-reading.webp`，800px 以下使用 `meili-reading-mobile.webp`，由原图等比例缩小并转为 WebP；深色覆盖黑色 38%，浅色覆盖白色 80%，保证阅读对比度。来源、作者、许可和处理说明位于独立的 `content/image-credits/index.md`，公共页脚只展示“图片来源”入口，背景本身不叠加署名。不再加载彩带脚本；旧 vendor 文件及许可证暂保留。
 
 首页副标题“保持好奇，持续前行”在 `layouts/baseof.html` 保留完整静态文案，由 `assets/ts/custom.ts` 实现打字机循环（逐字显示、停顿、逐字删除）；光标闪烁和占位高度位于 `assets/scss/custom.scss`。不依赖外部动画库。系统开启减少动态效果时静态显示，页面隐藏时停止计时，恢复可见后重新播放；屏幕阅读器只读取完整句子，不逐字播报。
 

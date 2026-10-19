@@ -17,11 +17,11 @@
     --body-background: #0d0d0d;
     --card-background: #121212;
     --card-background-selected: #1f1f1f;
-    --card-text-color-main: rgba(255, 255, 255, .9);
-    --card-text-color-secondary: rgba(255, 255, 255, .7);
+    --card-text-color-main: #fff;
+    --card-text-color-secondary: rgba(255, 255, 255, .9);
     --card-text-color-tertiary: rgba(255, 255, 255, .6);
-    --body-text-color: rgba(255, 255, 255, .7);
-    --accent-color: rgba(255, 255, 255, .9);
+    --body-text-color: rgba(255, 255, 255, .9);
+    --accent-color: #fff;
     --accent-color-darker: #ccc;
     --card-separator-color: rgba(255, 255, 255, .12);
     --code-background-color: #1f1f1f;
@@ -40,6 +40,17 @@
     .profile-github:hover { background: #303030; }
 }
 html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+.reading-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: #0d0d0d;
+    picture, img { display: block; width: 100%; height: 100%; }
+    img { object-fit: cover; object-position: center 65%; }
+    &::after { content: ""; position: absolute; inset: 0; background: rgba(255, 255, 255, .8); }
+}
+:root[data-scheme="dark"] .reading-backdrop::after { background: rgba(0, 0, 0, .38); }
 .hero-subtitle { min-height: 1.8em; }
 .hero-cursor { display: none; }
 .hero-subtitle.is-typing .hero-cursor {
