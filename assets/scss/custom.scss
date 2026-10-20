@@ -208,7 +208,12 @@ html { scroll-behavior: smooth; scroll-padding-top: 92px; }
     .butterfly-preview *, .butterfly-preview *::before, .butterfly-preview *::after { transition: none !important; }
 }
 .butterfly-preview #dark-mode-toggle { margin: 0; gap: 0; }
-.butterfly-preview .right-sidebar .widget--toc { max-height: 65vh; overflow-y: auto; }
+.butterfly-preview .right-sidebar .widget--toc {
+    background: transparent;
+    box-shadow: none;
+    max-height: 65vh;
+    overflow-y: auto;
+}
 .butterfly-preview .widget--toc #TableOfContents { padding: 0; }
 .butterfly-preview .widget--toc ul { list-style: none; padding-inline-start: 0; }
 .butterfly-preview .widget--toc li { margin: 10px 0; }

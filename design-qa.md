@@ -216,3 +216,10 @@ final result: passed
 - 截图：既有预览目录 `40-mobile-toc-fixed.png`。本地预览服务原先停止，已重新启动；浏览器首次错误标签页未作为验证证据，改用新预览标签完成检查。已恢复默认视口。
 - 父仓库分支 lvcheng/bugfix/note-reading-polish；子仓库分支 lvcheng/bugfix/note-content-format。未提交、推送或部署。
 - final result: passed
+
+## 本轮：目录卡片透明度
+
+- 桌面目录外层卡片保留 85% 不透明度，内层 `.widget--toc` 背景设为透明并移除阴影，避免两层 85% 背景叠加至近乎实色。仅覆盖根目录样式，不改主题子模块或手机折叠目录。
+- 浏览器验证浅色外层 rgba(255,255,255,0.85)、深色外层 rgba(18,18,18,0.85)，两种模式内层均透明、无阴影；文字不使用整体 opacity，保持原有清晰度。
+- Hugo 生产构建通过，保留既有 libsass 弃用提示。截图：既有预览目录 `41-toc-transparency.png`。检查后恢复浅色模式；本地预览服务已重新启动。
+- 分支 `lvcheng/bugfix/toc-card-transparency`，未提交或推送。
