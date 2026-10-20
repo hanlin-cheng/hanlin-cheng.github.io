@@ -157,7 +157,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 92px; }
     .main-article .article-content { --card-padding: 36px; overflow-wrap: anywhere; }
     .main-article .article-content h2 { font-size: 24px; border-inline-start-color: var(--accent-color); }
     .article-content pre { font-size: 13px; }
-    .article-content img { max-height: 650px; object-fit: contain; }
+    .article-content img { display: block; width: auto; height: auto; max-width: 100%; max-height: none; margin-inline: auto; }
     .right-sidebar .widget { background: var(--card-background); padding: 22px; border-radius: 12px; }
     .right-sidebar .widget--toc #TableOfContents { max-height: 65vh; }
     .right-sidebar .widget-title { color: var(--card-text-color-main); font-size: 16px; }
@@ -217,7 +217,9 @@ html { scroll-behavior: smooth; scroll-padding-top: 92px; }
     .butterfly-preview #dark-mode-toggle { margin-left: auto; }
 }
 .butterfly-preview .article-content .image-zoom-trigger {
-    display: inline-block;
+    display: block;
+    width: fit-content;
+    margin-inline: auto;
     max-width: 100%;
     padding: 0;
     border: 0;
@@ -287,3 +289,5 @@ html { scroll-behavior: smooth; scroll-padding-top: 92px; }
 }
 
 @import "code-blocks";
+
+@import "markdown";

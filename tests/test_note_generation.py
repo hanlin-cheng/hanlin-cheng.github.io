@@ -24,10 +24,10 @@ class LinkParsingTests(unittest.TestCase):
         self.assertIn('`[代码](old.md)`', updated)
         self.assertIn('![真图](new.png)', updated)
 
-    def test_html_reference_and_wiki(self):
+    def test_html_and_reference_links(self):
         text = '<img src="../media/a.png?x=1&amp;y=2">\n[x]: <a(b).md>\n![[image.png|图]]'
         links = list(link_targets(text))
-        self.assertEqual([x.kind for x in links], ['html-image', 'reference', 'wiki'])
+        self.assertEqual([x.kind for x in links], ['html-image', 'reference'])
         self.assertEqual(links[0].value, '../media/a.png?x=1&y=2')
 
 

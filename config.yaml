@@ -12,12 +12,15 @@ pagination:
   pagerSize: 8
 
 markup:
+  tableOfContents:
+    startLevel: 2
+    endLevel: 4
   goldmark:
     extensions:
       passthrough:
         enable: true
         delimiters:
-          block: [['\[', '\]'], ['$$', '$$']]
+          block: [['\[', '\]']]
           inline: [['\(', '\)']]
     renderer:
       unsafe: true

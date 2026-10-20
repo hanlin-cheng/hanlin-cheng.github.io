@@ -10,5 +10,5 @@
         {{ end }}
     {{ end }}
     {{ $wrappedTable := printf "<div class=\"table-wrapper\">${1}</div>" }}
-    {{ $content | replaceRE "(<table>(?:.|\n)+?</table>)" $wrappedTable | safeHTML }}
+    {{ $content | replaceRE `(?is)(<table\b[^>]*>.*?</table>)` $wrappedTable | safeHTML }}
 </section>

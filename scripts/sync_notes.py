@@ -33,7 +33,7 @@ SECTIONS = {
 MIGRATION_FILE = ROOT / "data" / "note-migration.json"
 
 
-SKIP_DIRS = {".git", ".obsidian", ".agents", ".codex"}
+SKIP_DIRS = {".git", ".agents", ".codex"}
 SKIP_SUFFIXES = {".whl", ".pyc"}
 
 

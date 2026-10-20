@@ -18,8 +18,6 @@ def check(root: Path) -> tuple[int, list[str]]:
                 continue
             path = unquote(url.path)
             target = (root / path.lstrip('/')) if path.startswith('/') else (note.parent / path)
-            if link.kind == 'wiki' and not target.suffix and not target.exists():
-                target = target.with_suffix('.md')
             checked += 1
             if not target.is_file():
                 missing.append(f'{note.relative_to(root)}: {link.value}')

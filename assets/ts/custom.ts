@@ -165,3 +165,31 @@ if (imageViewer) {
         resetZoom();
     });
 }
+
+// Only genuinely overflowing tables receive a scroll hint and keyboard stop.
+document.querySelectorAll<HTMLElement>('.article-content .table-wrapper').forEach(wrapper => {
+    const table = wrapper.querySelector('table');
+    if (!table) return;
+    const hint = document.createElement('p');
+    hint.className = 'table-scroll-hint';
+    hint.textContent = '表格可左右滑动查看 →';
+    hint.hidden = true;
+    wrapper.before(hint);
+    const update = () => {
+        const overflowing = wrapper.scrollWidth > wrapper.clientWidth + 1;
+        hint.hidden = !overflowing;
+        if (overflowing) {
+            wrapper.tabIndex = 0;
+            wrapper.setAttribute('role', 'region');
+            wrapper.setAttribute('aria-label', '表格，可横向滚动查看');
+        } else {
+            wrapper.removeAttribute('tabindex');
+            wrapper.removeAttribute('role');
+            wrapper.removeAttribute('aria-label');
+        }
+    };
+    const observer = new ResizeObserver(update);
+    observer.observe(wrapper);
+    observer.observe(table);
+    update();
+});

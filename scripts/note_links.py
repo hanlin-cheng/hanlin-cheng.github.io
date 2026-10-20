@@ -38,7 +38,7 @@ def protected_ranges(text: str) -> list[tuple[int, int]]:
 
 
 def link_targets(text: str) -> Iterator[LinkTarget]:
-    """Scan this repository's Markdown/HTML/reference/wiki link forms.
+    """Scan this repository's Markdown/HTML/reference link forms.
 
     This is a targeted link scanner, not a complete CommonMark parser. In
     particular, it balances parentheses in destinations used by these notes.
@@ -108,13 +108,6 @@ def link_targets(text: str) -> Iterator[LinkTarget]:
             is_image = re.match(r"<img\b", tag.group(), re.I) and attr.group().lower().startswith("src")
             kind = "html-image" if is_image else "html"
             results.append(LinkTarget(begin, end, html.unescape(text[begin:end]), kind))
-
-    for match in re.finditer(r"!?\[\[([^\]\n]+)\]\]", text):
-        if skipped(match.start()):
-            continue
-        begin = match.start(1)
-        end = begin + len(match.group(1).split("|", 1)[0])
-        results.append(LinkTarget(begin, end, text[begin:end], "wiki"))
 
     yield from sorted(results, key=lambda link: link.start)
 

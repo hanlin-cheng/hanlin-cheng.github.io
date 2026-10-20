@@ -1,0 +1,51 @@
+/* Markdown reading rules shared by native and imported HTML content. */
+:root {
+    --code-text-color: #263445;
+    --code-background-color: #edf1f5;
+}
+:root[data-scheme="dark"] {
+    --code-text-color: #e1e5ed;
+    --code-background-color: #242830;
+}
+.butterfly-preview .article-content {
+    :not(pre) > code {
+        border: 1px solid var(--editor-border);
+        border-radius: 4px;
+        padding: 1px 5px;
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+    }
+    .table-wrapper {
+        margin: 20px 0 28px;
+        padding: 0;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        scrollbar-width: thin;
+        scrollbar-color: var(--editor-muted) transparent;
+        &:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 3px; }
+    }
+    table {
+        width: max-content;
+        min-width: 100%;
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+    th, td {
+        min-width: 7rem;
+        max-width: 28rem;
+        padding: 10px 12px;
+        white-space: normal;
+        word-break: normal;
+        overflow-wrap: anywhere;
+    }
+    th { font-weight: 600; background: var(--editor-toolbar); }
+    .table-scroll-hint { margin: 8px 0 -12px; color: var(--card-text-color-secondary); font-size: 12px; }
+    .katex-display { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+}
+.butterfly-preview .widget--toc #TableOfContents ul ul {
+    padding-inline-start: 14px;
+    border-inline-start: 1px solid var(--card-separator-color);
+}
+.butterfly-preview .widget--toc #TableOfContents ul ul ul a { font-size: 12px; }

@@ -43,7 +43,7 @@ class PaperImportTests(unittest.TestCase):
             self.assertIn(r'\(\lvert x \rvert\)', text)
             self.assertIn('<table>', text)
             self.assertIn('{#method}', text)
-            self.assertIn('原文链接', text)
+            self.assertNotIn('原文链接', text)
             self.assertIn('https://example.test/paper_reading/2601.12345_Example/paper_cn.pdf', text)
             self.assertNotIn('PLACEHOLDER', text)
             self.assertNotIn('bad()', text)

@@ -184,8 +184,7 @@ def import_article(article: dict, urls: dict[str, str]) -> dict:
         converted = converted.replace(token, value)
     if re.search(r'PAPER(?:MATH|TABLE)PLACEHOLDER\d+END', converted):
         raise ValueError(f'Unrestored conversion token: {article["url"]}')
-    text = (f'# {article["title"]}\n\n{marker}\n\n'
-            f'> 原文链接：[{article["title"]}]({article["url"]})\n\n{converted}\n')
+    text = f'# {article["title"]}\n\n{marker}\n\n{converted}\n'
     destination.parent.mkdir(parents=True, exist_ok=True)
     destination.write_text(text)
     return {**article, 'original_title': original_title,

@@ -182,3 +182,24 @@ final result: passed
 - Hugo 生产构建成功，git diff --check 通过；既有 libsass 弃用提示仍存在。截图为既有预览目录 `35-code-editor-applied.png`。
 - 分支 `lvcheng/improvement/code-block-previews`，未提交、推送或部署。
 - final result: passed
+
+## 本轮：Markdown 显示兼容与标准化
+
+- 修复五项：金额/Shell 变量被误识别为数学、四级标题不进目录、宽表格挤成窄列、浅色行内代码对比不足、长竖图被 650px 限高缩小且靠左。
+- 统一显式数学定界符，迁移子仓库 9 篇数学笔记的行内/独立公式，并清理 2 篇导入报告中已有公式外多余的美元符号。修正一处原有未定义的 \R 命令和两处破损公式定界符。已逐篇比较变更笔记的代码区间，所有代码保持原样；文件名、链接和 README 索引未改变。
+- 子仓库没有 .obsidian 目录或实际 wiki 链接。移除父仓库解析器与链接检查中的 wiki 兼容分支、同步器的专用目录条目；子仓库 CONTRIBUTING 统一标准链接与明确公式写法，不改公开 README 为内部规则页。
+- 展示页 `/markdown-demo.html`：金额（含反斜杠转义写法）、Shell $HOME/${PATH}/$$ 的段落 math 节点数为 0；真实公式节点为 2，KaTeX 错误为 0；四级目录入口存在。六篇旧数学笔记抽查共 186 个公式，KaTeX 错误为 0。
+- 手机 390×844：内容/滚动宽均 375px，表格容器 295px、内容 999px，列宽 137px、行高约 45px（修复前约 37px / 301px），有横向滚动提示与键盘入口；带属性表格同样有包装。桌面短表格不显示多余提示。
+- 浅色行内代码实测前景 rgb(38,52,69)、背景 rgb(237,241,245)。竖图原始/显示均为 403×1142，中心偏差为 0，max-height=none，图片放大弹窗可打开；恢复默认视口与深色。
+- 链接检查 1011 条、缺失 0，README 覆盖 204 篇源笔记；同步 204 篇。14 项测试通过（含真实 Hugo 输出回归），生产构建通过，沿用现有 libsass 弃用提示。
+- 截图：既有预览目录 `37-mobile-tables-fixed.png`、`38-markdown-math-toc-fixed.png`。
+- 父仓库分支 lvcheng/bugfix/markdown-rendering；子仓库分支 lvcheng/improvement/standard-markdown。未提交、推送或部署。
+- final result: passed
+
+## 本轮：移除论文阅读的原文链接入口
+
+- 删除 notes/papers/ 全部 98 篇开头的“原文链接”引用行，保留正文、论文编号、原文标题、PDF/译文引用及隐藏迁移标记；不改文件名与 README 文章索引。
+- 导入器不再写入该行，更新导入回归检查，防止后续重建恢复入口。迁移清单继续作为内部溯源记录。
+- 全量检索源论文笔记无“原文链接”残留；同步 204 篇，1011 条本地链接无缺失，14 项测试及 Hugo 构建通过。
+- 浏览器抽查 Spatial-Nav-100K：正文入口已移除，论文元信息和正文保留。截图：既有预览目录 `39-paper-source-link-removed.png`。
+- 保留上轮未提交的 Markdown 修复；两仓库均未提交、推送。

@@ -91,7 +91,7 @@ git submodule update --init --recursive
 
 图片集中在 `notes/media/`。迁移图片保留原目录命名空间（如 `media/Algorithm/`），这不是主分类；新增图片推荐 `media/<文章名>/`。根目录 `media/` 只复制附件，不发布为文章分类。
 
-Markdown 同步跳过 `.git`、`.obsidian`、`.agents`、`.codex` 目录。附件复制排除 `.md`、`.whl`、`.pyc`，覆盖上述分类目录及共享 `media/`。PDF 等参考文件放在其所属分类下，所有公开附件都需要核对是否适合发布。
+Markdown 同步跳过 `.git`、`.agents`、`.codex` 目录。附件复制排除 `.md`、`.whl`、`.pyc`，覆盖上述分类目录及共享 `media/`。PDF 等参考文件放在其所属分类下，所有公开附件都需要核对是否适合发布。
 
 ## 4. 同步脚本的实际行为
 
@@ -110,7 +110,7 @@ Markdown 同步跳过 `.git`、`.obsidian`、`.agents`、`.codex` 目录。附�
 
 自动封面选择不会检查图片是否适合当封面。当前定制首页使用纯文字摘要卡片，文章头部也不展示自动封面，但元数据仍可能用于分享卡片、搜索数据等位置。
 
-路径解析工具为 `scripts/note_links.py`，识别本仓库常用的 Markdown、HTML、引用式和 wiki 链接，跳过代码块与行内代码；它不是完整的 CommonMark 解析器。同步时规范化旧 media 写法，并将 HTML 本地链接转换为基于 `source.path` 的站内地址。它不会提取原始日期、生成标签或自动修复所有源文件错误。
+路径解析工具为 `scripts/note_links.py`，识别本仓库常用的 Markdown、HTML 和引用式链接，跳过代码块与行内代码；它不是完整的 CommonMark 解析器。同步时规范化旧 media 写法，并将 HTML 本地链接转换为基于 `source.path` 的站内地址。它不会提取原始日期、生成标签或自动修复所有源文件错误。
 
 ## 5. 图片、附件与 URL
 
@@ -120,7 +120,7 @@ Markdown 同步跳过 `.git`、`.obsidian`、`.agents`、`.codex` 目录。附�
 - 静态附件保留源文件大小写，不要根据文章 URL 将图片目录统一转换为小写。
 - 原始 HTML 不经过 Markdown 渲染钩子；同步脚本会处理 HTML 标签中的本地 `src`/`href`，仍需在浏览器验证。
 - [layouts/_markup/render-link.html](../layouts/_markup/render-link.html) 将普通 Markdown 的 `.md` 目标解析为 Hugo 页面的真实 `RelPermalink`，其他附件链接解析为 `/notes/` 下的静态地址，并保留查询参数和锚点。
-- 不依赖 Obsidian 专属图片嵌入语法；源笔记统一使用标准 Markdown。
+- 源笔记仅使用标准 Markdown 链接与图片语法，不维护编辑器专属双链、嵌入或插件配置；链接检查器不再识别 wiki 链接。
 - `uglyURLs: true` 下文章通常为 `/notes/<分类>/<文件名>.html`。实际 URL 以 Hugo 输出为准，中文及括号等标点可能被规范化。
 - 移动或重命名文章要同步修改图片、其他笔记和 README 引用；公开地址变动还需维护迁移清单中的 `legacy_urls`。
 - 历史映射保存在 [data/note-migration.json](../data/note-migration.json)，迁移过程与验证记录见 [分类迁移记录](note-migration.md)。不把源仓库已删除文章重新加入兼容映射。
@@ -204,7 +204,7 @@ CI 不会自动跟踪笔记子模块的远端最新提交。本地未提交的�
 - 修改同步机制：运行 `python3 -m unittest discover -s tests -v`，并检查代表性笔记、共享图片、PDF、跨笔记链接、清理保护及旧地址跳转。
 - 修改外观或交互：构建并在浏览器检查桌面、手机宽度，按范围验证导航、分页、搜索、目录、深色切换或图片预览；相关记录见 [design-qa.md](../design-qa.md)。
 
-当前已知限制：全量同步时间被当作文章日期；本次迁移已修复 `.y/media/GetImage65.jpeg` 路径笔误并规范了一处 Obsidian 图片引用，少量原有残缺 Markdown 仍待按内容任务处理。遇到这些问题应区分“原笔记内容问题”和“生成机制问题”，不要通过改写生成文件掩盖问题。
+当前已知限制：全量同步时间被当作文章日期；本次迁移已修复 `.y/media/GetImage65.jpeg` 路径笔误并规范了一处旧图片引用，少量原有残缺 Markdown 仍待按内容任务处理。遇到这些问题应区分“原笔记内容问题”和“生成机制问题”，不要通过改写生成文件掩盖问题。
 
 ## 10. 论文阅读导入与维护
 
@@ -212,4 +212,19 @@ CI 不会自动跟踪笔记子模块的远端最新提交。本地未提交的�
 
 普通新增论文笔记直接按第 2 节流程操作，不依赖原站或导入依赖。只有需要重建这批迁移文章时，才安装 `scripts/requirements-paper-import.txt` 并运行 `scripts/import_paper_readings.py`。该脚本会覆盖带对应来源标记的已导入文件，并重建 README 论文索引；**重跑前先保留迁入后的人工作业**，不允许覆盖无对应标记的现有笔记。源 HTML 与图片缓存位于忽略的 `resources/paper-import-cache/`，失败后可使用缓存继续。
 
-Goldmark 启用 `\(...\)` 的 passthrough，保留行内公式转义。导入公式保留 LaTeX，用 `paper-math` 的 HTML span/div 包装并转义 HTML 字符，由主题现有 KaTeX 渲染 `\(...\)` 和 `\[...\]`。这样避免公式中的 `<` 被当成 HTML、独立 `=` 行被当成 Markdown 标题；复杂表格保留 HTML，表格内公式同样检查。PDF 和中文完整译文链接保留源站地址，这批迁移数量只计算阅读报告。
+Goldmark 仅对 `\(...\)` 和 `\[...\]` 启用 passthrough，保留公式转义；根目录覆盖 KaTeX 初始化模板，关闭单/双美元自动公式识别，金额与 Shell 符号按普通正文显示。旧笔记的美元公式已迁移到明确的定界符，不要重新开启全局美元识别。导入公式保留 LaTeX，用 `paper-math` 的 HTML span/div 包装并转义 HTML 字符，由主题现有 KaTeX 渲染 `\(...\)` 和 `\[...\]`。这样避免公式中的 `<` 被当成 HTML、独立 `=` 行被当成 Markdown 标题；复杂表格保留 HTML，表格内公式同样检查。PDF 和中文完整译文链接保留源站地址，这批迁移数量只计算阅读报告。
+
+
+## 11. Markdown 兼容与回归检查
+
+- 数学：行内 `\(...\)`，独立 `\[...\]`；不再支持 `$...$` / `$$...$$` 公式。金额、Shell 的 `$HOME`、`${PATH}`、`$$` 保留为正文。不要对普通正文猜测数学表达式。新内容必须使用明确的公式定界符，现有数学笔记已迁移。KaTeX 仍跳过代码区域，代码中不得改写定界符。
+- 目录：`hugo.yaml` 与 `config.yaml` 都显式设为 startLevel=2、endLevel=4，侧栏嵌套目录有缩进。四级标题可定位，五、六级不默认收录。
+- 表格：`layouts/_partials/article/components/content.html` 同时包装普通和带属性的 HTML table。`assets/scss/markdown.scss` 设置表格按内容布局、列的最小宽度与长文本换行，宽度超过容器时在表格区域滚动，不挤成竖排、不撑宽页面。`assets/ts/custom.ts` 使用 ResizeObserver，仅给实际溢出的表格显示滑动提示、区域标签和键盘焦点；不要全局 nowrap。
+- 行内代码：与代码面板分开配色。浅色深字 `#263445` / 底 `#edf1f5`，深色亮字 `#e1e5ed` / 底 `#242830`；不恢复浅色 `#808080` 的低对比度设置。
+- 图片：正文图片等比例、居中、最大宽度 100%，不再统一限制为 650px 高。长技术图保留可读尺寸，点击放大行为不变；不要恢复固定宽高加 contain 形成留白框。
+- 展示页源文件为 `content/markdown-demo/index.md`，地址 `/markdown-demo.html`，包含金额、Shell 符号、公式、四级标题、宽表格/带属性表格、列表/脚注、代码和竖图，不属于 notes 随机池，不新增子仓库文章索引。
+- 自动回归：`tests/test_markdown_rendering.py` 实际调用 Hugo，在忽略的 resources 临时目录构建，检查目录锚点、金额/变量/公式保留与两种表格包装。配合同步/导入测试运行 `resources/paper-import-venv/bin/python -m unittest discover -s tests -v`。普通生成测试可只运行 test_note_generation 和 test_markdown_rendering；全量测试需要已有的导入依赖环境。
+- 外观验证仍需要在浏览器检查深浅色、手机滚动、图片放大及 KaTeX 错误；不能以“链接存在”替代显示验证。笔记子仓库没有专用编辑器配置目录或现用双链，本次删除的是检查/同步链路中的专用兼容分支，并统一维护规则。
+
+
+论文阅读页面不展示开头的“原文链接”入口；98 篇已统一删除，导入器也不再生成该行。迁移清单与不可见来源标记继续用于溯源、识别已导入文章及防止误覆盖；正文中的论文 PDF、译文和参考资料链接按原内容保留。此调整不增删或改名文章，子仓库 README 的文章入口保持有效。
