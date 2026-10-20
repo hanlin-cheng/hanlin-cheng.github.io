@@ -101,6 +101,8 @@ document.addEventListener('click', (event: MouseEvent) => {
     if (!target) return;
     event.preventDefault();
     event.stopImmediatePropagation();
+    const mobileToc = link?.closest<HTMLDetailsElement>('.article-toc details');
+    if (mobileToc) mobileToc.open = false;
     const navigationHeight = document.querySelector('.topbar')?.getBoundingClientRect().height || 0;
     history.pushState(null, '', href);
     window.scrollTo({

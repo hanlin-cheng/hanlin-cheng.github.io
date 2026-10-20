@@ -6,11 +6,11 @@ import json
 import posixpath
 import re
 import shutil
-from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import quote, unquote, urlsplit
 
 from note_links import link_targets, rewrite_links
+from note_dates import NoteDates
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -31,6 +31,7 @@ SECTIONS = {
     "papers": "论文阅读",
 }
 MIGRATION_FILE = ROOT / "data" / "note-migration.json"
+DATE_CACHE_FILE = ROOT / "data" / "note-dates.json"
 
 
 SKIP_DIRS = {".git", ".agents", ".codex"}
@@ -130,13 +131,13 @@ def fallback_section_image(section: str) -> str | None:
 
 def front_matter(
     title: str, category: str, source: str, weight: int, image: str | None = None,
-    aliases: list[str] | None = None
+    aliases: list[str] | None = None, *, date: str, lastmod: str
 ) -> str:
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     lines = [
         "---",
         f"title: {quote_yaml(title)}",
-        f"date: {quote_yaml(now)}",
+        f"date: {quote_yaml(date)}",
+        f"lastmod: {quote_yaml(lastmod)}",
         "draft: false",
         f"weight: {weight}",
     ]
@@ -188,6 +189,7 @@ def copy_assets() -> None:
 
 def sync_markdown() -> list[dict[str, str]]:
     pages: list[dict[str, str]] = []
+    dates = NoteDates(NOTES_DIR, DATE_CACHE_FILE)
     migration = json.loads(MIGRATION_FILE.read_text()) if MIGRATION_FILE.exists() else {}
     legacy_urls = migration.get("legacy_urls", {})
     for src in sorted(NOTES_DIR.rglob("*.md")):
@@ -203,8 +205,9 @@ def sync_markdown() -> list[dict[str, str]]:
         image = first_local_image(body, section) or fallback_section_image(section)
         target = CONTENT_DIR / rel
         target.parent.mkdir(parents=True, exist_ok=True)
+        published, modified = dates.get(rel.as_posix())
         target.write_text(
-            front_matter(title, category, rel.as_posix(), stable_weight(rel), image, legacy_urls.get(rel.as_posix())) + body,
+            front_matter(title, category, rel.as_posix(), stable_weight(rel), image, legacy_urls.get(rel.as_posix()), date=published, lastmod=modified) + body,
             encoding="utf-8",
         )
         pages.append(
@@ -215,6 +218,7 @@ def sync_markdown() -> list[dict[str, str]]:
                 "source": rel.as_posix(),
             }
         )
+    dates.save()
     return pages
 
 

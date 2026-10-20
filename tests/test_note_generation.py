@@ -56,7 +56,7 @@ class GenerationTests(unittest.TestCase):
             migration.write_text(json.dumps({'legacy_urls': {'math/note.md': ['/notes/algorithm/old.html']}}))
             with patch.multiple(sync, NOTES_DIR=notes, CONTENT_DIR=root/'content',
                                 STATIC_DIR=root/'static', STATIC_SEARCH_INDEX=root/'index.json',
-                                MIGRATION_FILE=migration):
+                                MIGRATION_FILE=migration, DATE_CACHE_FILE=root/"dates.json"):
                 sync.main()
                 body = (root / 'content/math/note.md').read_text()
                 self.assertIn('"数学基础"', body)

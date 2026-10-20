@@ -16,9 +16,15 @@ class RenderedPage(HTMLParser):
         self.links = []
         self.table_wrappers = []
         self.text = []
+        self.body_h1 = 0
+        self.ids = []
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
+        if attrs.get("id"):
+            self.ids.append(attrs["id"])
+        if tag == "h1" and any("article-content" in classes for _, classes in self.stack):
+            self.body_h1 += 1
         if tag == 'a':
             self.links.append(attrs.get('href', ''))
         if tag == 'table':
@@ -68,3 +74,28 @@ class MarkdownRenderingTests(unittest.TestCase):
 
     def test_code_example_keeps_literal_dollars(self):
         self.assertIn('$10 and $20 are prices;', ''.join(self.page.text))
+
+    def test_mobile_directory_has_no_duplicate_desktop_id(self):
+        self.assertIn('class="article-toc"', self.html)
+        self.assertNotIn('class="mobile-toc"', self.html)
+        self.assertEqual(self.page.ids.count('TableOfContents'), 1)
+
+    def test_fixed_notes_have_no_body_h1_or_missing_main_sections(self):
+        for name in ('robotics/windows下orb和hfnet安装', 'robotics/路径规划之a-star算法',
+                     'robotics/orbslam3学习', 'cpp/左值与右值'):
+            page = RenderedPage()
+            page.feed((Path(self.output.name) / 'notes' / (name + '.html')).read_text())
+            self.assertEqual(page.body_h1, 0, name)
+        page = (Path(self.output.name) / 'notes/robotics/路径规划之a-star算法.html').read_text()
+        self.assertIn('href="#广度优先搜索"', page)
+
+    def test_repaired_paper_formula_stays_in_one_table_cell(self):
+        page = (Path(self.output.name) / 'notes/papers/2607.14481-i3dgs.html').read_text()
+        self.assertIn(r'\(O(|\mathcal{M}|)\)', page)
+        self.assertNotIn('$O(', page)
+
+    def test_copyable_example_has_no_language_suffix(self):
+        page = (Path(self.output.name) / 'notes/cpp/c++_boost_circular_buffer.html').read_text()
+        parsed = RenderedPage()
+        parsed.feed(page)
+        self.assertNotIn('}c++', ''.join(parsed.text))
